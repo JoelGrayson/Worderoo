@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CodesView: View {
+    @Binding var game: Game
+    
     var body: some View {
         Text("Codes View")
+        Text(game.masterWord)
     }
 }
 
-#Preview {
-    CodesView()
-}

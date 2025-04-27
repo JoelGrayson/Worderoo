@@ -8,12 +8,14 @@
 import Foundation
 
 struct Game {
+    let masterWord: String
     let master: Code
     let guess: Code
     let attempts: [Code]
     
     init(startingWord: String) {
-        master = Code(characters: stringToCharacters(startingWord), kind: .master)
+        masterWord = startingWord.uppercased()
+        master = Code(characters: stringToCharacters(masterWord), kind: .master)
         guess = Code(characters: [], kind: .guess)
         attempts = []
     }

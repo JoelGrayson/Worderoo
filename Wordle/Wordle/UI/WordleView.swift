@@ -13,8 +13,8 @@ struct WordleView: View {
     
     var body: some View {
         VStack {
-            CodesView() // a code is a single line (list of characters)
-            KeyboardView()
+            CodesView(game: $game) // a code is a single line (list of characters)
+            KeyboardView(game: $game)
         }
 //        .onChange(of: words.count) { oldValue, newValue in
 //            if game.attempts.count == 0 { //don't interrupt an old game
