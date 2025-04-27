@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct WordleView: View {
+    @Environment(\.words) var words
+    @State private var game = Game(startingWord: "World")
+    
     var body: some View {
         VStack {
             CodesView() // a code is a single line (list of characters)
             KeyboardView()
         }
+//        .onChange(of: words.count) { oldValue, newValue in
+//            if game.attempts.count == 0 { //don't interrupt an old game
+//
+//            }
+//        }
     }
 }
 
