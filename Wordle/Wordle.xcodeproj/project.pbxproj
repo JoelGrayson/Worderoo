@@ -12,6 +12,7 @@
 		38451A1A2DBEC4D90097A60C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38451A132DBEC4D90097A60C /* Assets.xcassets */; };
 		38451A1C2DBEC54B0097A60C /* CodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1B2DBEC54B0097A60C /* CodesView.swift */; };
 		38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1D2DBEC5610097A60C /* KeyboardView.swift */; };
+		38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A202DBEC5AF0097A60C /* KeyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		38451A162DBEC4D90097A60C /* WordleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleApp.swift; sourceTree = "<group>"; };
 		38451A1B2DBEC54B0097A60C /* CodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesView.swift; sourceTree = "<group>"; };
 		38451A1D2DBEC5610097A60C /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		38451A202DBEC5AF0097A60C /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				38451A142DBEC4D90097A60C /* WordleView.swift */,
 				38451A1B2DBEC54B0097A60C /* CodesView.swift */,
 				38451A1D2DBEC5610097A60C /* KeyboardView.swift */,
+				38451A202DBEC5AF0097A60C /* KeyView.swift */,
 			);
 			path = Wordle;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			files = (
 				38451A182DBEC4D90097A60C /* WordleView.swift in Sources */,
 				38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */,
+				38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */,
 				38451A192DBEC4D90097A60C /* WordleApp.swift in Sources */,
 				38451A1C2DBEC54B0097A60C /* CodesView.swift in Sources */,
 			);
