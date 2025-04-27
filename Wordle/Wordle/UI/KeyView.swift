@@ -14,8 +14,8 @@ struct KeyView: View {
         Text(key)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
-            .background(.gray)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .background(Styles.keyColor)
+            .clipShape(RoundedRectangle(cornerRadius: Styles.keyCornerRadius))
     }
 }
 

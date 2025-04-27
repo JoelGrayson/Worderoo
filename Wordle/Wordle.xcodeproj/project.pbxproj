@@ -13,6 +13,8 @@
 		38451A1C2DBEC54B0097A60C /* CodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1B2DBEC54B0097A60C /* CodesView.swift */; };
 		38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1D2DBEC5610097A60C /* KeyboardView.swift */; };
 		38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A202DBEC5AF0097A60C /* KeyView.swift */; };
+		38451A3C2DBEC7C70097A60C /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A3B2DBEC7C50097A60C /* UIExtensions.swift */; };
+		38451A3E2DBEC93C0097A60C /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A3D2DBEC93A0097A60C /* Styles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		38451A1B2DBEC54B0097A60C /* CodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesView.swift; sourceTree = "<group>"; };
 		38451A1D2DBEC5610097A60C /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		38451A202DBEC5AF0097A60C /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
+		38451A3B2DBEC7C50097A60C /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		38451A3D2DBEC93A0097A60C /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +63,22 @@
 				38451A132DBEC4D90097A60C /* Assets.xcassets */,
 				38451A152DBEC4D90097A60C /* Wordle.entitlements */,
 				38451A162DBEC4D90097A60C /* WordleApp.swift */,
+				38451A3A2DBEC7BC0097A60C /* UI */,
+				38451A3B2DBEC7C50097A60C /* UIExtensions.swift */,
+				38451A3D2DBEC93A0097A60C /* Styles.swift */,
+			);
+			path = Wordle;
+			sourceTree = "<group>";
+		};
+		38451A3A2DBEC7BC0097A60C /* UI */ = {
+			isa = PBXGroup;
+			children = (
 				38451A142DBEC4D90097A60C /* WordleView.swift */,
 				38451A1B2DBEC54B0097A60C /* CodesView.swift */,
 				38451A1D2DBEC5610097A60C /* KeyboardView.swift */,
 				38451A202DBEC5AF0097A60C /* KeyView.swift */,
 			);
-			path = Wordle;
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +154,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				38451A182DBEC4D90097A60C /* WordleView.swift in Sources */,
+				38451A3E2DBEC93C0097A60C /* Styles.swift in Sources */,
 				38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */,
 				38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */,
+				38451A3C2DBEC7C70097A60C /* UIExtensions.swift in Sources */,
 				38451A192DBEC4D90097A60C /* WordleApp.swift in Sources */,
 				38451A1C2DBEC54B0097A60C /* CodesView.swift in Sources */,
 			);
