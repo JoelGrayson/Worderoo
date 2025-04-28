@@ -8,11 +8,11 @@
 import Foundation
 
 struct Game {
-    let size: Int
-    let masterWord: String
-    let master: Code
-    let guess: Code
-    let attempts: [Code]
+    var size: Int
+    var masterWord: String
+    var master: Code
+    var guess: Code
+    var attempts: [Code]
     
     init(startingWord: String, size: Int) {
         self.size = size

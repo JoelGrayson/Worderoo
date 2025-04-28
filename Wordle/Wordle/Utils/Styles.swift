@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct Styles {
-    static let keyColor = Color.gray(0.8)
+    static let keyColor = Color.lightGray
     static let keyCornerRadius: CGFloat = 12
+    
     static func statusToColor(_ status: Status) -> Color {
         switch (status) {
-        case .nothing:
+        case .hasCharButNotGuessedYet:
+            return .middleGray
+        case .blank:
             return keyColor
         case .correct:
             return .green
@@ -25,6 +28,8 @@ struct Styles {
 }
 
 extension Color {
+    static let lightGray = Color.gray(0.8)
+    static let middleGray = Color.gray(0.6)
     static let darkGray = Color.gray(0.3)
 }
 

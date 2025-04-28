@@ -8,8 +8,8 @@
 import Foundation
 
 struct Code {
-    let characters: [Character]
-    let kind: Kind
+    var characters: [Character]
+    var kind: Kind
 }
 
 

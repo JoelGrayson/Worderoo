@@ -11,7 +11,7 @@ struct Character {
     let value: String
     let status: Status
     
-    init(value: String, status: Status = .nothing) {
+    init(value: String, status: Status = .hasCharButNotGuessedYet) {
         self.value = value
         self.status = status
     }
@@ -19,6 +19,6 @@ struct Character {
 
 
 extension Character {
-    static let blank = Character(value: " ", status: .nothing)
+    static let blank = Character(value: " ", status: .blank)
 }
 

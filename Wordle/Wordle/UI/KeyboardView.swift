@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct KeyboardView: View {
-    @Binding var game: Game
+//    @Binding var game: Game
+    let onKeyPress: (_ key: String) -> Void
     
-    let keys=[
+    static let keys=[
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
         ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
         ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "DELETE"]
@@ -18,10 +19,10 @@ struct KeyboardView: View {
     
     var body: some View {
         VStack {
-            ForEach(keys, id: \.self) { keyRow in
+            ForEach(KeyboardView.keys, id: \.self) { keyRow in
                 HStack {
                     ForEach(keyRow, id: \.self) { key in
-                        KeyView(key: key)
+                        KeyView(key: key, onKeyPress: onKeyPress)
                     }
                 }
             }
@@ -30,6 +31,11 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    KeyboardView(game: .constant(.init(startingWord: "HELLO", size: 5)))
+    KeyboardView(
+//        game: .constant(.init(startingWord: "HELLO", size: 5)),
+        onKeyPress: { key in
+            print("Pressed", key)
+        }
+   )
 }
 

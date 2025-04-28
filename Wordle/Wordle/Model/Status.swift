@@ -9,9 +9,10 @@ import Foundation
 
 enum Status {
     // Not guessed yet
-    case nothing
+    case blank //empty space
+    case hasCharButNotGuessedYet
     
-    // Guessed and the status is calculated
+    // Graded: guessed and the status is calculated
     case correct //will show green
     case wrongPlace //will show yellow
     case notIn //will show dark gray

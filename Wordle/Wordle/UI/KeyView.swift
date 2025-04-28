@@ -9,6 +9,7 @@ import SwiftUI
 
 struct KeyView: View {
     let key: String
+    let onKeyPress: (_ key: String) -> Void
     
     var body: some View {
         keyIcon(key)
@@ -16,6 +17,9 @@ struct KeyView: View {
             .padding(.vertical, 5)
             .background(Styles.keyColor)
             .clipShape(RoundedRectangle(cornerRadius: Styles.keyCornerRadius))
+            .onTapGesture {
+                onKeyPress(key)
+            }
     }
     
     @ViewBuilder
@@ -32,6 +36,6 @@ struct KeyView: View {
 }
 
 #Preview {
-    KeyView(key: "Q")
+    KeyView(key: "Q", onKeyPress: { key in print("Pressed", key) })
 }
 

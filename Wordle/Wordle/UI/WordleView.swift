@@ -17,7 +17,22 @@ struct WordleView: View {
             ForEach(game.attempts.indices, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
                 CodeView(for: game.attempts[i], size: game.size)
             }
-            KeyboardView(game: $game)
+            KeyboardView(onKeyPress: { key in
+                print("Key", key)
+                switch key {
+                case "DELETE":
+                    if game.guess.characters.isEmpty {
+                        return
+                    }
+                    game.guess.characters.remove(at: game.guess.characters.index(game.guess.characters.endIndex, offsetBy: -1))
+                case "ENTER":
+                    // TODO:
+                    print("Enter!")
+                default:
+                    print("Adding", key)
+                    game.guess.characters.append(.init(value: key))
+                }
+            })
         }
 //        .onChange(of: words.count) { oldValue, newValue in
 //            if game.attempts.count == 0 { //don't interrupt an old game
