@@ -11,11 +11,23 @@ struct KeyView: View {
     let key: String
     
     var body: some View {
-        Text(key)
+        keyIcon(key)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
             .background(Styles.keyColor)
             .clipShape(RoundedRectangle(cornerRadius: Styles.keyCornerRadius))
+    }
+    
+    @ViewBuilder
+    func keyIcon(_ key: String) -> some View {
+        switch key {
+        case "DELETE":
+            Image(systemName: "delete.left")
+        case "ENTER":
+            Image(systemName: "return")
+        default:
+            Text(key)
+        }
     }
 }
 
