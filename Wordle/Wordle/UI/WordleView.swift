@@ -14,8 +14,8 @@ struct WordleView: View {
     var body: some View {
         VStack {
             CodeView(for: game.guess, size: game.size)
-            ForEach(game.attempts.indices, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
-                CodeView(for: game.attempts[i], size: game.size)
+            ForEach(0..<Game.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
+                CodeView(for: i<game.attempts.count ? game.attempts[i] : .blank, size: game.size)
             }
             KeyboardView(onKeyPress: { key in
                 print("Key", key)

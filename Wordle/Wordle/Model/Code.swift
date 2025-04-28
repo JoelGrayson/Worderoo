@@ -10,6 +10,8 @@ import Foundation
 struct Code {
     var characters: [Character]
     var kind: Kind
+    
+    static let blank = Code.init(characters: [], kind: .attempt)
 }
 
 

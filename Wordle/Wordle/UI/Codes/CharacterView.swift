@@ -17,7 +17,7 @@ struct CharacterView: View {
     var body: some View {
         Text(character.value)
             .background(
-                
+                Styles.statusToColor(character.status)
             )
     }
 }

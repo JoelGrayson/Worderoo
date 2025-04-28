@@ -90,10 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				38451A142DBEC4D90097A60C /* WordleView.swift */,
-				38451A1B2DBEC54B0097A60C /* CodeView.swift */,
-				38451A582DBED3F30097A60C /* CharacterView.swift */,
-				38451A1D2DBEC5610097A60C /* KeyboardView.swift */,
-				38451A202DBEC5AF0097A60C /* KeyView.swift */,
+				38451A5D2DBF53010097A60C /* Codes */,
+				38451A5C2DBF52F10097A60C /* Keyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -119,6 +117,24 @@
 				38451A3F2DBECA1B0097A60C /* Words.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		38451A5C2DBF52F10097A60C /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				38451A1D2DBEC5610097A60C /* KeyboardView.swift */,
+				38451A202DBEC5AF0097A60C /* KeyView.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		38451A5D2DBF53010097A60C /* Codes */ = {
+			isa = PBXGroup;
+			children = (
+				38451A1B2DBEC54B0097A60C /* CodeView.swift */,
+				38451A582DBED3F30097A60C /* CharacterView.swift */,
+			);
+			path = Codes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

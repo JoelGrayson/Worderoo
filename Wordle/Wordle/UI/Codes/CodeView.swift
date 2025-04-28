@@ -17,9 +17,10 @@ struct CodeView: View {
     }
     
     var body: some View {
-        Text("Codes View")
-        ForEach(0..<size, id: \.self) { chI in
-            CharacterView(chI < code.characters.count ? code.characters[chI] : .blank)
+        HStack {
+            ForEach(0..<size, id: \.self) { chI in
+                CharacterView(chI < code.characters.count ? code.characters[chI] : .blank)
+            }
         }
     }
 }
