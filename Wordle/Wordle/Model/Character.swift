@@ -11,7 +11,7 @@ struct Character {
     let value: String
     let status: Status
     
-    init(value: String, status: Status = .blank) {
+    init(value: String, status: Status = .nothing) {
         self.value = value
         self.status = status
     }

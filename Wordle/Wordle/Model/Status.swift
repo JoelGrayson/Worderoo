@@ -14,6 +14,6 @@ enum Status {
     // Guessed and the status is calculated
     case correct //will show green
     case wrongPlace //will show yellow
-    case blank //will show dark gray
+    case notIn //will show dark gray
 }
 

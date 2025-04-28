@@ -13,7 +13,10 @@ struct WordleView: View {
     
     var body: some View {
         VStack {
-            CodesView(game: $game) // a code is a single line (list of characters)
+            CodeView(for: game.guess)
+            ForEach(game.attempts.indices, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
+                CodeView(for: game.attempts[i])
+            }
             KeyboardView(game: $game)
         }
 //        .onChange(of: words.count) { oldValue, newValue in

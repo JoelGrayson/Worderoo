@@ -10,7 +10,7 @@
 		38451A182DBEC4D90097A60C /* WordleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A142DBEC4D90097A60C /* WordleView.swift */; };
 		38451A192DBEC4D90097A60C /* WordleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A162DBEC4D90097A60C /* WordleApp.swift */; };
 		38451A1A2DBEC4D90097A60C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38451A132DBEC4D90097A60C /* Assets.xcassets */; };
-		38451A1C2DBEC54B0097A60C /* CodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1B2DBEC54B0097A60C /* CodesView.swift */; };
+		38451A1C2DBEC54B0097A60C /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1B2DBEC54B0097A60C /* CodeView.swift */; };
 		38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1D2DBEC5610097A60C /* KeyboardView.swift */; };
 		38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A202DBEC5AF0097A60C /* KeyView.swift */; };
 		38451A3C2DBEC7C70097A60C /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A3B2DBEC7C50097A60C /* UIExtensions.swift */; };
@@ -22,6 +22,7 @@
 		38451A4F2DBED0600097A60C /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A4E2DBED0600097A60C /* Code.swift */; };
 		38451A522DBED06C0097A60C /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A512DBED06C0097A60C /* Character.swift */; };
 		38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A542DBED12B0097A60C /* StringToCharacters.swift */; };
+		38451A592DBED3F30097A60C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A582DBED3F30097A60C /* CharacterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +31,7 @@
 		38451A142DBEC4D90097A60C /* WordleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleView.swift; sourceTree = "<group>"; };
 		38451A152DBEC4D90097A60C /* Wordle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wordle.entitlements; sourceTree = "<group>"; };
 		38451A162DBEC4D90097A60C /* WordleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleApp.swift; sourceTree = "<group>"; };
-		38451A1B2DBEC54B0097A60C /* CodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesView.swift; sourceTree = "<group>"; };
+		38451A1B2DBEC54B0097A60C /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 		38451A1D2DBEC5610097A60C /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		38451A202DBEC5AF0097A60C /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 		38451A3B2DBEC7C50097A60C /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		38451A4E2DBED0600097A60C /* Code.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
 		38451A512DBED06C0097A60C /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		38451A542DBED12B0097A60C /* StringToCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToCharacters.swift; sourceTree = "<group>"; };
+		38451A582DBED3F30097A60C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				38451A142DBEC4D90097A60C /* WordleView.swift */,
-				38451A1B2DBEC54B0097A60C /* CodesView.swift */,
+				38451A1B2DBEC54B0097A60C /* CodeView.swift */,
+				38451A582DBED3F30097A60C /* CharacterView.swift */,
 				38451A1D2DBEC5610097A60C /* KeyboardView.swift */,
 				38451A202DBEC5AF0097A60C /* KeyView.swift */,
 			);
@@ -197,13 +200,14 @@
 				38451A522DBED06C0097A60C /* Character.swift in Sources */,
 				38451A3E2DBEC93C0097A60C /* Styles.swift in Sources */,
 				38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */,
+				38451A592DBED3F30097A60C /* CharacterView.swift in Sources */,
 				38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */,
 				38451A3C2DBEC7C70097A60C /* UIExtensions.swift in Sources */,
 				38451A4F2DBED0600097A60C /* Code.swift in Sources */,
 				38451A402DBECA1B0097A60C /* Words.swift in Sources */,
 				38451A192DBEC4D90097A60C /* WordleApp.swift in Sources */,
 				38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */,
-				38451A1C2DBEC54B0097A60C /* CodesView.swift in Sources */,
+				38451A1C2DBEC54B0097A60C /* CodeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
