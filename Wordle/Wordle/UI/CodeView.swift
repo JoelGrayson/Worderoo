@@ -9,15 +9,17 @@ import SwiftUI
 
 struct CodeView: View {
     var code: Code
+    let size: Int
     
-    init(for code: Code) {
+    init(for code: Code, size: Int) {
         self.code = code
+        self.size = size
     }
     
     var body: some View {
         Text("Codes View")
-        ForEach(code.characters.indices, id: \.self) { chI in
-            CharacterView(code.characters[chI])
+        ForEach(0..<size, id: \.self) { chI in
+            CharacterView(chI < code.characters.count ? code.characters[chI] : .blank)
         }
     }
 }

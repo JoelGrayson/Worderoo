@@ -17,3 +17,8 @@ struct Character {
     }
 }
 
+
+extension Character {
+    static let blank = Character(value: " ", status: .nothing)
+}
+

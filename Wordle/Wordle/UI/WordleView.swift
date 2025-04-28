@@ -9,13 +9,13 @@ import SwiftUI
 
 struct WordleView: View {
     @Environment(\.words) var words
-    @State private var game = Game(startingWord: "World")
+    @State private var game = Game(startingWord: "WORLD", size: 5)
     
     var body: some View {
         VStack {
-            CodeView(for: game.guess)
+            CodeView(for: game.guess, size: game.size)
             ForEach(game.attempts.indices, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
-                CodeView(for: game.attempts[i])
+                CodeView(for: game.attempts[i], size: game.size)
             }
             KeyboardView(game: $game)
         }

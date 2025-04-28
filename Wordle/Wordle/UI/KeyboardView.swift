@@ -30,6 +30,6 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    KeyboardView(game: .constant(.init(startingWord: "HELLO")))
+    KeyboardView(game: .constant(.init(startingWord: "HELLO", size: 5)))
 }
 
