@@ -19,6 +19,10 @@ struct Code {
             .joined(separator: "") //join the characters into a string
     }
     
+    mutating func setTo(_ to: String) {
+        characters = to.split(separator: "").map({ ch in Character.init(value: String(ch), status: .blank) })
+    }
+    
     mutating func reset() {
         self.characters = []
     }

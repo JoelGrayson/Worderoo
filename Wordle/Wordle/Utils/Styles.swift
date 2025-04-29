@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct Styles {
-    static let keyColor = Color.lightGray
     static let keyCornerRadius: CGFloat = 12
     static let cellSize: CGFloat = 50
     static let cellFontSize: CGFloat = 35
 
-    
     static func statusToColor(_ status: Status) -> Color {
         switch (status) {
         case .hasCharButNotGuessedYet:
             return .middleGray
         case .blank:
-            return keyColor
+            return .lightGray
         case .correct:
             return .green
         case .wrongPlace:

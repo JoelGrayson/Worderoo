@@ -23,6 +23,7 @@
 		38451A522DBED06C0097A60C /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A512DBED06C0097A60C /* Character.swift */; };
 		38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A542DBED12B0097A60C /* StringToCharacters.swift */; };
 		38451A592DBED3F30097A60C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A582DBED3F30097A60C /* CharacterView.swift */; };
+		386F1FA62DC197C600C795A2 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 386F1FA52DC197C600C795A2 /* TODO.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		38451A512DBED06C0097A60C /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		38451A542DBED12B0097A60C /* StringToCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToCharacters.swift; sourceTree = "<group>"; };
 		38451A582DBED3F30097A60C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		386F1FA52DC197C600C795A2 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				38451A132DBEC4D90097A60C /* Assets.xcassets */,
 				38451A152DBEC4D90097A60C /* Wordle.entitlements */,
 				38451A162DBEC4D90097A60C /* WordleApp.swift */,
+				386F1FA52DC197C600C795A2 /* TODO.md */,
 				38451A3A2DBEC7BC0097A60C /* UI */,
 				38451A412DBECE990097A60C /* Model */,
 				38451A532DBED1080097A60C /* Utils */,
@@ -198,6 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				386F1FA62DC197C600C795A2 /* TODO.md in Resources */,
 				38451A1A2DBEC4D90097A60C /* Assets.xcassets in Resources */,
 				38451A4A2DBECF480097A60C /* Plan.md in Resources */,
 			);

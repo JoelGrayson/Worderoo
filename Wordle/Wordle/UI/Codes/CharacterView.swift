@@ -16,7 +16,6 @@ struct CharacterView: View {
     
     var body: some View {
         Text(character.value)
-//            .padding()
             .frame(width: Styles.cellSize, height: Styles.cellSize) // Q: how do I avoid using a frame for this while keeping a square?
             .font(.system(size: Styles.cellFontSize))
             .monospaced()

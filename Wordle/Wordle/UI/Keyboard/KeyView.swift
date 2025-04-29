@@ -10,13 +10,17 @@ import SwiftUI
 struct KeyView: View {
     let key: String
     let onKeyPress: (_ key: String) -> Void
+    let status: Status = .blank
     
     var body: some View {
         keyIcon(key)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
-            .background(Styles.keyColor)
+            .background {
+                 Styles.statusToColor(status)
+            }
             .clipShape(RoundedRectangle(cornerRadius: Styles.keyCornerRadius))
+            .aspectRatio(1, contentMode: .fill)
             .onTapGesture {
                 onKeyPress(key)
             }

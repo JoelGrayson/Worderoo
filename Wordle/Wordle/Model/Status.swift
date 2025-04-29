@@ -14,7 +14,9 @@ enum Status {
     
     // Graded: guessed and the status is calculated
     case correct //will show green
+        // analogous to .exact
     case wrongPlace //will show yellow
+        // analogous to .inexact
     case notIn //will show dark gray
 }
 
