@@ -12,6 +12,16 @@ struct Code {
     var kind: Kind
     
     static let blank = Code.init(characters: [], kind: .attempt)
+    
+    func toString() -> String {
+        return characters
+            .map({ ch in ch.value }) //extract the value
+            .joined(separator: "") //join the characters into a string
+    }
+    
+    mutating func reset() {
+        self.characters = []
+    }
 }
 
 

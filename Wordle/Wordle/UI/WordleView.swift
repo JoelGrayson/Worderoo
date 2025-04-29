@@ -13,10 +13,16 @@ struct WordleView: View {
     
     var body: some View {
         VStack {
+            // Guess
             CodeView(for: game.guess, size: game.size)
+                // TODO: animation for shaking when wrong
+            
+            // Attempts
             ForEach(0..<Game.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
                 CodeView(for: i<game.attempts.count ? game.attempts[i] : .blank, size: game.size)
             }
+            
+            // Keyboard
             KeyboardView(onKeyPress: { key in
                 print("Key", key)
                 switch key {
@@ -26,8 +32,14 @@ struct WordleView: View {
                     }
                     game.guess.characters.remove(at: game.guess.characters.index(game.guess.characters.endIndex, offsetBy: -1))
                 case "ENTER":
-                    // TODO:
-                    print("Enter!")
+                    switch game.tryGuessing() {
+                    case .successfullyGuessed:
+                        break
+                    case .alreadyTried:
+                        break
+                    case .notEnoughChars:
+                        break
+                    }
                 default:
                     print("Adding", key)
                     game.guess.characters.append(.init(value: key))

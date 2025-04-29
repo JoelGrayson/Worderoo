@@ -23,5 +23,29 @@ struct Game {
         guess = Code(characters: [], kind: .guess)
         attempts = []
     }
+    
+    mutating func tryGuessing() -> Result {
+        // Guard clauses
+        if guess.characters.count < size {
+            return .notEnoughChars
+        }
+        if attempts.contains(where: { prevAttempt in
+            prevAttempt.toString() == guess.toString()
+        }) {
+            return .alreadyTried
+        }
+        
+        // Success
+        attempts.append(guess)
+        guess.reset()
+        
+        return .successfullyGuessed
+    }
+    
+    enum Result {
+        case notEnoughChars
+        case alreadyTried
+        case successfullyGuessed
+    }
 }
 
