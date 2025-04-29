@@ -13,13 +13,19 @@ struct WordleView: View {
     
     var body: some View {
         VStack {
-            // Guess
-            CodeView(for: game.guess, size: game.size)
-                // TODO: animation for shaking when wrong
-            
-            // Attempts
+            // Attempts, Guess, and Blank
             ForEach(0..<Game.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
-                CodeView(for: i<game.attempts.count ? game.attempts[i] : .blank, size: game.size)
+                let code: Code = if i<game.attempts.count { //show the attempts
+                    game.attempts[i]
+                } else {
+                    if i == game.attempts.count { //beneath the attempts show the guess
+                        game.guess
+                    } else { //below all of that include blank
+                        .blank
+                    }
+                }
+                CodeView(for: code, size: game.size)
+                // TODO: add shaking if guessing
             }
             
             // Keyboard
