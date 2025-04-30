@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Settings {
-    static let testMode = false //if testMode, always use WORLD as the word
-    static let defaultWord = "WORLD"
     static let startingWordSize = 5
     static var checkIfEnglishWord: Bool { //because the list of English words is not complete
         if testMode {
@@ -18,45 +16,52 @@ struct Settings {
             true
         }
     }
+    
+    // Test mode
+    static let testMode = false //if testMode, always use WORLD as the word
+    static let defaultWord = "WORLD"
+    static let showAnswer = true
 }
 
 // This struct only shows WordleView with the word. It manages procuring the words and is the source of truth not only for the words and master word but also the length of the master word
 struct WordleWordLoader: View {
     @Environment(\.words) var words
     
-    @State private var length = 5
-    @State private var masterWord: String? = Settings.defaultWord
+    @State private var masterWord: String?
     
     var body: some View {
         Group {
             if let masterWord {
                 WordleView(
                     masterWord: masterWord,
-                    length: length,
-                    changeWord: selectWord,
-                    changeLength: { newLength in
-                        length = newLength
-                    }
+                    selectWord: selectWord
                 )
             } else {
                 ProgressView()
             }
         }
+        .onAppear {
+            if Settings.testMode {
+                masterWord = Settings.defaultWord
+            }
+        }
         .onChange(of: words.count, initial: true) { oldValue, newValue in
             print("Hi")
-            if words.count != 0 {
+            if masterWord == nil { //setting the master word for the first time
                 if Settings.testMode {
                     masterWord = Settings.defaultWord
                 } else {
-                    selectWord()
+                    if words.count != 0 {
+                        selectWord(ofLength: Settings.startingWordSize) //size has not been specified since this is the first time
+                    }
                 }
             }
         }
     }
     
-    func selectWord() {
+    func selectWord(ofLength length: Int) {
         masterWord = words.random(length: length)
-        print("Selected", masterWord!)
+        print("Selected", masterWord ?? "no word selected")
     }
 }
 
