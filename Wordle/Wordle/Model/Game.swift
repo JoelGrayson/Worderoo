@@ -56,7 +56,7 @@ struct Game {
         return .successfullyGuessed
     }
     
-    func isOver() -> (gameIsOver: Bool, userWon: Bool) { // CM 4 for using tuple
+    func isOver() -> (gameIsOver: Bool, userWon: Bool) { // CM4 for using tuple
         let userWon = attempts.last?.characters.allSatisfy { $0.status == .correct } ?? false
         let outOfGuesses = attempts.count == Game.numGuessesAllowed
         

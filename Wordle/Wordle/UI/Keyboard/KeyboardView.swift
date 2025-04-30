@@ -10,6 +10,7 @@ import SwiftUI
 struct KeyboardView: View {
 //    @Binding var game: Game
     let onKeyPress: (_ key: String) -> Void
+    let getKeyStatus: (_ key: String) -> Status //used for coloring the keys
     
     static let keys=[
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -22,7 +23,7 @@ struct KeyboardView: View {
             ForEach(KeyboardView.keys, id: \.self) { keyRow in
                 HStack {
                     ForEach(keyRow, id: \.self) { key in
-                        KeyView(key: key, onKeyPress: onKeyPress)
+                        KeyView(key: key, onKeyPress: onKeyPress, status: getKeyStatus(key))
                     }
                 }
             }
@@ -35,7 +36,8 @@ struct KeyboardView: View {
 //        game: .constant(.init(startingWord: "HELLO", size: 5)),
         onKeyPress: { key in
             print("Pressed", key)
-        }
+        },
+        getKeyStatus: { key in Status.blank }
    )
 }
 

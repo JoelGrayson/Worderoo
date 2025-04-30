@@ -10,7 +10,13 @@ import SwiftUI
 struct KeyView: View {
     let key: String
     let onKeyPress: (_ key: String) -> Void
-    let status: Status = .blank
+    let status: Status
+    
+    init(key: String, onKeyPress: @escaping (_: String) -> Void, status: Status = .blank) {
+        self.key = key
+        self.onKeyPress = onKeyPress
+        self.status = status
+    }
     
     var body: some View {
         keyIcon(key)
