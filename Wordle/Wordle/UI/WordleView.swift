@@ -43,7 +43,6 @@ struct WordleView: View {
                     }
                 }
                 CodeView(for: code, size: game.size)
-                // TODO: add shaking if guessing
             }
             
             
