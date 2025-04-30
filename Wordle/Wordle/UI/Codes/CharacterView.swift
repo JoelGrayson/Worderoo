@@ -23,6 +23,7 @@ struct CharacterView: View {
             .background(
                 Styles.statusToColor(character.status)
             )
+            .animation(Styles.animation, value: character.status)
     }
 }
 

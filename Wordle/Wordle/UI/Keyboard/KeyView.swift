@@ -32,6 +32,7 @@ struct KeyView: View {
             .onTapGesture {
                 onKeyPress(key)
             }
+            .animation(Styles.animation, value: status)
     }
     
     @ViewBuilder

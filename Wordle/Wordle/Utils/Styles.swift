@@ -11,6 +11,7 @@ struct Styles {
     static let keyCornerRadius: CGFloat = 12
     static let cellSize: CGFloat = 50
     static let cellFontSize: CGFloat = 35
+    static let animation = Animation.easeInOut(duration: 0.3)
     
     static func statusToColor(_ status: Status) -> Color {
         switch (status) {
