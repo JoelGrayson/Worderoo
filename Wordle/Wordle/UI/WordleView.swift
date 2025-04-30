@@ -17,7 +17,7 @@ struct WordleView: View {
     @State private var gameIsOver: Bool = false
     @State private var userWon: Bool = false
     
-    // WordleView(masterWord: masterWord, length: length, changeLength: { newLength in
+    @State private var message: String?
     
     init(masterWord: String, length: Int, changeLength: @escaping (Int) -> Void) {
         game = Game(masterWord: masterWord, size: 5)
@@ -42,9 +42,18 @@ struct WordleView: View {
                 // TODO: add shaking if guessing
             }
             
-            // Keyboard
-            if !gameIsOver {
+            
+            // Keyboard or game over status
+            if gameIsOver { // Ending status (won or lost)
+                if userWon {
+                    Text("Nice job!")
+                } else {
+                    Text("The word was \(game.masterWord). Better luck next time.")
+                }
+            } else { // Keyboard
                 KeyboardView(onKeyPress: { key in
+                    message = nil //hide the message after you type in a new character
+                    
                     switch key {
                     case "DELETE":
                         if game.guess.characters.isEmpty {
@@ -56,25 +65,30 @@ struct WordleView: View {
                         case .successfullyGuessed:
                             break
                         case .alreadyTried:
-                            break
+                            message = "You already guessed that word"
                         case .notEnoughChars:
-                            break
+                            message = "Make sure your guess is \(game.size) letters long"
+                        case .notAWord:
+                            message = "Please only guess English words"
                         }
                         (gameIsOver, userWon) = game.isOver()
                         print(gameIsOver, userWon)
                     case "RESET":
                         game.reset()
                     default:
-                        game.guess.characters.append(.init(value: key))
+                        if game.guess.characters.count < game.size { //this if statement ensures that you don't add a character after all the characters had been typed
+                            game.guess.characters.append(.init(value: key))
+                        }
                     }
                 })
             }
         }
-//        .onChange(of: words.count) { oldValue, newValue in
-//            if game.attempts.count == 0 { //don't interrupt an old game
-//
-//            }
-//        }
+        .padding(.top, 50)
+        .overlay(alignment: .top) {
+            if let message {
+                Text(message)
+            }
+        }
     }
 }
 

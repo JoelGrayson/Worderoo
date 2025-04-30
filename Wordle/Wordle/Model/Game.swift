@@ -5,9 +5,11 @@
 //  Created by Joel Grayson on 4/27/25.
 //
 
-import Foundation
+import SwiftUI
 
 struct Game {
+    @Environment(\.words) var words //words is necessarily defined here because if it weren't WordleWordLoader would not show this view
+
     var size: Int //horizontal length of each word
     var masterWord: String
     var master: Code
@@ -32,7 +34,7 @@ struct Game {
     
     mutating func tryGuessing() -> Result {
         // Guard clauses for why you couldn't add the guess to attempts
-        if guess.characters.count < size {
+        guard guess.characters.count == size else {
             return .notEnoughChars
         }
         if attempts.contains(where: { prevAttempt in
@@ -40,6 +42,10 @@ struct Game {
         }) {
             return .alreadyTried
         }
+        guard words.contains(guess.toString()) else { //asserts that it is word
+            return .notAWord
+        }
+
         
         // Successfully add the guess
         attempts.append(guess.guessToAttempt(gradedWith: masterWord))
@@ -65,6 +71,7 @@ struct Game {
         // Could not make a guess because the guess was problematic
         case notEnoughChars
         case alreadyTried
+        case notAWord
     }
 }
 
