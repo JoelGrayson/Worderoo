@@ -31,9 +31,23 @@ struct Code {
     // This is called when a guess is being turned into an attempt
     func guessToAttempt(gradedWith masterWord: String) -> Code {
         var gradedCharacters = [Character]()
-        for var character in characters {
-            character.status = .correct
-            gradedCharacters.append(character)
+        for (i, character) in characters.enumerated() {
+            var gradedCharacter = character
+            
+            let guessedCharacter = character.value
+            let masterWordI = masterWord.index(masterWord.startIndex, offsetBy: i)
+            let masterWordChar = String(masterWord[masterWordI]) //character to string
+            
+//            print(guessedCharacter, masterWordChar, masterWord.contains(character.value) )
+            
+            if masterWordChar == guessedCharacter { //in the right place
+                gradedCharacter.status = .correct
+            } else if masterWord.contains(character.value) { //in the wrong place but still in the word
+                gradedCharacter.status = .wrongPlace
+            } else {
+                gradedCharacter.status = .notIn
+            }
+            gradedCharacters.append(gradedCharacter)
         }
         return Code(characters: gradedCharacters, kind: .attempt)
     }

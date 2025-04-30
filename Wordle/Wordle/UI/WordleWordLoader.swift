@@ -7,12 +7,15 @@
 
 import SwiftUI
 
+let testMode = true //if testMode, always use WORLD as the word
+let defaultWord = "WORLD"
+
 // This struct only shows WordleView with the word. It manages procuring the words and is the source of truth not only for the words and master word but also the length of the master word
 struct WordleWordLoader: View {
     @Environment(\.words) var words
     
     @State private var length = 5
-    @State private var masterWord: String? = "WORLD"
+    @State private var masterWord: String? = defaultWord
     
     var body: some View {
         Group {
@@ -27,7 +30,11 @@ struct WordleWordLoader: View {
         }
         .onChange(of: words.count, initial: true) { oldValue, newValue in
             if words.count != 0 {
-                selectWord()
+                if testMode {
+                    masterWord = defaultWord
+                } else {
+                    selectWord()
+                }
             }
         }
     }
