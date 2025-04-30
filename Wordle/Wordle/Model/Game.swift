@@ -31,7 +31,7 @@ struct Game {
     }
     
     mutating func tryGuessing() -> Result {
-        // Guard clauses
+        // Guard clauses for why you couldn't add the guess to attempts
         if guess.characters.count < size {
             return .notEnoughChars
         }
@@ -41,18 +41,30 @@ struct Game {
             return .alreadyTried
         }
         
-        // Success
+        // Successfully add the guess
         attempts.append(guess.guessToAttempt(gradedWith: masterWord))
         guess.reset()
         
         return .successfullyGuessed
     }
     
+    func isOver() -> (gameIsOver: Bool, userWon: Bool) { // CM 4 for using tuple
+        let userWon = attempts.last?.characters.allSatisfy { $0.status == .correct } ?? false
+        let outOfGuesses = attempts.count == Game.numGuessesAllowed
+        
+        return (
+            gameIsOver: userWon || outOfGuesses,
+            userWon: userWon
+        )
+    }
+    
     
     enum Result {
+        case successfullyGuessed
+        
+        // Could not make a guess because the guess was problematic
         case notEnoughChars
         case alreadyTried
-        case successfullyGuessed
     }
 }
 

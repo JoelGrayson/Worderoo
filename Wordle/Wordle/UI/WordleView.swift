@@ -14,6 +14,9 @@ struct WordleView: View {
     let length: Int //useful information to know passed in from above
     let changeLength: (Int) -> Void
     
+    @State private var gameIsOver: Bool = false
+    @State private var userWon: Bool = false
+    
     // WordleView(masterWord: masterWord, length: length, changeLength: { newLength in
     
     init(masterWord: String, length: Int, changeLength: @escaping (Int) -> Void) {
@@ -40,28 +43,32 @@ struct WordleView: View {
             }
             
             // Keyboard
-            KeyboardView(onKeyPress: { key in
-                switch key {
-                case "DELETE":
-                    if game.guess.characters.isEmpty {
-                        return
+            if !gameIsOver {
+                KeyboardView(onKeyPress: { key in
+                    switch key {
+                    case "DELETE":
+                        if game.guess.characters.isEmpty {
+                            return
+                        }
+                        game.guess.characters.remove(at: game.guess.characters.index(game.guess.characters.endIndex, offsetBy: -1))
+                    case "ENTER":
+                        switch game.tryGuessing() {
+                        case .successfullyGuessed:
+                            break
+                        case .alreadyTried:
+                            break
+                        case .notEnoughChars:
+                            break
+                        }
+                        (gameIsOver, userWon) = game.isOver()
+                        print(gameIsOver, userWon)
+                    case "RESET":
+                        game.reset()
+                    default:
+                        game.guess.characters.append(.init(value: key))
                     }
-                    game.guess.characters.remove(at: game.guess.characters.index(game.guess.characters.endIndex, offsetBy: -1))
-                case "ENTER":
-                    switch game.tryGuessing() {
-                    case .successfullyGuessed:
-                        break
-                    case .alreadyTried:
-                        break
-                    case .notEnoughChars:
-                        break
-                    }
-                case "RESET":
-                    game.reset()
-                default:
-                    game.guess.characters.append(.init(value: key))
-                }
-            })
+                })
+            }
         }
 //        .onChange(of: words.count) { oldValue, newValue in
 //            if game.attempts.count == 0 { //don't interrupt an old game
