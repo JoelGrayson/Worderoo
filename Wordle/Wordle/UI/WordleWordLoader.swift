@@ -10,7 +10,13 @@ import SwiftUI
 struct Settings {
     static let testMode = true //if testMode, always use WORLD as the word
     static let defaultWord = "WORLD"
-    static let checkIfEnglishWord = false //because the list of English words is not complete
+    static var checkIfEnglishWord: Bool { //because the list of English words is not complete
+        if testMode {
+            false
+        } else {
+            true
+        }
+    }
 }
 
 // This struct only shows WordleView with the word. It manages procuring the words and is the source of truth not only for the words and master word but also the length of the master word
