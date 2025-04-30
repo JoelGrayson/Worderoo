@@ -26,6 +26,7 @@ struct KeyboardView: View {
                         KeyView(key: key, onKeyPress: onKeyPress, status: getKeyStatus(key))
                     }
                 }
+                .padding(.horizontal, keyRow == KeyboardView.keys.last ? 14 : 0)
             }
         }
         .padding()

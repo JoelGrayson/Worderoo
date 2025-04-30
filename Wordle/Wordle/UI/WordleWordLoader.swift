@@ -20,7 +20,7 @@ struct Settings {
     // Test mode
     static let testMode = false //if testMode, always use WORLD as the word
     static let defaultWord = "WORLD"
-    static let showAnswer = true
+    static let showAnswer = false
 }
 
 // This struct only shows WordleView with the word. It manages procuring the words and is the source of truth not only for the words and master word but also the length of the master word
