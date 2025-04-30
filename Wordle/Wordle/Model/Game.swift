@@ -16,9 +16,9 @@ struct Game {
     
     static let numGuessesAllowed = 6
     
-    init(startingWord: String, size: Int) {
+    init(masterWord: String, size: Int) {
         self.size = size
-        masterWord = startingWord.uppercased()
+        self.masterWord = masterWord.uppercased()
         master = Code(characters: stringToCharacters(masterWord), kind: .master)
         guess = Code(characters: [], kind: .guess)
         attempts = []

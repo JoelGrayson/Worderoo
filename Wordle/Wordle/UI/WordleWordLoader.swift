@@ -7,15 +7,20 @@
 
 import SwiftUI
 
+// This struct only shows WordleView with the word. It manages procuring the words and is the source of truth not only for the words and master word but also the length of the master word
 struct WordleWordLoader: View {
     @Environment(\.words) var words
     
+    @State private var length = 5
     @State private var masterWord: String? = "WORLD"
     
     var body: some View {
         Group {
             if let masterWord {
-                WordleView(startingMasterWord: masterWord)
+                WordleView(masterWord: masterWord, length: length, changeLength: { newLength in
+                    length = newLength
+                    selectWord()
+                })
             } else {
                 ProgressView()
             }
@@ -28,7 +33,7 @@ struct WordleWordLoader: View {
     }
     
     func selectWord() {
-        masterWord = words.random(length: 5)
+        masterWord = words.random(length: length)
         print("Selected", masterWord!)
     }
 }

@@ -10,8 +10,16 @@ import SwiftUI
 struct WordleView: View {
     @State private var game: Game
     
-    init(startingMasterWord: String) {
-        game = Game(startingWord: startingMasterWord, size: 5)
+    // TODO: replace these two variables with a computed get/set variable
+    let length: Int //useful information to know passed in from above
+    let changeLength: (Int) -> Void
+    
+    // WordleView(masterWord: masterWord, length: length, changeLength: { newLength in
+    
+    init(masterWord: String, length: Int, changeLength: @escaping (Int) -> Void) {
+        game = Game(masterWord: masterWord, size: 5)
+        self.length = length
+        self.changeLength = changeLength
     }
     
     var body: some View {
@@ -66,6 +74,8 @@ struct WordleView: View {
 }
 
 #Preview {
-    WordleView(startingMasterWord: "WORLD")
+    WordleView(masterWord: "WORLD", length: 5) { newLength in
+        return
+    }
 }
 
