@@ -24,6 +24,7 @@
 		38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A542DBED12B0097A60C /* StringToCharacters.swift */; };
 		38451A592DBED3F30097A60C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A582DBED3F30097A60C /* CharacterView.swift */; };
 		386F1FA62DC197C600C795A2 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 386F1FA52DC197C600C795A2 /* TODO.md */; };
+		386F1FA82DC2B83100C795A2 /* WordleWordLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386F1FA72DC2B83100C795A2 /* WordleWordLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		38451A542DBED12B0097A60C /* StringToCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToCharacters.swift; sourceTree = "<group>"; };
 		38451A582DBED3F30097A60C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		386F1FA52DC197C600C795A2 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		386F1FA72DC2B83100C795A2 /* WordleWordLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleWordLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		38451A3A2DBEC7BC0097A60C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				386F1FA72DC2B83100C795A2 /* WordleWordLoader.swift */,
 				38451A142DBEC4D90097A60C /* WordleView.swift */,
 				38451A5D2DBF53010097A60C /* Codes */,
 				38451A5C2DBF52F10097A60C /* Keyboard */,
@@ -225,6 +228,7 @@
 				38451A3C2DBEC7C70097A60C /* UIExtensions.swift in Sources */,
 				38451A4F2DBED0600097A60C /* Code.swift in Sources */,
 				38451A402DBECA1B0097A60C /* Words.swift in Sources */,
+				386F1FA82DC2B83100C795A2 /* WordleWordLoader.swift in Sources */,
 				38451A192DBEC4D90097A60C /* WordleApp.swift in Sources */,
 				38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */,
 				38451A1C2DBEC54B0097A60C /* CodeView.swift in Sources */,

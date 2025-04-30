@@ -27,9 +27,7 @@ struct Game {
     mutating func reset() {
         master.reset()
         guess.reset()
-        for var attempt in attempts {
-            attempt.reset()
-        }
+        attempts = []
     }
     
     mutating func tryGuessing() -> Result {

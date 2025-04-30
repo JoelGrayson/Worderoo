@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct WordleView: View {
-    @Environment(\.words) var words
-    @State private var game = Game(startingWord: "WORLD", size: 5)
+    @State private var game: Game
+    
+    init(startingMasterWord: String) {
+        game = Game(startingWord: startingMasterWord, size: 5)
+    }
     
     var body: some View {
         VStack {
@@ -63,5 +66,6 @@ struct WordleView: View {
 }
 
 #Preview {
-    WordleView()
+    WordleView(startingMasterWord: "WORLD")
 }
+
