@@ -9,7 +9,7 @@ import Foundation
 
 struct Character {
     let value: String
-    let status: Status
+    var status: Status
     
     init(value: String, status: Status = .hasCharButNotGuessedYet) {
         self.value = value

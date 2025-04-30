@@ -26,6 +26,17 @@ struct Code {
     mutating func reset() {
         self.characters = []
     }
+    
+    // Returns a code that has the graded characters for displaying
+    // This is called when a guess is being turned into an attempt
+    func guessToAttempt(gradedWith masterWord: String) -> Code {
+        var gradedCharacters = [Character]()
+        for var character in characters {
+            character.status = .correct
+            gradedCharacters.append(character)
+        }
+        return Code(characters: gradedCharacters, kind: .attempt)
+    }
 }
 
 

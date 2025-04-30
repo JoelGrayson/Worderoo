@@ -41,7 +41,6 @@ struct WordleView: View {
             
             // Keyboard
             KeyboardView(onKeyPress: { key in
-                print("Key", key)
                 switch key {
                 case "DELETE":
                     if game.guess.characters.isEmpty {
@@ -60,7 +59,6 @@ struct WordleView: View {
                 case "RESET":
                     game.reset()
                 default:
-                    print("Adding", key)
                     game.guess.characters.append(.init(value: key))
                 }
             })

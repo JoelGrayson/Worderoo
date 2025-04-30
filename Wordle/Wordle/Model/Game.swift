@@ -42,11 +42,12 @@ struct Game {
         }
         
         // Success
-        attempts.append(guess)
+        attempts.append(guess.guessToAttempt(gradedWith: masterWord))
         guess.reset()
         
         return .successfullyGuessed
     }
+    
     
     enum Result {
         case notEnoughChars
