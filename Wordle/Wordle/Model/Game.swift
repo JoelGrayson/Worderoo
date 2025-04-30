@@ -26,10 +26,13 @@ struct Game {
         attempts = []
     }
     
-    mutating func reset() {
+    mutating func reset(newMasterWord: String? = nil) { //if no new word is provided, it is the same word
         master.reset()
         guess.reset()
         attempts = []
+        if let newMasterWord {
+            masterWord = newMasterWord
+        }
     }
     
     mutating func tryGuessing() -> Result {

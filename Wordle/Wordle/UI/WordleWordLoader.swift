@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct Settings {
-    static let testMode = true //if testMode, always use WORLD as the word
+    static let testMode = false //if testMode, always use WORLD as the word
     static let defaultWord = "WORLD"
+    static let startingWordSize = 5
     static var checkIfEnglishWord: Bool { //because the list of English words is not complete
         if testMode {
-            false
+            true //can be set to false if it gets annoying
         } else {
             true
         }
@@ -29,15 +30,20 @@ struct WordleWordLoader: View {
     var body: some View {
         Group {
             if let masterWord {
-                WordleView(masterWord: masterWord, length: length, changeLength: { newLength in
-                    length = newLength
-                    selectWord()
-                })
+                WordleView(
+                    masterWord: masterWord,
+                    length: length,
+                    changeWord: selectWord,
+                    changeLength: { newLength in
+                        length = newLength
+                    }
+                )
             } else {
                 ProgressView()
             }
         }
         .onChange(of: words.count, initial: true) { oldValue, newValue in
+            print("Hi")
             if words.count != 0 {
                 if Settings.testMode {
                     masterWord = Settings.defaultWord

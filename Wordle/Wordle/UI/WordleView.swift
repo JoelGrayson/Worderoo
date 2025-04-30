@@ -12,16 +12,19 @@ struct WordleView: View {
     
     // TODO: replace these two variables with a computed get/set variable
     let length: Int //useful information to know passed in from above
+    let changeWord: () -> Void
     let changeLength: (Int) -> Void
     
     @State private var gameIsOver: Bool = false
     @State private var userWon: Bool = false
     
     @State private var message: String?
+    @State private var sizeForNewGame: Double = Double(Settings.startingWordSize) //must use Double for slider UI to work
     
-    init(masterWord: String, length: Int, changeLength: @escaping (Int) -> Void) {
+    init(masterWord: String, length: Int, changeWord: @escaping () -> Void, changeLength: @escaping (Int) -> Void) {
         game = Game(masterWord: masterWord, size: 5)
         self.length = length
+        self.changeWord = changeWord
         self.changeLength = changeLength
     }
     
@@ -50,6 +53,20 @@ struct WordleView: View {
                 } else {
                     Text("The word was \(game.masterWord). Better luck next time.")
                 }
+                VStack {
+                    Button("Start a New Game") {
+                        resetGame(changeWord: true)
+                    }
+                    VStack {
+                        Text("Number of letters in the word:")
+                        HStack {
+                            Text("3")
+                            Slider(value: $sizeForNewGame, in: 3...6, step: 1)
+                            Text("6")
+                        }
+                        Text(String(Int(sizeForNewGame)))
+                    }
+                }
             } else { // Keyboard
                 KeyboardView(
                     onKeyPress: { key in
@@ -74,7 +91,7 @@ struct WordleView: View {
                             }
                             (gameIsOver, userWon) = game.isOver()
                         case "RESET":
-                            game.reset()
+                            resetGame(changeWord: false)
                         default:
                             if game.guess.characters.count < game.size { //this if statement ensures that you don't add a character after all the characters had been typed
                                 game.guess.characters.append(.init(value: key))
@@ -126,10 +143,24 @@ struct WordleView: View {
             }
         }
     }
+    
+    func resetGame(changeWord: Bool) {
+        game.size = Int(sizeForNewGame)
+        gameIsOver = false
+        userWon = false
+        if changeWord {
+            self.changeWord()
+            game.reset()
+        } else {
+            game.reset()
+        }
+    }
 }
 
 #Preview {
-    WordleView(masterWord: Settings.defaultWord, length: 5) { newLength in
+    WordleView(masterWord: Settings.defaultWord, length: 5) {
+        
+    } changeLength: { newLength in
         return
     }
 }
