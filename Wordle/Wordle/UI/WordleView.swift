@@ -144,7 +144,6 @@ struct WordleView: View {
             }
         }
         .onChange(of: masterWord) { oldValue, newValue in //ensure that the master word of the game and the one provided from the above view are in sync
-            print("Changed masterWord to \(newValue) from \(oldValue)")
             game.masterWord = newValue
             game.master.characters = stringToCharacters(masterWord)
         }

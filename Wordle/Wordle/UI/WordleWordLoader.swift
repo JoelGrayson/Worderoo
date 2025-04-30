@@ -46,7 +46,6 @@ struct WordleWordLoader: View {
             }
         }
         .onChange(of: words.count, initial: true) { oldValue, newValue in
-            print("Hi")
             if masterWord == nil { //setting the master word for the first time
                 if Settings.testMode {
                     masterWord = Settings.defaultWord

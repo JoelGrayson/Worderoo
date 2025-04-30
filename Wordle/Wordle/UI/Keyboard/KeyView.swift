@@ -19,14 +19,16 @@ struct KeyView: View {
     }
     
     var body: some View {
-        keyIcon(key)
+        Rectangle()
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
-            .background {
-                 Styles.statusToColor(status)
-            }
+            .foregroundStyle(Styles.statusToColor(status))
+            .background(Styles.statusToColor(status))
             .clipShape(RoundedRectangle(cornerRadius: Styles.keyCornerRadius))
-            .aspectRatio(1, contentMode: .fill)
+            .aspectRatio(1, contentMode: .fit)
+            .overlay {
+                keyIcon(key)
+            }
             .onTapGesture {
                 onKeyPress(key)
             }
