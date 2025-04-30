@@ -11,7 +11,7 @@ struct Styles {
     static let keyCornerRadius: CGFloat = 12
     static let cellSize: CGFloat = 50
     static let cellFontSize: CGFloat = 35
-
+    
     static func statusToColor(_ status: Status) -> Color {
         switch (status) {
         case .hasCharButNotGuessedYet:
@@ -28,7 +28,7 @@ struct Styles {
     }
 }
 
-extension Color {
+extension Color { // CM4
     static let lightGray = Color.gray(0.8)
     static let middleGray = Color.gray(0.6)
     static let darkGray = Color.gray(0.3)

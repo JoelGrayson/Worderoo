@@ -24,6 +24,14 @@ struct Game {
         attempts = []
     }
     
+    mutating func reset() {
+        master.reset()
+        guess.reset()
+        for var attempt in attempts {
+            attempt.reset()
+        }
+    }
+    
     mutating func tryGuessing() -> Result {
         // Guard clauses
         if guess.characters.count < size {

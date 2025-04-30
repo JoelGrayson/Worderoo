@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+extension Color { // CM4
     static func gray(_ brightness: CGFloat) -> Color {
         return Color(hue: 0, saturation: 0, brightness: brightness)
     }
