@@ -93,7 +93,7 @@ struct WordleView: View {
 }
 
 #Preview {
-    WordleView(masterWord: defaultWord, length: 5) { newLength in
+    WordleView(masterWord: Settings.defaultWord, length: 5) { newLength in
         return
     }
 }

@@ -42,8 +42,10 @@ struct Game {
         }) {
             return .alreadyTried
         }
-        guard words.contains(guess.toString()) else { //asserts that it is word
-            return .notAWord
+        if Settings.checkIfEnglishWord {
+            guard words.contains(guess.toString()) else { //asserts that it is word
+                return .notAWord
+            }
         }
 
         
