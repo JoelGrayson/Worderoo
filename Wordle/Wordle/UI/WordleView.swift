@@ -46,6 +46,8 @@ struct WordleView: View {
                     case .notEnoughChars:
                         break
                     }
+                case "RESET":
+                    game.reset()
                 default:
                     print("Adding", key)
                     game.guess.characters.append(.init(value: key))

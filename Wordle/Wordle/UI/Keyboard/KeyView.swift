@@ -33,6 +33,8 @@ struct KeyView: View {
             Image(systemName: "delete.left")
         case "ENTER":
             Image(systemName: "return")
+        case "RESET":
+            Image(systemName: "arrow.clockwise")
         default:
             Text(key)
         }
