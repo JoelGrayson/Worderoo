@@ -1,5 +1,3 @@
-
-* https://web.stanford.edu/class/cs193p/common.words is a list of ~2000 common words which are used to pick the guess
-* https://github.com/dwyl/english-words/blob/master/words_alpha.txt is a list of ~370,000 words which is stored as a string in `IsValidWords.swift` for telling if a guess is accurate (disclosure: this list was found with ChatGPT)
-
+* https://web.stanford.edu/class/cs193p/common.words is a list of ~2,000 common words which are used to pick the guess, ensuring the guess is a common English word.
+* A list of ~50,000 words is used for telling if a guess is a valid English word. It is compiled from https://github.com/jonathanwelton/word-lists using generate.sh, which took the words from https://github.com/jonathanwelton/word-lists/blob/main/3-letter-words.json and https://github.com/jonathanwelton/word-lists/blob/main/4-letter-words.json and https://github.com/jonathanwelton/word-lists/blob/main/5-letter-words.json and https://github.com/jonathanwelton/word-lists/blob/main/6-letter-words.json and put them into `WordsString.swift` (disclosure: this list was found with the aid of ChatGPT).
 
