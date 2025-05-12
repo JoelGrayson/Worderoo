@@ -8,19 +8,28 @@
 import SwiftUI
 
 struct WordleGamePicker: View {
-    @State private var games: [Game] = sampleGames
     @Environment(\.words) private var words
+    @State private var games: [Game] = sampleGames
+    @State private var selectedGame: Game? = nil
     
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(games.indices.reversed(), id: \.self) { i in
-//                    NavigationLink("", value: game) {
-                        GamePreview(game: $games[i])
-//                    }
-                }
+        NavigationSplitView(columnVisibility: .constant(.all)) {
+            GameList(games: $games)
+                .navigationTitle("Wordle")
+        } detail: {
+            // Got help from AI on this one
+            if selectedGame != nil { //ensures that selectedGame is defined
+                WordleView(game:
+                    Binding<Game>(
+                        get: { self.selectedGame! }, //you can force unwrap because the if statement above
+                        set: { self.selectedGame = $0 } //updates the game
+                    )
+                )
+            } else {
+                Text("Choose a Game")
             }
         }
+        .navigationSplitViewStyle(.balanced)
         
         Button {
             let newWord = selectWord()

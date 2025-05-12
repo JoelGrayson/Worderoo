@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct Game {
-    @Environment(\.words) var words //words is necessarily defined here because if it weren't WordleWordLoader would not show this view
-
+@Observable
+class Game {
     var size: Int //horizontal length of each word
     var masterWord: String
     var master: Code
@@ -19,7 +18,7 @@ struct Game {
     // TODO: check that these work
     var gameIsOver = false
     var userWon = false
-
+    
     init(masterWord: String) {
         self.size = masterWord.count
         self.masterWord = masterWord.uppercased()
@@ -27,7 +26,7 @@ struct Game {
         guess = Code(characters: [], kind: .guess)
         attempts = []
     }
-    
+
 //    mutating func reset(newMasterWord: String? = nil) { //if no new word is provided, it is the same word
 //        size = Int(newGameWordSize)
 //        gameIsOver = false
@@ -42,7 +41,7 @@ struct Game {
 //        }
 //    }
     
-    mutating func tryGuessing() -> Result {
+    func tryGuessing() -> Result {
         // Guard clauses for why you couldn't add the guess to attempts
         guard guess.characters.count == size else {
             return .notEnoughChars
@@ -52,11 +51,11 @@ struct Game {
         }) {
             return .alreadyTried
         }
-        if Settings.checkIfEnglishWord {
-            guard words.contains(guess.toString()) else { //asserts that it is word
-                return .notAWord
-            }
-        }
+//        if Settings.checkIfEnglishWord {
+//            guard words.contains(guess.toString()) else { //asserts that it is word
+//                return .notAWord
+//            }
+//        }
 
         
         // Successfully add the guess
