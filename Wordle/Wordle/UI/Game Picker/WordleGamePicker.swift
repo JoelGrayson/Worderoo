@@ -15,7 +15,9 @@ struct WordleGamePicker: View {
         NavigationStack {
             List {
                 ForEach(games.indices.reversed(), id: \.self) { i in
-                    WordleView(game: $games[i])
+//                    NavigationLink("", value: game) {
+                        GamePreview(game: $games[i])
+//                    }
                 }
             }
         }
