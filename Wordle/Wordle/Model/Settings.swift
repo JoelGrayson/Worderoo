@@ -11,18 +11,10 @@ import SwiftUI
 class ConfigurableSettings { //here are the default settings
     var wordSizeForNewGames = 5
     var numGuessesAllowed = 6
+    var checkIfEnglishWord = true
 }
 
-struct HardCodedSettings {
-    static var checkIfEnglishWord: Bool { //because the list of English words is not complete
-        if testMode {
-            true //can be set to false if it gets annoying
-        } else {
-            true
-        }
-    }
-    
-    // Test mode
+struct HardCodedSettings { //related to test mode
     static let testMode = false //if testMode, always use WORLD as the word
     static let defaultWord = "WORLD"
     static let showAnswer = false

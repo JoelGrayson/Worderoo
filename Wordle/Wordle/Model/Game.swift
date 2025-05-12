@@ -63,7 +63,7 @@ class Game: Identifiable, Hashable {
 //        }
 //    }
     
-    func tryGuessing() -> Result {
+    func tryGuessing(checkIfEnglishWord: Bool) -> Result {
         // Guard clauses for why you couldn't add the guess to attempts
         guard guess.characters.count == size else {
             return .notEnoughChars
@@ -73,7 +73,7 @@ class Game: Identifiable, Hashable {
         }) {
             return .alreadyTried
         }
-        if HardCodedSettings.checkIfEnglishWord {
+        if checkIfEnglishWord {
             guard isEnglishWord(guess.toString().lowercased()) else { //asserts that it is word
                 return .notAWord
             }

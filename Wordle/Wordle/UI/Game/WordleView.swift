@@ -54,7 +54,7 @@ struct WordleView: View {
                             }
                             game.guess.characters.remove(at: game.guess.characters.index(game.guess.characters.endIndex, offsetBy: -1))
                         case "ENTER":
-                            switch game.tryGuessing() {
+                            switch game.tryGuessing(checkIfEnglishWord: configurableSettings.checkIfEnglishWord) {
                             case .successfullyGuessed:
                                 break
                             case .alreadyTried:

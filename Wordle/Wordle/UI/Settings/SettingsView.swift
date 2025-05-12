@@ -65,6 +65,10 @@ struct SettingsView: View {
                         }
                     )
                 }
+                
+                Section {
+                    Toggle("Only allow guesses that are English words", isOn: $configurableSettings.checkIfEnglishWord)
+                }
             }
         }
     }
