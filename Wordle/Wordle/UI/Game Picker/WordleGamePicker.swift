@@ -18,7 +18,20 @@ struct WordleGamePicker: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
+            // Title which is used in place of navigationTitle and toolbar because the latter acts strangely alignment-wise
+            HStack(alignment: .center) {
+                Text("Wordle")
+                    .font(.title)
+                    .bold()
+                    .padding()
+                Spacer()
+                SettingsView()
+                    .padding()
+            }
+            .padding()
             
+            
+            // Empty list of games if appropriate
             if games.isEmpty {
                 Text("No games yet.")
                     .padding(.top, 100)
@@ -30,10 +43,11 @@ struct WordleGamePicker: View {
                     GamePreview(game: game)
                 }
             }
-            .navigationTitle("Wordle")
-            .toolbar {
-                SettingsView()
-            }
+            // Not using below because it has weird alignment
+//            .navigationTitle("Wordle")
+//            .toolbar {
+//                SettingsView()
+//            }
             
             
             // New Game Button
