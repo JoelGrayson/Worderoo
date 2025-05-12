@@ -109,6 +109,11 @@ struct WordleView: View {
                 )
             }
         }
+        .toolbar {
+            ElapsedTime(startTime: game.startTime, endTime: game.endTime)
+                .monospaced()
+                .lineLimit(1)
+        }
         .padding(.top, 50)
         .overlay(alignment: .top) {
             if let message {

@@ -20,6 +20,9 @@ class Game: Identifiable, Hashable {
     
     var lastGuessMadeAt: Date = .now
     
+    var startTime: Date = .now
+    var endTime: Date? = nil
+    
     init(masterWord: String) {
         self.size = masterWord.count
         self.masterWord = masterWord.uppercased()
