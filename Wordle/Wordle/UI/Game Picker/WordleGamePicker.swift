@@ -43,6 +43,17 @@ struct WordleGamePicker: View {
             List(sortedGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
                     GamePreview(game: game, configurableSettings: configurableSettings)
+                        .contextMenu {
+                            Button("Delete") {
+                                let indexToRemove = games.firstIndex(where: { el in
+                                    el == game
+                                })
+                                
+                                if let indexToRemove {
+                                    games.remove(at: indexToRemove)
+                                }
+                            }
+                        }
                 }
             }
             // Not using below because it has weird alignment

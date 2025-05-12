@@ -25,6 +25,9 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showSettingsModal) {
             Text("Settings")
+                .font(.title)
+                .padding()
+            
             Form {
                 Section {
                     // Received inspiration from https://stackoverflow.com/questions/71241005/swiftui-form-number-input
