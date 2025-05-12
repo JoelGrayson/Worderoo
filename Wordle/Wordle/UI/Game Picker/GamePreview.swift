@@ -11,7 +11,7 @@ struct GamePreview: View {
     var game: Game
     
     var body: some View {
-        HStack(alignment: .bottom) {
+        VStack(alignment: .trailing) {
             Group {
                 if let lastAttempt = game.attempts.last {
                     CodeView(for: lastAttempt, size: lastAttempt.characters.count)
@@ -20,10 +20,9 @@ struct GamePreview: View {
                 }
             }
             
-            VStack {
-                Text("\(game.attempts.count)/\(game.size) tries")
-            }
+            Text("\(game.attempts.count)/\(game.size) tries")
         }
+        .padding(.top)
     }
     
     static let blankCode = Code(characters: [], kind: .attempt)

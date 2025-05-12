@@ -14,18 +14,31 @@ struct WordleGamePicker: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
-//            GameList(games: $games)
-//                .navigationTitle("Wordle")
+            // List of Games
             List(games, selection: $selectedGame) { game in
                 NavigationLink(value: game) {
                     GamePreview(game: game)
                 }
             }
             .navigationTitle("Wordle")
+            
+            // New Game Button
+            Button {
+                let newWord = selectWord()
+                if let newWord {
+                    games.append(Game(masterWord: newWord))
+                } else {
+                    //Alert(title: "Could not add game", )
+                    print("Could not add game")
+                }
+            } label: {
+                HStack(alignment: .center, spacing: 10) {
+                    Image(systemName: "plus.circle.fill")
+                    Text("New Game")
+                }
+            }
         } detail: {
-            if let selectedGame {
-                Text("Playing the game with master code \(selectedGame.masterWord)")
-
+            if selectedGame != nil {
                 // Got help from AI on this one
                 WordleView(game:
                     Binding<Game>(
@@ -43,21 +56,6 @@ struct WordleGamePicker: View {
             }
         }
         .navigationSplitViewStyle(.balanced)
-        
-        Button {
-            let newWord = selectWord()
-            if let newWord {
-                games.append(Game(masterWord: newWord))
-            } else {
-                //Alert(title: "Could not add game", )
-                print("Could not add game")
-            }
-        } label: {
-            HStack(alignment: .center, spacing: 10) {
-                Image(systemName: "plus.circle.fill")
-                Text("New Game")
-            }
-        }
     }
     
     func selectWord(ofLength length: Int = Settings.wordSizeForNewGames) -> String? {
