@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WordleView: View {
     @Binding var game: Game //includes all the information about the game including masterWord, attempts, ...
+    var configurableSettings: ConfigurableSettings
     
     // State specific to the current game playing view
     @State private var message: String?
@@ -20,7 +21,7 @@ struct WordleView: View {
             }
             
             // Attempts, Guess, and Blank
-            ForEach(0..<HardCodedSettings.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
+            ForEach(0..<configurableSettings.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
                 let code: Code = if i<game.attempts.count { //show the attempts
                     game.attempts[i]
                 } else {
@@ -63,7 +64,7 @@ struct WordleView: View {
                             case .notAWord:
                                 message = "Please only guess English words"
                             }
-                            (game.gameIsOver, game.userWon) = game.isOver()
+                            (game.gameIsOver, game.userWon) = game.isOver(numGuessesAllowed: configurableSettings.numGuessesAllowed)
                         default:
                             if game.guess.characters.count < game.size { //this if statement ensures that you don't add a character after all the characters had been typed
                                 game.guess.characters.append(.init(value: key))
@@ -122,6 +123,6 @@ struct WordleView: View {
 
 #Preview {
     @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
-    WordleView(game: $games[0])
+    WordleView(game: $games[0], configurableSettings: ConfigurableSettings())
 }
 

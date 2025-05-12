@@ -42,7 +42,7 @@ struct WordleGamePicker: View {
             // List of Games
             List(sortedGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
-                    GamePreview(game: game)
+                    GamePreview(game: game, configurableSettings: configurableSettings)
                 }
             }
             // Not using below because it has weird alignment
@@ -75,7 +75,8 @@ struct WordleGamePicker: View {
                     Binding<Game>(
                         get: { self.selectedGame! }, //you can force unwrap because the if statement above
                         set: { self.selectedGame = $0 } //updates the game
-                    )
+                    ),
+                   configurableSettings: configurableSettings
                 )
             } else {
                 Text("Choose a Game")

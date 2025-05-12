@@ -8,12 +8,12 @@
 import SwiftUI
 
 @Observable
-class ConfigurableSettings {
+class ConfigurableSettings { //here are the default settings
     var wordSizeForNewGames = 5
+    var numGuessesAllowed = 6
 }
 
 struct HardCodedSettings {
-    static var numGuessesAllowed = 6
     static var checkIfEnglishWord: Bool { //because the list of English words is not complete
         if testMode {
             true //can be set to false if it gets annoying
