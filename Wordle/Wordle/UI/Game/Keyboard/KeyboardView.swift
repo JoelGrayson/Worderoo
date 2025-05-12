@@ -29,6 +29,7 @@ struct KeyboardView: View {
                 .padding(.horizontal, keyRow == KeyboardView.keys.last ? 14 : 0)
             }
         }
+        .frame(maxWidth: 550)
         .padding()
     }
 }
