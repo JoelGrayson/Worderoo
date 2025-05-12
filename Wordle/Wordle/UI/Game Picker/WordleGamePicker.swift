@@ -82,11 +82,11 @@ struct WordleGamePicker: View {
             }
             .padding(.top)
         } detail: {
-            if selectedGame != nil {
+            if let selectedGame = selectedGame {
                 // Got help from AI on this one
                 WordleView(game:
                     Binding<Game>(
-                        get: { self.selectedGame! }, //you can force unwrap because the if statement above
+                        get: { selectedGame },
                         set: { self.selectedGame = $0 } //updates the game
                     ),
                    configurableSettings: configurableSettings

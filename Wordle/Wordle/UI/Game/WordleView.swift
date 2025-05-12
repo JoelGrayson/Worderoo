@@ -110,9 +110,29 @@ struct WordleView: View {
             }
         }
         .toolbar {
-            ElapsedTime(startTime: game.startTime, endTime: game.endTime)
-                .monospaced()
-                .lineLimit(1)
+            if let startTime = game.startTime {
+                ElapsedTime(startTime: startTime, endTime: game.endTime)
+                    .monospaced()
+                    .lineLimit(1)
+            }
+        }
+        .onAppear {
+            // When first opening the game, set the start time
+            if game.startTime == nil {
+                game.startTime = .now
+            }
+            
+            // If there was a pause duration, do the offset
+            if let pausedAt = game.pausedAt {
+                let pausedForDuration = Date().timeIntervalSince1970 - pausedAt.timeIntervalSince1970
+                if let startTime = game.startTime {
+                    game.startTime = startTime.advanced(by: pausedForDuration)
+                }
+                game.pausedAt = nil
+            }
+        }
+        .onDisappear {
+            game.pausedAt = .now
         }
         .padding(.top, 50)
         .overlay(alignment: .top) {

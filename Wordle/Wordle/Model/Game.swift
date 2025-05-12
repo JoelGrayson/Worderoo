@@ -20,8 +20,9 @@ class Game: Identifiable, Hashable {
     
     var lastGuessMadeAt: Date = .now
     
-    var startTime: Date = .now
+    var startTime: Date? = nil
     var endTime: Date? = nil
+    var pausedAt: Date? = nil
     
     init(masterWord: String) {
         self.size = masterWord.count
