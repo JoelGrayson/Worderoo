@@ -16,8 +16,8 @@ struct WordleGamePicker: View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
 //            GameList(games: $games)
 //                .navigationTitle("Wordle")
-            List($games, selection: $selectedGame) { game in
-                NavigationLink(value: games.first) {
+            List(games, selection: $selectedGame) { game in
+                NavigationLink(value: game) {
                     GamePreview(game: game)
                 }
             }

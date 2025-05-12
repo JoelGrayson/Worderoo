@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamePreview: View {
-    @Binding var game: Game
+    var game: Game
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -30,6 +30,5 @@ struct GamePreview: View {
 }
 
 #Preview {
-    @Previewable @State var game = sampleGames.first!
-    GamePreview(game: $game)
+    GamePreview(game: sampleGames.first!)
 }
