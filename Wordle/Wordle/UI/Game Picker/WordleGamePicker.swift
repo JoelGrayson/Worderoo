@@ -45,13 +45,15 @@ struct WordleGamePicker: View {
                     GamePreview(game: game, configurableSettings: configurableSettings)
                         .contextMenu {
                             Button("Delete") {
-                                let indexToRemove = games.firstIndex(where: { el in
-                                    el == game
-                                })
-                                
-                                if let indexToRemove {
-                                    games.remove(at: indexToRemove)
-                                }
+                                deleteGame(game)
+                            }
+                        }
+                        // Read the docs at https://developer.apple.com/documentation/swiftui/view/swipeactions(edge:allowsfullswipe:content:)
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                deleteGame(game)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
                             }
                         }
                 }
@@ -106,6 +108,16 @@ struct WordleGamePicker: View {
         let newWord: String? = words.random(length: lengthToUse)
         print("Selected", newWord ?? "no word selected")
         return newWord
+    }
+    
+    func deleteGame(_ game: Game) {
+        let indexToRemove = games.firstIndex(where: { el in
+            el == game
+        })
+        
+        if let indexToRemove {
+            games.remove(at: indexToRemove)
+        }
     }
 }
 
