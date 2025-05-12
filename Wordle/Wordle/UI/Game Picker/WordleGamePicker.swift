@@ -21,18 +21,18 @@ struct WordleGamePicker: View {
                     GamePreview(game: game)
                 }
             }
+            .navigationTitle("Wordle")
         } detail: {
             if let selectedGame {
                 Text("Playing the game with master code \(selectedGame.masterWord)")
 
-            // Got help from AI on this one
-//            if selectedGame != nil { //ensures that selectedGame is defined
-//                WordleView(game:
-//                    Binding<Game>(
-//                        get: { self.selectedGame! }, //you can force unwrap because the if statement above
-//                        set: { self.selectedGame = $0 } //updates the game
-//                    )
-//                )
+                // Got help from AI on this one
+                WordleView(game:
+                    Binding<Game>(
+                        get: { self.selectedGame! }, //you can force unwrap because the if statement above
+                        set: { self.selectedGame = $0 } //updates the game
+                    )
+                )
             } else {
                 Text("Choose a Game")
             }
@@ -42,7 +42,6 @@ struct WordleGamePicker: View {
                 self.selectedGame = nil
             }
         }
-        .listStyle(.plain)
         .navigationSplitViewStyle(.balanced)
         
         Button {
