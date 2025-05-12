@@ -58,6 +58,7 @@ struct WordleGamePicker: View {
                         }
                 }
             }
+            .ipadListLooksGood()
             // Not using below because it has weird alignment
 //            .navigationTitle("Wordle")
 //            .toolbar {
