@@ -70,7 +70,9 @@ struct WordleGamePicker: View {
             Button {
                 let newWord = selectWord()
                 if let newWord {
-                    games.append(Game(masterWord: newWord))
+                    withAnimation {
+                        games.append(Game(masterWord: newWord))
+                    }
                 } else {
                     //Alert(title: "Could not add game", )
                     print("Could not add game")
@@ -80,6 +82,7 @@ struct WordleGamePicker: View {
                     Image(systemName: "plus.circle.fill")
                     Text("New Game")
                 }
+                .padding(.vertical)
             }
             .padding(.top)
         } detail: {
