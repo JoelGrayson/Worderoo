@@ -8,22 +8,10 @@
 import SwiftUI
 
 struct WordleView: View {
-    var masterWord: String
-    @State private var game: Game
+    @Binding var game: Game //includes all the information about the game including masterWord, attempts, ...
     
-    let selectWord: (Int) -> Void
-    
-    @State private var gameIsOver: Bool = false
-    @State private var userWon: Bool = false
-    
+    // State specific to the current game playing view
     @State private var message: String?
-    @State private var newGameWordSize: Double = Double(Settings.startingWordSize) //must use Double for slider UI to work
-    
-    init(masterWord: String, selectWord: @escaping (Int) -> Void) {
-        self.masterWord = masterWord
-        game = Game(masterWord: masterWord, size: 5)
-        self.selectWord = selectWord
-    }
     
     var body: some View {
         VStack {
@@ -32,7 +20,7 @@ struct WordleView: View {
             }
             
             // Attempts, Guess, and Blank
-            ForEach(0..<Game.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
+            ForEach(0..<Settings.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
                 let code: Code = if i<game.attempts.count { //show the attempts
                     game.attempts[i]
                 } else {
@@ -47,25 +35,11 @@ struct WordleView: View {
             
             
             // Keyboard or game over status
-            if gameIsOver { // Ending status (won or lost)
-                if userWon {
+            if game.gameIsOver { // Ending status (won or lost)
+                if game.userWon {
                     Text("Nice job!")
                 } else {
                     Text("The word was \(game.masterWord). Better luck next time.")
-                }
-                VStack {
-                    Button("Start a New Game") {
-                        resetGame()
-                    }
-                    VStack {
-                        Text("Number of letters in the word:")
-                        HStack {
-                            Text("3")
-                            Slider(value: $newGameWordSize, in: 3...6, step: 1)
-                            Text("6")
-                        }
-                        Text(String(Int(newGameWordSize)))
-                    }
                 }
             } else { // Keyboard
                 KeyboardView(
@@ -89,9 +63,7 @@ struct WordleView: View {
                             case .notAWord:
                                 message = "Please only guess English words"
                             }
-                            (gameIsOver, userWon) = game.isOver()
-                        case "RESET":
-                            resetGame()
+                            (game.gameIsOver, game.userWon) = game.isOver()
                         default:
                             if game.guess.characters.count < game.size { //this if statement ensures that you don't add a character after all the characters had been typed
                                 game.guess.characters.append(.init(value: key))
@@ -142,24 +114,14 @@ struct WordleView: View {
                 Text(message)
             }
         }
-        .onChange(of: masterWord) { oldValue, newValue in //ensure that the master word of the game and the one provided from the above view are in sync
-            game.masterWord = newValue
-            game.master.characters = stringToCharacters(masterWord)
+        .onChange(of: game.masterWord) { oldValue, newValue in //ensure that the master word of the game and the characters are in sync
+            game.master.characters = stringToCharacters(game.masterWord)
         }
-    }
-    
-    func resetGame() {
-        game.size = Int(newGameWordSize)
-        gameIsOver = false
-        userWon = false
-        selectWord(Int(newGameWordSize))
-        game.reset()
     }
 }
 
 #Preview {
-    WordleView(masterWord: Settings.defaultWord) { newLength in
-        return //pass
-    }
+    @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
+    WordleView(game: $games[0])
 }
 

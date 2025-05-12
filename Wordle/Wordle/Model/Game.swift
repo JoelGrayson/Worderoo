@@ -16,24 +16,31 @@ struct Game {
     var guess: Code
     var attempts: [Code]
     
-    static let numGuessesAllowed = 6
-    
-    init(masterWord: String, size: Int) {
-        self.size = size
+    // TODO: check that these work
+    var gameIsOver = false
+    var userWon = false
+
+    init(masterWord: String) {
+        self.size = masterWord.count
         self.masterWord = masterWord.uppercased()
         master = Code(characters: stringToCharacters(masterWord), kind: .master)
         guess = Code(characters: [], kind: .guess)
         attempts = []
     }
     
-    mutating func reset(newMasterWord: String? = nil) { //if no new word is provided, it is the same word
-        master.reset()
-        guess.reset()
-        attempts = []
-        if let newMasterWord {
-            masterWord = newMasterWord
-        }
-    }
+//    mutating func reset(newMasterWord: String? = nil) { //if no new word is provided, it is the same word
+//        size = Int(newGameWordSize)
+//        gameIsOver = false
+//        userWon = false
+//        selectWord(Int(newGameWordSize))
+//        
+//        master.reset()
+//        guess.reset()
+//        attempts = []
+//        if let newMasterWord {
+//            masterWord = newMasterWord
+//        }
+//    }
     
     mutating func tryGuessing() -> Result {
         // Guard clauses for why you couldn't add the guess to attempts
@@ -61,7 +68,7 @@ struct Game {
     
     func isOver() -> (gameIsOver: Bool, userWon: Bool) { // CM4 for using tuple
         let userWon = attempts.last?.characters.allSatisfy { $0.status == .correct } ?? false
-        let outOfGuesses = attempts.count == Game.numGuessesAllowed
+        let outOfGuesses = attempts.count == Settings.numGuessesAllowed
         
         return (
             gameIsOver: userWon || outOfGuesses,
