@@ -73,11 +73,16 @@ class Game: Identifiable, Hashable {
         }) {
             return .alreadyTried
         }
-//        if Settings.checkIfEnglishWord {
-//            guard words.contains(guess.toString()) else { //asserts that it is word
+        if HardCodedSettings.checkIfEnglishWord {
+            guard isEnglishWord(guess.toString().lowercased()) else { //asserts that it is word
+                return .notAWord
+            }
+            
+            // Old system which only works on the tiny word list
+//            guard words.contains(guess.toString()) else {
 //                return .notAWord
 //            }
-//        }
+        }
 
         
         // Successfully add the guess
