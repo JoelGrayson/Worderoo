@@ -28,6 +28,11 @@ class Game: Identifiable, Hashable {
         attempts = []
     }
     
+    // Second initializer used for the sample games, which are at various completion levels
+    convenience init(masterWord: String, attempts: [Code]) {
+        self.init(masterWord: masterWord)
+        self.attempts = attempts
+    }
     
     // From AI for Identifiable and Hashable conformance
     var id = UUID()
