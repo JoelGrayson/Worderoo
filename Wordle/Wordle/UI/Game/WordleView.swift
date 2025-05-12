@@ -117,22 +117,17 @@ struct WordleView: View {
             }
         }
         .onAppear {
-            // When first opening the game, set the start time
-            if game.startTime == nil {
-                game.startTime = .now
-            }
-            
-            // If there was a pause duration, do the offset
-            if let pausedAt = game.pausedAt {
-                let pausedForDuration = Date().timeIntervalSince1970 - pausedAt.timeIntervalSince1970
-                if let startTime = game.startTime {
-                    game.startTime = startTime.advanced(by: pausedForDuration)
-                }
-                game.pausedAt = nil
-            }
+            onAppear(game: game)
         }
         .onDisappear {
-            game.pausedAt = .now
+            onDisappear(game: game)
+        }
+        .onChange(of: game) { oldGame, newGame in
+            // old onDisappear
+            onDisappear(game: oldGame)
+            
+            // old onAppear
+            onAppear(game: newGame)
         }
         .padding(.top, 50)
         .overlay(alignment: .top) {
@@ -142,6 +137,26 @@ struct WordleView: View {
         }
         .onChange(of: game.masterWord) { oldValue, newValue in //ensure that the master word of the game and the characters are in sync
             game.master.characters = stringToCharacters(game.masterWord)
+        }
+    }
+    
+    func onDisappear(game: Game) {
+        game.pausedAt = .now
+    }
+    
+    func onAppear(game: Game) {
+        // When first opening the game, set the start time
+        if game.startTime == nil {
+            game.startTime = .now
+        }
+        
+        // If there was a pause duration, do the offset
+        if let pausedAt = game.pausedAt {
+            let pausedForDuration = Date().timeIntervalSince1970 - pausedAt.timeIntervalSince1970
+            if let startTime = game.startTime {
+                game.startTime = startTime.advanced(by: pausedForDuration)
+            }
+            game.pausedAt = nil
         }
     }
 }
