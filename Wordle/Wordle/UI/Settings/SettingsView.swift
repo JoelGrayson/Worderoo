@@ -24,7 +24,21 @@ struct SettingsView: View {
             Text("Settings")
             Form {
                 Section {
-                    Stepper("Words for new games will be \(configurableSettings.wordSizeForNewGames) letters long", value: $configurableSettings.wordSizeForNewGames)
+                    // Received inspiration from https://stackoverflow.com/questions/71241005/swiftui-form-number-input
+                    // Read docs for onIncrement and onDecrement at https://developer.apple.com/documentation/swiftui/stepper
+                    Stepper(
+                        "Words for new games will be \(configurableSettings.wordSizeForNewGames) letters long",
+                        onIncrement: {
+                            if configurableSettings.wordSizeForNewGames < 6 {
+                                configurableSettings.wordSizeForNewGames += 1
+                            }
+                        },
+                        onDecrement: {
+                            if configurableSettings.wordSizeForNewGames > 3 {
+                                configurableSettings.wordSizeForNewGames -= 1
+                            }
+                        }
+                    )
                 }
             }
         }
