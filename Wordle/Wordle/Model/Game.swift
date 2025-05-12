@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class Game {
+class Game: Identifiable, Hashable {
     var size: Int //horizontal length of each word
     var masterWord: String
     var master: Code
@@ -26,6 +26,18 @@ class Game {
         guess = Code(characters: [], kind: .guess)
         attempts = []
     }
+    
+    
+    // From AI for Identifiable and Hashable conformance
+    var id = UUID()
+    
+    static func ==(lhs: Game, rhs: Game) -> Bool {
+        return lhs.id == rhs.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
 
 //    mutating func reset(newMasterWord: String? = nil) { //if no new word is provided, it is the same word
 //        size = Int(newGameWordSize)

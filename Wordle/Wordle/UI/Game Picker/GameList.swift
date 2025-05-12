@@ -12,11 +12,11 @@ struct GameList: View {
     
     var body: some View {
         List {
-            ForEach(games.indices.reversed(), id: \.self) { i in
-//                NavigationLink(value: games[i]) {
-                    GamePreview(game: $games[i])
+//            ForEach(games) { game in
+//                NavigationLink(value: game) {
+//                    GamePreview(game: $game)
 //                }
-            }
+//            }
         }
     }
 }

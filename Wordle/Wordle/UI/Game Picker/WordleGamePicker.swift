@@ -10,25 +10,39 @@ import SwiftUI
 struct WordleGamePicker: View {
     @Environment(\.words) private var words
     @State private var games: [Game] = sampleGames
-    @State private var selectedGame: Game? = nil
+    @State private var selectedGame: Game?
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
-            GameList(games: $games)
-                .navigationTitle("Wordle")
+//            GameList(games: $games)
+//                .navigationTitle("Wordle")
+            List($games, selection: $selectedGame) { game in
+                NavigationLink(value: games.first) {
+                    GamePreview(game: game)
+                }
+            }
         } detail: {
+            if let selectedGame {
+                Text("Playing the game with master code \(selectedGame.masterWord)")
+
             // Got help from AI on this one
-            if selectedGame != nil { //ensures that selectedGame is defined
-                WordleView(game:
-                    Binding<Game>(
-                        get: { self.selectedGame! }, //you can force unwrap because the if statement above
-                        set: { self.selectedGame = $0 } //updates the game
-                    )
-                )
+//            if selectedGame != nil { //ensures that selectedGame is defined
+//                WordleView(game:
+//                    Binding<Game>(
+//                        get: { self.selectedGame! }, //you can force unwrap because the if statement above
+//                        set: { self.selectedGame = $0 } //updates the game
+//                    )
+//                )
             } else {
                 Text("Choose a Game")
             }
         }
+        .onChange(of: games) { //Game deleted so remove selection
+            if let selectedGame, !games.contains(selectedGame) {
+                self.selectedGame = nil
+            }
+        }
+        .listStyle(.plain)
         .navigationSplitViewStyle(.balanced)
         
         Button {
