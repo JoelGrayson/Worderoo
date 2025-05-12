@@ -18,6 +18,8 @@ class Game: Identifiable, Hashable {
     var gameIsOver = false
     var userWon = false
     
+    var lastGuessMadeAt: Date = .now
+    
     init(masterWord: String) {
         self.size = masterWord.count
         self.masterWord = masterWord.uppercased()
@@ -71,6 +73,7 @@ class Game: Identifiable, Hashable {
         
         // Successfully add the guess
         attempts.append(guess.guessToAttempt(gradedWith: masterWord))
+        lastGuessMadeAt = .now
         guess.reset()
         
         return .successfullyGuessed

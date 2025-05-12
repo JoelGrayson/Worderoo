@@ -12,6 +12,10 @@ struct WordleGamePicker: View {
     @State private var games: [Game] = sampleGames
     @State private var selectedGame: Game?
     
+    var sortedGames: [Game] {
+        games.sorted(by: { $0.lastGuessMadeAt > $1.lastGuessMadeAt })
+    }
+    
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
             if games.isEmpty {
@@ -20,11 +24,10 @@ struct WordleGamePicker: View {
             }
             
             // List of Games
-            List(games, selection: $selectedGame) { game in //received help from AI on making the bindings work
+            List(sortedGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
                     GamePreview(game: game)
                 }
-                
             }
             .navigationTitle("Wordle")
             
@@ -44,6 +47,7 @@ struct WordleGamePicker: View {
                     Text("New Game")
                 }
             }
+            .padding(.top)
         } detail: {
             if selectedGame != nil {
                 // Got help from AI on this one
