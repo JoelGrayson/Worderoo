@@ -21,7 +21,20 @@ struct GamePreview: View {
                 }
             }
             
-            Text("\(game.attempts.count)/\(configurableSettings.numGuessesAllowed) tries")
+            HStack {
+                if let startTime = game.startTime {
+                    if let endTime = game.endTime {
+                        Text(endTime, format: .offset(to: startTime, allowedFields: [.minute, .second]))
+                    } else {
+                        if let pausedAt = game.pausedAt {
+                            Text(pausedAt, format: .offset(to: startTime, allowedFields: [.minute, .second]))
+                        }
+                    }
+                } else {
+                    Text("0:00")
+                }
+                Text("\(game.attempts.count)/\(configurableSettings.numGuessesAllowed) tries")
+            }
         }
         .padding(.top)
     }
