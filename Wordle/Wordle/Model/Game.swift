@@ -15,7 +15,6 @@ class Game: Identifiable, Hashable {
     var guess: Code
     var attempts: [Code]
     
-    // TODO: check that these work
     var gameIsOver = false
     var userWon = false
     

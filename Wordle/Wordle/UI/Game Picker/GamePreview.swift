@@ -20,7 +20,7 @@ struct GamePreview: View {
                 }
             }
             
-            Text("\(game.attempts.count)/\(game.size) tries")
+            Text("\(game.attempts.count)/\(Settings.numGuessesAllowed) tries")
         }
         .padding(.top)
     }

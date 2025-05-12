@@ -14,13 +14,20 @@ struct WordleGamePicker: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
+            if games.isEmpty {
+                Text("No games yet.")
+                    .padding(.top, 100)
+            }
+            
             // List of Games
-            List(games, selection: $selectedGame) { game in
+            List(games, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
                     GamePreview(game: game)
                 }
+                
             }
             .navigationTitle("Wordle")
+            
             
             // New Game Button
             Button {
