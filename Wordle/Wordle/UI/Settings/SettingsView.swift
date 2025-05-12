@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
+    // Passed in
+    @Binding var configurableSettings: ConfigurableSettings
+
+    // State owned by me
     @State private var showSettingsModal = false
-    
+
     var body: some View {
         Button {
             showSettingsModal = true
@@ -18,10 +22,17 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showSettingsModal) {
             Text("Settings")
+            Form {
+                Section {
+                    Stepper("Words for new games will be \(configurableSettings.wordSizeForNewGames) letters long", value: $configurableSettings.wordSizeForNewGames)
+                }
+            }
         }
     }
 }
 
 #Preview {
-    SettingsView()
+    SettingsView(
+        configurableSettings: .constant(ConfigurableSettings())
+    )
 }

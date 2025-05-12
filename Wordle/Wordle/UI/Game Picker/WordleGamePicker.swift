@@ -9,8 +9,10 @@ import SwiftUI
 
 struct WordleGamePicker: View {
     @Environment(\.words) private var words
+    
     @State private var games: [Game] = sampleGames
     @State private var selectedGame: Game?
+    @State private var configurableSettings = ConfigurableSettings()
     
     var sortedGames: [Game] {
         games.sorted(by: { $0.lastGuessMadeAt > $1.lastGuessMadeAt })
@@ -25,7 +27,7 @@ struct WordleGamePicker: View {
                     .bold()
                     .padding()
                 Spacer()
-                SettingsView()
+                SettingsView(configurableSettings: $configurableSettings)
                     .padding()
             }
             .padding()
@@ -87,8 +89,9 @@ struct WordleGamePicker: View {
         .navigationSplitViewStyle(.balanced)
     }
     
-    func selectWord(ofLength length: Int = Settings.wordSizeForNewGames) -> String? {
-        let newWord = words.random(length: length)
+    func selectWord(ofLength length: Int = -1) -> String? {
+        let lengthToUse = length == -1 ? configurableSettings.wordSizeForNewGames : length
+        let newWord: String? = words.random(length: lengthToUse)
         print("Selected", newWord ?? "no word selected")
         return newWord
     }

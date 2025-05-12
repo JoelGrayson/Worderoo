@@ -81,7 +81,7 @@ class Game: Identifiable, Hashable {
     
     func isOver() -> (gameIsOver: Bool, userWon: Bool) { // CM4 for using tuple
         let userWon = attempts.last?.characters.allSatisfy { $0.status == .correct } ?? false
-        let outOfGuesses = attempts.count == Settings.numGuessesAllowed
+        let outOfGuesses = attempts.count == HardCodedSettings.numGuessesAllowed
         
         return (
             gameIsOver: userWon || outOfGuesses,

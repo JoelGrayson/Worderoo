@@ -15,12 +15,12 @@ struct WordleView: View {
     
     var body: some View {
         VStack {
-            if Settings.showAnswer {
+            if HardCodedSettings.showAnswer {
                 Text("Answer: \(game.masterWord)")
             }
             
             // Attempts, Guess, and Blank
-            ForEach(0..<Settings.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
+            ForEach(0..<HardCodedSettings.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
                 let code: Code = if i<game.attempts.count { //show the attempts
                     game.attempts[i]
                 } else {

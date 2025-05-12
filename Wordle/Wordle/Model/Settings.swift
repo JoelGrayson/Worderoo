@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct Settings {
-    static let wordSizeForNewGames = 5
-    static let numGuessesAllowed = 6
+@Observable
+class ConfigurableSettings {
+    var wordSizeForNewGames = 5
+}
+
+struct HardCodedSettings {
+    static var numGuessesAllowed = 6
     static var checkIfEnglishWord: Bool { //because the list of English words is not complete
         if testMode {
             true //can be set to false if it gets annoying
