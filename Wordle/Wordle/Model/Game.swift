@@ -15,7 +15,7 @@ class Game: Identifiable, Hashable {
     var guess: Code
     var attempts: [Code]
     
-    var gameIsOver = false
+    var isOver = false
     var userWon = false
     
     var lastGuessMadeAt: Date = .now
@@ -51,7 +51,7 @@ class Game: Identifiable, Hashable {
 
 //    mutating func reset(newMasterWord: String? = nil) { //if no new word is provided, it is the same word
 //        size = Int(newGameWordSize)
-//        gameIsOver = false
+//        isOver = false
 //        userWon = false
 //        selectWord(Int(newGameWordSize))
 //        
@@ -93,12 +93,12 @@ class Game: Identifiable, Hashable {
         return .successfullyGuessed
     }
     
-    func isOver(numGuessesAllowed: Int) -> (gameIsOver: Bool, userWon: Bool) { // CM4 for using tuple
+    func isOver(numGuessesAllowed: Int) -> (isOver: Bool, userWon: Bool) { // CM4 for using tuple
         let userWon = attempts.last?.characters.allSatisfy { $0.status == .correct } ?? false
         let outOfGuesses = attempts.count == numGuessesAllowed
         
         return (
-            gameIsOver: userWon || outOfGuesses,
+            isOver: userWon || outOfGuesses,
             userWon: userWon
         )
     }

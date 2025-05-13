@@ -36,7 +36,7 @@ struct WordleView: View {
             
             
             // Keyboard or game over status
-            if game.gameIsOver { // Ending status (won or lost)
+            if game.isOver { // Ending status (won or lost)
                 if game.userWon {
                     Text("Nice job!")
                 } else {
@@ -64,7 +64,10 @@ struct WordleView: View {
                             case .notAWord:
                                 message = "Please only guess English words"
                             }
-                            (game.gameIsOver, game.userWon) = game.isOver(numGuessesAllowed: configurableSettings.numGuessesAllowed)
+                            (game.isOver, game.userWon) = game.isOver(numGuessesAllowed: configurableSettings.numGuessesAllowed)
+                            if (game.isOver) {
+                                game.endTime = .now
+                            }
                         default:
                             if game.guess.characters.count < game.size { //this if statement ensures that you don't add a character after all the characters had been typed
                                 game.guess.characters.append(.init(value: key))
