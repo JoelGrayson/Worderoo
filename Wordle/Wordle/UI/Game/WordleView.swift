@@ -11,6 +11,9 @@ struct WordleView: View {
     @Binding var game: Game //includes all the information about the game including masterWord, attempts, ...
     var configurableSettings: ConfigurableSettings
     
+    @Environment(\.scenePhase) var scenePhase
+    
+    
     // State specific to the current game playing view
     @State private var message: String?
     
@@ -132,13 +135,23 @@ struct WordleView: View {
             // old onAppear
             onAppear(game: newGame)
         }
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .background:
+                onDisappear(game: game)
+            case .active:
+                onAppear(game: game)
+            default: break
+            }
+        }
         .padding(.top, 50)
         .overlay(alignment: .top) {
             if let message {
                 Text(message)
             }
         }
-        .onChange(of: game.masterWord) { oldValue, newValue in //ensure that the master word of the game and the characters are in sync
+        .onChange(of: game.masterWord) {
+            // Ensure that the master word of the game and the characters are in sync
             game.master.characters = stringToCharacters(game.masterWord)
         }
     }
