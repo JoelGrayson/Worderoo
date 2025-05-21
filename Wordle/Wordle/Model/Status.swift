@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Status {
+enum Status: Codable {
     // Not guessed yet
     case blank //empty space
     case hasCharButNotGuessedYet

@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct WordleGamePicker: View {
     @Environment(\.words) private var words
     
-    @State private var games: [Game] = sampleGames
+    @Environment(\.modelContext) var modelContext
+    
+    @Query private var games: [Game]
     @State private var selectedGame: Game?
     @State private var configurableSettings = ConfigurableSettings()
     
@@ -71,7 +74,8 @@ struct WordleGamePicker: View {
                 let newWord = selectWord()
                 if let newWord {
                     withAnimation {
-                        games.append(Game(masterWord: newWord))
+                        //games.append(Game(masterWord: newWord))
+                        modelContext.insert(Game(masterWord: newWord))
                     }
                 } else {
                     //Alert(title: "Could not add game", )
@@ -105,6 +109,13 @@ struct WordleGamePicker: View {
             }
         }
         .navigationSplitViewStyle(.balanced)
+        .onAppear {
+            if games.isEmpty {
+                for game in sampleGames {
+                    modelContext.insert(game)
+                }
+            }
+        }
     }
     
     func selectWord(ofLength length: Int = -1) -> String? {
@@ -115,12 +126,13 @@ struct WordleGamePicker: View {
     }
     
     func deleteGame(_ game: Game) {
-        let indexToRemove = games.firstIndex(where: { el in
+        let gameToRemove = games.first(where: { el in
             el == game
         })
         
-        if let indexToRemove {
-            games.remove(at: indexToRemove)
+        if let gameToRemove {
+            //games.remove(at: indexToRemove)
+            modelContext.delete(gameToRemove)
         }
     }
 }

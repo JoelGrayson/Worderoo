@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
-@Observable
-class Game: Identifiable, Hashable {
+@Model
+class Game: Equatable {
     var size: Int //horizontal length of each word
     var masterWord: String
     var master: Code
@@ -18,7 +19,7 @@ class Game: Identifiable, Hashable {
     var isOver = false
     var userWon = false
     
-    var lastGuessMadeAt: Date = .now
+    var lastGuessMadeAt = Date.now
     
     var startTime: Date? = nil
     var endTime: Date? = nil
@@ -38,31 +39,7 @@ class Game: Identifiable, Hashable {
         self.attempts = attempts
     }
     
-    // From AI for Identifiable and Hashable conformance
-    var id = UUID()
-    
-    static func ==(lhs: Game, rhs: Game) -> Bool {
-        return lhs.id == rhs.id
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
 
-
-//    mutating func reset(newMasterWord: String? = nil) { //if no new word is provided, it is the same word
-//        size = Int(newGameWordSize)
-//        isOver = false
-//        userWon = false
-//        selectWord(Int(newGameWordSize))
-//        
-//        master.reset()
-//        guess.reset()
-//        attempts = []
-//        if let newMasterWord {
-//            masterWord = newMasterWord
-//        }
-//    }
-    
     func tryGuessing(checkIfEnglishWord: Bool) -> Result {
         // Guard clauses for why you couldn't add the guess to attempts
         guard guess.characters.count == size else {
@@ -104,13 +81,13 @@ class Game: Identifiable, Hashable {
     }
     
     
-    enum Result {
-        case successfullyGuessed
-        
-        // Could not make a guess because the guess was problematic
-        case notEnoughChars
-        case alreadyTried
-        case notAWord
-    }
 }
 
+enum Result {
+    case successfullyGuessed
+    
+    // Could not make a guess because the guess was problematic
+    case notEnoughChars
+    case alreadyTried
+    case notAWord
+}

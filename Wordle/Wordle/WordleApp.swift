@@ -12,6 +12,7 @@ struct WordleApp: App {
     var body: some Scene {
         WindowGroup {
             WordleGamePicker()
+                .modelContainer(for: [ConfigurableSettings.self, Game.self])
         }
     }
 }

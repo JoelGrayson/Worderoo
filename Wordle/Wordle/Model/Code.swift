@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Code {
+struct Code: Codable {
     var characters: [Character]
     var kind: Kind
     
@@ -53,10 +53,4 @@ struct Code {
     }
 }
 
-
-enum Kind {
-    case master //correct answer
-    case guess //user typing in
-    case attempt //user typed in earlier and it has been graded now
-}
 

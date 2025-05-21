@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
-@Observable
+@Model
 class ConfigurableSettings { //here are the default settings
-    var wordSizeForNewGames = 5
-    var numGuessesAllowed = 6
-    var checkIfEnglishWord = true
+    var wordSizeForNewGames: Int
+    var numGuessesAllowed: Int
+    var checkIfEnglishWord: Bool
+    
+    init(wordSizeForNewGames: Int = 5, numGuessesAllowed: Int = 6, checkIfEnglishWord: Bool = true) {
+        self.wordSizeForNewGames = wordSizeForNewGames
+        self.numGuessesAllowed = numGuessesAllowed
+        self.checkIfEnglishWord = checkIfEnglishWord
+    }
 }
 
 struct HardCodedSettings { //related to test mode
