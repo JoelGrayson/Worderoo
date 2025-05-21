@@ -8,16 +8,26 @@
 import SwiftUI
 import SwiftData
 
+let defaultNumGuessesAllowed = 6
+
+let defaultConfigurableSettings = ConfigurableSettings()
+
 @Model
 class ConfigurableSettings { //here are the default settings
     var wordSizeForNewGames: Int
     var numGuessesAllowed: Int
     var checkIfEnglishWord: Bool
     
-    init(wordSizeForNewGames: Int = 5, numGuessesAllowed: Int = 6, checkIfEnglishWord: Bool = true) {
+    init(wordSizeForNewGames: Int = 5, numGuessesAllowed: Int = defaultNumGuessesAllowed, checkIfEnglishWord: Bool = true) {
         self.wordSizeForNewGames = wordSizeForNewGames
         self.numGuessesAllowed = numGuessesAllowed
         self.checkIfEnglishWord = checkIfEnglishWord
+    }
+    
+    init(_ configurableSettingsToCopy: ConfigurableSettings) {
+        self.wordSizeForNewGames = configurableSettingsToCopy.wordSizeForNewGames
+        self.numGuessesAllowed = configurableSettingsToCopy.numGuessesAllowed
+        self.checkIfEnglishWord = configurableSettingsToCopy.checkIfEnglishWord
     }
 }
 

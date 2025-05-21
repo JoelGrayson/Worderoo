@@ -12,10 +12,18 @@ struct WordleGamePicker: View {
     @Environment(\.words) private var words
     
     @Environment(\.modelContext) var modelContext
-    
     @Query private var games: [Game]
+    @Query private var configurableSettings: [ConfigurableSettings]
+    
+    var configurableSettingsWrapper: ConfigurableSettings {
+        if let s = configurableSettings.first {
+            s
+        } else {
+            defaultConfigurableSettings
+        }
+    }
+    
     @State private var selectedGame: Game?
-    @State private var configurableSettings = ConfigurableSettings()
     
     var sortedGames: [Game] {
         games.sorted(by: { $0.lastGuessMadeAt > $1.lastGuessMadeAt })
@@ -30,7 +38,7 @@ struct WordleGamePicker: View {
                     .bold()
                     .padding()
                 Spacer()
-                SettingsView(configurableSettings: $configurableSettings)
+                SettingsView()
                     .padding()
             }
             .padding()
@@ -45,7 +53,7 @@ struct WordleGamePicker: View {
             // List of Games
             List(sortedGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
-                    GamePreview(game: game, configurableSettings: configurableSettings)
+                    GamePreview(game: game, numGuessesAllowed: configurableSettingsWrapper.numGuessesAllowed) //TODO: convert back to configurableSettings
                         .contextMenu {
                             Button("Delete") {
                                 deleteGame(game)
@@ -97,7 +105,7 @@ struct WordleGamePicker: View {
                         get: { selectedGame },
                         set: { self.selectedGame = $0 } //updates the game
                     ),
-                   configurableSettings: configurableSettings
+                   configurableSettings: configurableSettingsWrapper
                 )
             } else {
                 Text("Choose a Game")
@@ -119,7 +127,7 @@ struct WordleGamePicker: View {
     }
     
     func selectWord(ofLength length: Int = -1) -> String? {
-        let lengthToUse = length == -1 ? configurableSettings.wordSizeForNewGames : length
+        let lengthToUse = length == -1 ? configurableSettingsWrapper.wordSizeForNewGames : length
         let newWord: String? = words.random(length: lengthToUse)
         print("Selected", newWord ?? "no word selected")
         return newWord

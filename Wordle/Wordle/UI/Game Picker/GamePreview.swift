@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GamePreview: View {
     var game: Game
-    var configurableSettings: ConfigurableSettings
+    var numGuessesAllowed: Int
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -33,7 +33,7 @@ struct GamePreview: View {
                 } else {
                     Text("0:00")
                 }
-                Text("\(game.attempts.count)/\(configurableSettings.numGuessesAllowed) tries")
+                Text("\(game.attempts.count)/\(numGuessesAllowed) tries")
             }
         }
         .padding(.top)
@@ -42,6 +42,3 @@ struct GamePreview: View {
     static let blankCode = Code(characters: [], kind: .attempt)
 }
 
-#Preview {
-    GamePreview(game: sampleGames.first!, configurableSettings: ConfigurableSettings())
-}
