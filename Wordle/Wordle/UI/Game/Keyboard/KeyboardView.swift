@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct KeyboardView: View {
-//    @Binding var game: Game
     let onKeyPress: (_ key: String) -> Void
     let getKeyStatus: (_ key: String) -> Status //used for coloring the keys
     
@@ -36,7 +35,6 @@ struct KeyboardView: View {
 
 #Preview {
     KeyboardView(
-//        game: .constant(.init(startingWord: "HELLO", size: 5)),
         onKeyPress: { key in
             print("Pressed", key)
         },

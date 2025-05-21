@@ -144,7 +144,7 @@ struct WordleView: View {
             default: break
             }
         }
-        .padding(.top, 50)
+        .padding(.top, Constants.wordlePadding)
         .overlay(alignment: .top) {
             if let message {
                 Text(message)

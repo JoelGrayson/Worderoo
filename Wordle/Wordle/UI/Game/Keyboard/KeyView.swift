@@ -20,8 +20,8 @@ struct KeyView: View {
     
     var body: some View {
         Rectangle()
-            .padding(.horizontal, 10)
-            .padding(.vertical, 5)
+            .padding(.horizontal, Constants.horizontalPadding)
+            .padding(.vertical, Constants.verticalPadding)
             .foregroundStyle(Styles.statusToColor(status))
             .background(Styles.statusToColor(status))
             .clipShape(RoundedRectangle(cornerRadius: Styles.keyCornerRadius))

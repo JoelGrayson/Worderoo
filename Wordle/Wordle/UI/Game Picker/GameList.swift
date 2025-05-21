@@ -63,7 +63,7 @@ struct GameList: View {
             // Empty list of games if appropriate
             if games.isEmpty {
                 Text("No games.")
-                    .padding(.top, 100)
+                    .padding(.top, Constants.noGamesPadding)
             }
             // List of Games
             List(games, selection: $selectedGame) { game in //received help from AI on making the bindings work
@@ -85,11 +85,6 @@ struct GameList: View {
                 }
             }
             .ipadListLooksGood()
-            // Not using below because it has weird alignment
-    //            .navigationTitle("Wordle")
-    //            .toolbar {
-    //                SettingsView()
-    //            }
             
             
             // New Game Button
@@ -105,7 +100,7 @@ struct GameList: View {
                     print("Could not add game")
                 }
             } label: {
-                HStack(alignment: .center, spacing: 10) {
+                HStack(alignment: .center, spacing: Constants.horizontalPadding) {
                     Image(systemName: "plus.circle.fill")
                     Text("New Game")
                 }
@@ -154,7 +149,6 @@ struct GameList: View {
         })
         
         if let gameToRemove {
-            //games.remove(at: indexToRemove)
             modelContext.delete(gameToRemove)
         }
     }

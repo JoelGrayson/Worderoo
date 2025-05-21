@@ -39,7 +39,7 @@ class Game: Equatable {
         self.attempts = attempts
         self.isOver = isOver
         
-        (self.isOver, self.userWon) = self.isOver(numGuessesAllowed: 9999999)
+        (self.isOver, self.userWon) = self.isOver(numGuessesAllowed: Constants.highNumberToIgnore)
         if isOver {
             self.startTime = .now
             self.endTime = .now
