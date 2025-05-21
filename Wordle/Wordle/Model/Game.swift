@@ -34,9 +34,14 @@ class Game: Equatable {
     }
     
     // Second initializer used for the sample games, which are at various completion levels
-    convenience init(masterWord: String, attempts: [Code]) {
+    convenience init(masterWord: String, attempts: [Code], isOver: Bool = false) {
         self.init(masterWord: masterWord)
         self.attempts = attempts
+        self.isOver = isOver
+        
+        if isOver {
+            self.endTime = .now
+        }
     }
     
 

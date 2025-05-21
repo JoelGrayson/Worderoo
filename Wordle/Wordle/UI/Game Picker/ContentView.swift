@@ -126,7 +126,7 @@ var sampleGames = [
             ],
             kind: .attempt
         ),
-    ]),
+    ], isOver: true),
     Game(masterWord: "WORLD"), //hasn't started
 ]
 

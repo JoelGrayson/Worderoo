@@ -8,8 +8,6 @@
 import SwiftUI
 import SwiftData
 
-let defaultNumGuessesAllowed = 6
-
 let defaultConfigurableSettings = ConfigurableSettings()
 
 @Model
@@ -20,7 +18,7 @@ class ConfigurableSettings { //here are the default settings
     var onlyShowIncompleteGames: Bool
     
     // Initialize by choosing all params
-    init(wordSizeForNewGames: Int = 5, numGuessesAllowed: Int = defaultNumGuessesAllowed, checkIfEnglishWord: Bool = true, onlyShowIncompleteGames: Bool = false) {
+    init(wordSizeForNewGames: Int = 5, numGuessesAllowed: Int = 6, checkIfEnglishWord: Bool = true, onlyShowIncompleteGames: Bool = false) {
         self.wordSizeForNewGames = wordSizeForNewGames
         self.numGuessesAllowed = numGuessesAllowed
         self.checkIfEnglishWord = checkIfEnglishWord
