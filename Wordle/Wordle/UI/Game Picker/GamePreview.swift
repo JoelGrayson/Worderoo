@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GamePreview: View {
     var game: Game
-    var numGuessesAllowed: Int
+    var configurableSettings: ConfigurableSettings
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -33,7 +33,7 @@ struct GamePreview: View {
                 } else {
                     Text("0:00")
                 }
-                Text("\(game.attempts.count)/\(numGuessesAllowed) tries")
+                Text("\(game.attempts.count)/\(configurableSettings.numGuessesAllowed) tries")
             }
         }
         .padding(.top)
