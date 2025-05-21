@@ -40,6 +40,7 @@ class Game: Equatable {
         self.isOver = isOver
         
         if isOver {
+            self.startTime = .now
             self.endTime = .now
         }
     }
