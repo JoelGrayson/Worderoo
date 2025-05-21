@@ -57,9 +57,8 @@ struct SettingsView: View {
                             }
                         }
                     )
-                }
-                
-                Section {
+                    
+                    
                     // Received inspiration from https://stackoverflow.com/questions/71241005/swiftui-form-number-input
                     // Read docs for onIncrement and onDecrement at https://developer.apple.com/documentation/swiftui/stepper
                     Stepper(
@@ -78,9 +77,7 @@ struct SettingsView: View {
                             }
                         }
                     )
-                }
-                
-                Section {
+
                     Toggle("Only allow guesses that are English words", isOn: Binding<Bool>(
                         get: {
                             configurableSettingsWrapper.checkIfEnglishWord
@@ -91,12 +88,24 @@ struct SettingsView: View {
                             }
                         }
                     ))
+                    
+                    Toggle("Only show games that are incomplete", isOn: Binding<Bool>(
+                        get: {
+                            configurableSettingsWrapper.onlyShowIncompleteGames
+                        },
+                        set: { newValue in
+                            updateSettings {
+                                $0.onlyShowIncompleteGames = newValue
+                            }
+                        }
+                    ))
                 }
                 
                 Section {
                     Button("Reset Settings", systemImage: "arrow.counterclockwise.circle") {
                         updateSettings { $0 = defaultConfigurableSettings }
                     }
+                    .tint(.red)
                 }
             }
         }

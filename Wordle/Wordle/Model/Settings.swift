@@ -17,17 +17,22 @@ class ConfigurableSettings { //here are the default settings
     var wordSizeForNewGames: Int
     var numGuessesAllowed: Int
     var checkIfEnglishWord: Bool
+    var onlyShowIncompleteGames: Bool
     
-    init(wordSizeForNewGames: Int = 5, numGuessesAllowed: Int = defaultNumGuessesAllowed, checkIfEnglishWord: Bool = true) {
+    // Initialize by choosing all params
+    init(wordSizeForNewGames: Int = 5, numGuessesAllowed: Int = defaultNumGuessesAllowed, checkIfEnglishWord: Bool = true, onlyShowIncompleteGames: Bool = false) {
         self.wordSizeForNewGames = wordSizeForNewGames
         self.numGuessesAllowed = numGuessesAllowed
         self.checkIfEnglishWord = checkIfEnglishWord
+        self.onlyShowIncompleteGames = onlyShowIncompleteGames
     }
     
+    // Copy initializer
     init(_ configurableSettingsToCopy: ConfigurableSettings) {
         self.wordSizeForNewGames = configurableSettingsToCopy.wordSizeForNewGames
         self.numGuessesAllowed = configurableSettingsToCopy.numGuessesAllowed
         self.checkIfEnglishWord = configurableSettingsToCopy.checkIfEnglishWord
+        self.onlyShowIncompleteGames = configurableSettingsToCopy.onlyShowIncompleteGames
     }
 }
 

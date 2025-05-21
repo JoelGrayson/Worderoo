@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		384380CA2DD26AC600860DC2 /* WordleGamePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384380C92DD26AC600860DC2 /* WordleGamePicker.swift */; };
+		382FEFC32DDE7B2F00DA9511 /* GameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FEFC22DDE7B2F00DA9511 /* GameList.swift */; };
+		382FEFC72DDE7C7C00DA9511 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382FEFC62DDE7C7C00DA9511 /* SortOption.swift */; };
+		384380CA2DD26AC600860DC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384380C92DD26AC600860DC2 /* ContentView.swift */; };
 		384380CE2DD2867B00860DC2 /* GamePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384380CD2DD2867B00860DC2 /* GamePreview.swift */; };
 		384380F92DD29A1D00860DC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384380F82DD29A1D00860DC2 /* SettingsView.swift */; };
 		384380FD2DD2A95000860DC2 /* ElapsedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384380FC2DD2A95000860DC2 /* ElapsedTime.swift */; };
@@ -34,7 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		384380C92DD26AC600860DC2 /* WordleGamePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleGamePicker.swift; sourceTree = "<group>"; };
+		382FEFC22DDE7B2F00DA9511 /* GameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameList.swift; sourceTree = "<group>"; };
+		382FEFC62DDE7C7C00DA9511 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
+		384380C92DD26AC600860DC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		384380CD2DD2867B00860DC2 /* GamePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePreview.swift; sourceTree = "<group>"; };
 		384380F82DD29A1D00860DC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		384380FC2DD2A95000860DC2 /* ElapsedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTime.swift; sourceTree = "<group>"; };
@@ -88,7 +92,9 @@
 		384380CC2DD2866A00860DC2 /* Game Picker */ = {
 			isa = PBXGroup;
 			children = (
-				384380C92DD26AC600860DC2 /* WordleGamePicker.swift */,
+				384380C92DD26AC600860DC2 /* ContentView.swift */,
+				382FEFC62DDE7C7C00DA9511 /* SortOption.swift */,
+				382FEFC22DDE7B2F00DA9511 /* GameList.swift */,
 				384380CD2DD2867B00860DC2 /* GamePreview.swift */,
 			);
 			path = "Game Picker";
@@ -265,13 +271,15 @@
 				38451A4D2DBECFC20097A60C /* Status.swift in Sources */,
 				38451A462DBECEEE0097A60C /* Game.swift in Sources */,
 				384380F92DD29A1D00860DC2 /* SettingsView.swift in Sources */,
+				382FEFC72DDE7C7C00DA9511 /* SortOption.swift in Sources */,
+				382FEFC32DDE7B2F00DA9511 /* GameList.swift in Sources */,
 				38451A522DBED06C0097A60C /* Character.swift in Sources */,
 				38451A3E2DBEC93C0097A60C /* Styles.swift in Sources */,
 				38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */,
 				384380FD2DD2A95000860DC2 /* ElapsedTime.swift in Sources */,
 				385DC5B52DDE4C2600481E53 /* Kind.swift in Sources */,
 				384381012DD2B54800860DC2 /* isEnglishWord.swift in Sources */,
-				384380CA2DD26AC600860DC2 /* WordleGamePicker.swift in Sources */,
+				384380CA2DD26AC600860DC2 /* ContentView.swift in Sources */,
 				38451A592DBED3F30097A60C /* CharacterView.swift in Sources */,
 				38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */,
 				38451A3C2DBEC7C70097A60C /* UIExtensions.swift in Sources */,
