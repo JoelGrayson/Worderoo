@@ -29,8 +29,6 @@
 		38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A542DBED12B0097A60C /* StringToCharacters.swift */; };
 		38451A592DBED3F30097A60C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A582DBED3F30097A60C /* CharacterView.swift */; };
 		385DC5B52DDE4C2600481E53 /* Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385DC5B42DDE4C2600481E53 /* Kind.swift */; };
-		385DC5B72DDE4CB800481E53 /* StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385DC5B62DDE4CB800481E53 /* StoredData.swift */; };
-		386F1FA62DC197C600C795A2 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 386F1FA52DC197C600C795A2 /* TODO.md */; };
 		386F1FA82DC2B83100C795A2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386F1FA72DC2B83100C795A2 /* Settings.swift */; };
 		386F1FAA2DC2CCFE00C795A2 /* Used to find shortest and longest.js in Resources */ = {isa = PBXBuildFile; fileRef = 386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */; };
 /* End PBXBuildFile section */
@@ -60,11 +58,9 @@
 		38451A542DBED12B0097A60C /* StringToCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToCharacters.swift; sourceTree = "<group>"; };
 		38451A582DBED3F30097A60C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		385DC5B42DDE4C2600481E53 /* Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kind.swift; sourceTree = "<group>"; };
-		385DC5B62DDE4CB800481E53 /* StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredData.swift; sourceTree = "<group>"; };
-		386F1FA52DC197C600C795A2 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		386F1FA72DC2B83100C795A2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "Used to find shortest and longest.js"; sourceTree = "<group>"; };
-		38CEB4BF2DC3123A000FDF34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		38CEB4BF2DC3123A000FDF34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,15 +121,14 @@
 		38451A172DBEC4D90097A60C /* Wordle */ = {
 			isa = PBXGroup;
 			children = (
-				38CEB4BF2DC3123A000FDF34 /* Info.plist */,
-				38451A132DBEC4D90097A60C /* Assets.xcassets */,
-				38451A152DBEC4D90097A60C /* Wordle.entitlements */,
 				38451A162DBEC4D90097A60C /* WordleApp.swift */,
-				386F1FA52DC197C600C795A2 /* TODO.md */,
-				386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */,
 				38451A3A2DBEC7BC0097A60C /* UI */,
 				38451A412DBECE990097A60C /* Model */,
 				38451A532DBED1080097A60C /* Utils */,
+				38CEB4BF2DC3123A000FDF34 /* Info.plist */,
+				386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */,
+				38451A132DBEC4D90097A60C /* Assets.xcassets */,
+				38451A152DBEC4D90097A60C /* Wordle.entitlements */,
 			);
 			path = Wordle;
 			sourceTree = "<group>";
@@ -152,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				38451A492DBECF480097A60C /* Plan.md */,
-				385DC5B62DDE4CB800481E53 /* StoredData.swift */,
 				386F1FA72DC2B83100C795A2 /* Settings.swift */,
 				38451A452DBECEEE0097A60C /* Game.swift */,
 				38451A4E2DBED0600097A60C /* Code.swift */,
@@ -254,7 +248,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				386F1FA62DC197C600C795A2 /* TODO.md in Resources */,
 				386F1FAA2DC2CCFE00C795A2 /* Used to find shortest and longest.js in Resources */,
 				38451A1A2DBEC4D90097A60C /* Assets.xcassets in Resources */,
 				38451A4A2DBECF480097A60C /* Plan.md in Resources */,
@@ -276,7 +269,6 @@
 				38451A3E2DBEC93C0097A60C /* Styles.swift in Sources */,
 				38451A1E2DBEC5610097A60C /* KeyboardView.swift in Sources */,
 				384380FD2DD2A95000860DC2 /* ElapsedTime.swift in Sources */,
-				385DC5B72DDE4CB800481E53 /* StoredData.swift in Sources */,
 				385DC5B52DDE4C2600481E53 /* Kind.swift in Sources */,
 				384381012DD2B54800860DC2 /* isEnglishWord.swift in Sources */,
 				384380CA2DD26AC600860DC2 /* WordleGamePicker.swift in Sources */,

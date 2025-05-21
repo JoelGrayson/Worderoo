@@ -53,7 +53,7 @@ struct WordleGamePicker: View {
             // List of Games
             List(sortedGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
-                    GamePreview(game: game, configurableSettings: configurableSettingsWrapper) //TODO: convert back to configurableSettings
+                    GamePreview(game: game, configurableSettings: configurableSettingsWrapper)
                         .contextMenu {
                             Button("Delete") {
                                 deleteGame(game)
