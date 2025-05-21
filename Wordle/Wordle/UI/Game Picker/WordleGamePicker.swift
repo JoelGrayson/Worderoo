@@ -10,9 +10,14 @@ import SwiftData
 
 struct WordleGamePicker: View {
     @Environment(\.words) private var words
-    
     @Environment(\.modelContext) var modelContext
-    @Query(sort: \Game.lastGuessMadeAt, order: .forward) private var games: [Game]
+    
+    // Game
+    @Query private var games: [Game]
+    @State private var selectedGame: Game?
+
+    
+    // Settings
     @Query private var configurableSettings: [ConfigurableSettings]
     
     var configurableSettingsWrapper: ConfigurableSettings {
@@ -23,7 +28,32 @@ struct WordleGamePicker: View {
         }
     }
     
-    @State private var selectedGame: Game?
+    
+    // Sorting
+    @State private var sortOption: SortOption = .newestFirst
+    
+    enum SortOption: CaseIterable {
+        case newestFirst
+        case oldestFirst
+        
+        var title: String {
+            switch self {
+            case .newestFirst:
+                return "Newest First"
+            case .oldestFirst:
+                return "Oldest First"
+            }
+        }
+    }
+    
+    var sortedGames: [Game] {
+        switch sortOption {
+        case .newestFirst:
+            games.sorted { a, b in a.lastGuessMadeAt > b.lastGuessMadeAt }
+        case .oldestFirst:
+            games.sorted { a, b in a.lastGuessMadeAt < b.lastGuessMadeAt }
+        }
+    }
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
@@ -34,6 +64,13 @@ struct WordleGamePicker: View {
                     .bold()
                     .padding()
                 Spacer()
+                
+                Picker("Sort By", selection: $sortOption) {
+                    ForEach(SortOption.allCases, id: \.self) { opt in
+                        Text(opt.title)
+                    }
+                }
+                
                 SettingsView()
                     .padding()
             }
@@ -47,7 +84,7 @@ struct WordleGamePicker: View {
             }
             
             // List of Games
-            List(games, selection: $selectedGame) { game in //received help from AI on making the bindings work
+            List(sortedGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
                     GamePreview(game: game, configurableSettings: configurableSettingsWrapper)
                         .contextMenu {
