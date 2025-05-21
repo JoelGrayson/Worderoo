@@ -92,6 +92,12 @@ struct SettingsView: View {
                         }
                     ))
                 }
+                
+                Section {
+                    Button("Reset Settings", systemImage: "arrow.counterclockwise.circle") {
+                        updateSettings { $0 = defaultConfigurableSettings }
+                    }
+                }
             }
         }
     }
