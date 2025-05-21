@@ -12,7 +12,7 @@ struct WordleGamePicker: View {
     @Environment(\.words) private var words
     
     @Environment(\.modelContext) var modelContext
-    @Query private var games: [Game]
+    @Query(sort: \Game.lastGuessMadeAt, order: .forward) private var games: [Game]
     @Query private var configurableSettings: [ConfigurableSettings]
     
     var configurableSettingsWrapper: ConfigurableSettings {
@@ -24,10 +24,6 @@ struct WordleGamePicker: View {
     }
     
     @State private var selectedGame: Game?
-    
-    var sortedGames: [Game] {
-        games.sorted(by: { $0.lastGuessMadeAt > $1.lastGuessMadeAt })
-    }
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
@@ -51,7 +47,7 @@ struct WordleGamePicker: View {
             }
             
             // List of Games
-            List(sortedGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
+            List(games, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
                     GamePreview(game: game, configurableSettings: configurableSettingsWrapper)
                         .contextMenu {
