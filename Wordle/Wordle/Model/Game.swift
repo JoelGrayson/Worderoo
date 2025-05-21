@@ -53,12 +53,12 @@ class Game: Equatable {
             return .notEnoughChars
         }
         if attempts.contains(where: { prevAttempt in
-            prevAttempt.toString() == guess.toString()
+            codeToString(prevAttempt) == codeToString(guess)
         }) {
             return .alreadyTried
         }
         if checkIfEnglishWord {
-            guard isEnglishWord(guess.toString().lowercased()) else { //asserts that it is word
+            guard isEnglishWord(codeToString(guess).lowercased()) else { //asserts that it is word
                 return .notAWord
             }
             

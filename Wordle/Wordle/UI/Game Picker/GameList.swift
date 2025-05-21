@@ -29,20 +29,31 @@ struct GameList: View {
     }
     
     
-    init(sortBy: SortOption, onlyShowIncompleteGames: Bool) {
+    init(sortBy: SortOption, searchString: String, onlyShowIncompleteGames: Bool) {
+        print("Sorting by \(sortBy) and search string >\(searchString)< with onlyShowIncompleteGames=\(onlyShowIncompleteGames)")
         let predicate = #Predicate<Game> { game in
-            if onlyShowIncompleteGames {
-                !game.isOver
-            } else {
-                true
-            }
+            ( //Incomplete games clause
+                onlyShowIncompleteGames
+                    ? !game.isOver //if only show incomplete games setting is enabled, do this
+                    : true //otherwise, show all
+            )
+            &&
+            ( //Search string clause
+                searchString != ""
+                    ? game.attempts.contains(where: { code in //if there is a search string, only show those that match the search string
+                        code.asString.contains(searchString)
+                    })
+                    : true //if no search string, show all games
+            )
         }
+        
         let order = if sortBy == SortOption.newestFirst {
             SortOrder.forward
         } else {
             SortOrder.reverse
         }
-        _games = Query(filter: predicate, sort: \.lastGuessMadeAt, order: order)
+        
+        _games = Query(filter: predicate, sort: \Game.lastGuessMadeAt, order: order)
     }
     
     var body: some View {
@@ -51,7 +62,7 @@ struct GameList: View {
             
             // Empty list of games if appropriate
             if games.isEmpty {
-                Text("No games yet.")
+                Text("No games.")
                     .padding(.top, 100)
             }
             // List of Games

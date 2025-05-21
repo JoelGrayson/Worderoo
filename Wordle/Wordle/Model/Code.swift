@@ -13,18 +13,22 @@ struct Code: Codable {
     
     static let blank = Code.init(characters: [], kind: .attempt)
     
-    func toString() -> String {
-        return characters
-            .map({ ch in ch.value }) //extract the value
-            .joined(separator: "") //join the characters into a string
-    }
+    var asString: String //not a computed property because SQL can't understand it and I want it to work with #Query's filter parameter
     
     mutating func setTo(_ to: String) {
+        self.asString = to
         characters = to.split(separator: "").map({ ch in Character.init(value: String(ch), status: .blank) })
     }
     
     mutating func reset() {
         self.characters = []
+        self.asString = ""
+    }
+    
+    init(characters: [Character], kind: Kind) {
+        self.characters = characters
+        self.kind = kind
+        self.asString = charactersToString(characters)
     }
     
     // Returns a code that has the graded characters for displaying
@@ -53,4 +57,13 @@ struct Code: Codable {
     }
 }
 
+func charactersToString(_ characters: [Character]) -> String {
+    return characters
+        .map({ ch in ch.value }) //extract the value
+        .joined(separator: "") //join the characters into a string
+}
+
+func codeToString(_ code: Code) -> String {
+    return charactersToString(code.characters)
+}
 

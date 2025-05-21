@@ -153,6 +153,7 @@ struct WordleView: View {
         .onChange(of: game.masterWord) {
             // Ensure that the master word of the game and the characters are in sync
             game.master.characters = stringToCharacters(game.masterWord)
+            game.master.asString = game.masterWord
         }
     }
     

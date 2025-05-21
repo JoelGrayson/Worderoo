@@ -25,7 +25,7 @@ struct ContentView: View {
 
     // Sorting and Filtering
     @State private var sortBy: SortOption = .newestFirst
-    @State private var sortString = ""
+    @State private var searchString = ""
     
     var body: some View {
         HStack(alignment: .center) {
@@ -47,7 +47,8 @@ struct ContentView: View {
         .padding()
         
         
-        GameList(sortBy: sortBy, onlyShowIncompleteGames: configurableSettingsWrapper.onlyShowIncompleteGames)
+        GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettingsWrapper.onlyShowIncompleteGames)
+            .searchable(text: $searchString)
     }
 }
 
