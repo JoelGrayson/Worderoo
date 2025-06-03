@@ -36,6 +36,7 @@ struct SettingsView: View {
             Text("Settings")
                 .font(.title)
                 .padding()
+                .bold()
             
             Form {
                 Section {

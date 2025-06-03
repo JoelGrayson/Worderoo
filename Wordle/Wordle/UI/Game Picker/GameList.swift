@@ -11,7 +11,7 @@ import SwiftData
 struct GameList: View {
     @Environment(\.words) private var words
     @Environment(\.modelContext) var modelContext
-    
+        
     // Game
     @Query private var games: [Game]
     @State private var selectedGame: Game?
