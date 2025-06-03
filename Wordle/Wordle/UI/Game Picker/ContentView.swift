@@ -26,28 +26,30 @@ struct ContentView: View {
     // Sorting and Filtering
     @State private var sortBy: SortOption = .newestFirst
     @State private var searchString = ""
+    @State private var showTop = true
     
     var body: some View {
-        HStack(alignment: .center) {
-            Text("Wordle")
-                .font(.title)
-                .bold()
-                .padding()
-            Spacer()
-            
-            Picker("Sort By", selection: $sortBy.animation()) {
-                ForEach(SortOption.allCases, id: \.self) { opt in
-                    Text(opt.title)
+        if showTop {
+            HStack(alignment: .center) {
+                Text("Wordle")
+                    .font(.title)
+                    .bold()
+                    .padding()
+                Spacer()
+                
+                Picker("Sort By", selection: $sortBy.animation()) {
+                    ForEach(SortOption.allCases, id: \.self) { opt in
+                        Text(opt.title)
+                    }
                 }
+                
+                SettingsView()
+                    .padding()
             }
-            
-            SettingsView()
-                .padding()
+            .padding()
         }
-        .padding()
         
-        
-        GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettingsWrapper.onlyShowIncompleteGames)
+        GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettingsWrapper.onlyShowIncompleteGames, showTop: $showTop)
 //            TODO: fix .searchable(text: $searchString)
             .animation(.easeInOut, value: searchString)
     }

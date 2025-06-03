@@ -11,7 +11,9 @@ import SwiftData
 struct GameList: View {
     @Environment(\.words) private var words
     @Environment(\.modelContext) var modelContext
-        
+
+    @Binding var showTop: Bool
+    
     // Game
     @Query private var games: [Game]
     @State private var selectedGame: Game?
@@ -29,7 +31,7 @@ struct GameList: View {
     }
     
     
-    init(sortBy: SortOption, searchString: String, onlyShowIncompleteGames: Bool) {
+    init(sortBy: SortOption, searchString: String, onlyShowIncompleteGames: Bool, showTop: Binding<Bool>) {
         print("Sorting by \(sortBy) and search string >\(searchString)< with onlyShowIncompleteGames=\(onlyShowIncompleteGames)")
         let predicate = #Predicate<Game> { game in
             ( //Incomplete games clause
@@ -54,6 +56,8 @@ struct GameList: View {
         }
         
         _games = Query(filter: predicate, sort: \Game.lastGuessMadeAt, order: order)
+        
+        self._showTop = showTop //got help from AI on this one
     }
     
     var body: some View {
@@ -92,8 +96,9 @@ struct GameList: View {
                 let newWord = selectWord()
                 if let newWord {
                     withAnimation {
-                        //games.append(Game(masterWord: newWord))
-                        modelContext.insert(Game(masterWord: newWord))
+                        let newGame = Game(masterWord: newWord)
+                        modelContext.insert(newGame)
+                        selectedGame = newGame
                     }
                 } else {
                     //Alert(title: "Could not add game", )
@@ -126,14 +131,17 @@ struct GameList: View {
                 self.selectedGame = nil
             }
         }
-        .navigationSplitViewStyle(.balanced)
-        .onAppear {
-            if games.isEmpty {
-                for game in sampleGames {
-                    modelContext.insert(game)
-                }
-            }
+        .onChange(of: selectedGame) {
+            showTop = selectedGame == nil
         }
+        .navigationSplitViewStyle(.balanced)
+//        .onAppear {
+//            if games.isEmpty {
+//                for game in sampleGames {
+//                    modelContext.insert(game)
+//                }
+//            }
+//        }
     }
     
     func selectWord(ofLength length: Int = -1) -> String? {
