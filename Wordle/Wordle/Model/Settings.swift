@@ -35,8 +35,8 @@ class ConfigurableSettings { //here are the default settings
 }
 
 struct HardCodedSettings { //related to test mode
-    static let testMode = false //if testMode, always use WORLD as the word
-    static let defaultWord = "WORLD"
+    static let testMode = true //if testMode, always use defaultWord as the word
+    static let defaultWord = "PAVES"
     static let showAnswer = false
 }
 

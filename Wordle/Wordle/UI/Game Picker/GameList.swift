@@ -92,26 +92,21 @@ struct GameList: View {
             
             
             // New Game Button
-            Button {
+            Button("New Game", systemImage: "plus.circle.fill") {
                 let newWord = selectWord()
                 if let newWord {
                     withAnimation {
-                        let newGame = Game(masterWord: newWord)
+                        let newGame = Game(masterWord: HardCodedSettings.testMode ? HardCodedSettings.defaultWord : newWord)
                         modelContext.insert(newGame)
                         selectedGame = newGame
                     }
                 } else {
-                    //Alert(title: "Could not add game", )
+                    // Alert(title: "Could not add game", )
                     print("Could not add game")
                 }
-            } label: {
-                HStack(alignment: .center, spacing: Constants.horizontalPadding) {
-                    Image(systemName: "plus.circle.fill")
-                    Text("New Game")
-                }
-                .padding(.vertical)
             }
             .padding(.top)
+            .padding(.vertical)
         } detail: {
             if let selectedGame = selectedGame {
                 // Got help from AI on this one
@@ -160,5 +155,9 @@ struct GameList: View {
             modelContext.delete(gameToRemove)
         }
     }
+}
+
+#Preview {
+    GameList(sortBy: .newestFirst, searchString: "", onlyShowIncompleteGames: true, showTop: .constant(true))
 }
 

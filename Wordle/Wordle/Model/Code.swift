@@ -46,8 +46,12 @@ struct Code: Codable {
             
             if masterWordChar == guessedCharacter { //in the right place
                 gradedCharacter.status = .correct
-            } else if masterWord.contains(character.value) { //in the wrong place but still in the word
-                gradedCharacter.status = .wrongPlace
+            } else if masterWord.contains(guessedCharacter) { //in the wrong place but still in the word
+                let numLettersInAnswer = masterWord.count(where: { ch in String(ch) == guessedCharacter })
+                let numAlreadyGuessed = characters.count(where: { $0.value == guessedCharacter })
+                if numLettersInAnswer > numAlreadyGuessed {
+                    gradedCharacter.status = .wrongPlace
+                }
             } else {
                 gradedCharacter.status = .notIn
             }
