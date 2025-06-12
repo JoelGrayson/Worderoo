@@ -32,6 +32,7 @@
 		38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A542DBED12B0097A60C /* StringToCharacters.swift */; };
 		38451A592DBED3F30097A60C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A582DBED3F30097A60C /* CharacterView.swift */; };
 		385C4FA62DFB097D00FF647F /* CloseIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385C4FA52DFB097D00FF647F /* CloseIcon.swift */; };
+		385C4FA82DFB1A7F00FF647F /* MasterWordChoices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385C4FA72DFB1A7F00FF647F /* MasterWordChoices.swift */; };
 		385DC5B52DDE4C2600481E53 /* Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385DC5B42DDE4C2600481E53 /* Kind.swift */; };
 		386F1FA82DC2B83100C795A2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386F1FA72DC2B83100C795A2 /* Settings.swift */; };
 		386F1FAA2DC2CCFE00C795A2 /* Used to find shortest and longest.js in Resources */ = {isa = PBXBuildFile; fileRef = 386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */; };
@@ -65,6 +66,7 @@
 		38451A542DBED12B0097A60C /* StringToCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToCharacters.swift; sourceTree = "<group>"; };
 		38451A582DBED3F30097A60C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		385C4FA52DFB097D00FF647F /* CloseIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseIcon.swift; sourceTree = "<group>"; };
+		385C4FA72DFB1A7F00FF647F /* MasterWordChoices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterWordChoices.swift; sourceTree = "<group>"; };
 		385DC5B42DDE4C2600481E53 /* Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kind.swift; sourceTree = "<group>"; };
 		386F1FA72DC2B83100C795A2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "Used to find shortest and longest.js"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				38451A542DBED12B0097A60C /* StringToCharacters.swift */,
 				38451A3D2DBEC93A0097A60C /* Styles.swift */,
 				38451A3F2DBECA1B0097A60C /* Words.swift */,
+				385C4FA72DFB1A7F00FF647F /* MasterWordChoices.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385C4FA82DFB1A7F00FF647F /* MasterWordChoices.swift in Sources */,
 				38451A182DBEC4D90097A60C /* WordleView.swift in Sources */,
 				38451A4D2DBECFC20097A60C /* Status.swift in Sources */,
 				38451A462DBECEEE0097A60C /* Game.swift in Sources */,
