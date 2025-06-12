@@ -1,9 +1,10 @@
 const fs=require('fs');
+const pluralize=require('pluralize');
 
 const lines=fs.readFileSync('words.txt', 'utf-8');
 const words=lines
     .split('\n')
-    .filter(e=>!e.endsWith('s')); //ignore plural
+    .filter(e=>!pluralize.isPlural(e)); //ignore plural
 
 const three=words.filter(word=>word.length===3); //3 is min. 2 is empty.
 const four=words.filter(word=>word.length===4);
@@ -20,6 +21,6 @@ function head(list) {
 }
 
 function exportToStruct(name, list) {
-    console.log(`static let ${name} = [${list.map(e=>`"${e}"`).join(', ')}]`);
+    console.log(`\tstatic let ${name}: [String] = [${list.map(e=>`"${e}"`).join(', ')}]`);
 }
 
