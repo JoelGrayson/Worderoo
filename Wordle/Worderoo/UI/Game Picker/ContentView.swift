@@ -30,11 +30,10 @@ struct ContentView: View {
     
     var body: some View {
         if showTop {
-            HStack(alignment: .center) {
+            HStack(alignment: .center, spacing: Styles.horizontalSpacing) {
                 Text("Worderoo")
                     .font(.title)
                     .bold()
-                    .padding()
                 Spacer()
                 
                 Picker("Sort By", selection: $sortBy.animation()) {
@@ -42,11 +41,12 @@ struct ContentView: View {
                         Text(opt.title)
                     }
                 }
+                .pickerStyle(.menu)
                 
                 SettingsView()
-                    .padding()
             }
             .padding()
+            .padding(.horizontal)
         }
         
         GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettingsWrapper.onlyShowIncompleteGames, showTop: $showTop)

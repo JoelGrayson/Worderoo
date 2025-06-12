@@ -16,6 +16,8 @@ struct Styles {
     static let closeIconSize = 8 as CGFloat
     static let closeIconPadding = 23 as CGFloat
     
+    static let horizontalSpacing = 12 as CGFloat
+    
     static func statusToColor(_ status: Status) -> Color {
         switch (status) {
         case .hasCharButNotGuessedYet:

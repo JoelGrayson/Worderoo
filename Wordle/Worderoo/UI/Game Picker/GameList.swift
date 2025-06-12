@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct GameList: View {
-    @Environment(\.words) private var words
     @Environment(\.modelContext) var modelContext
 
     @Binding var showTop: Bool
@@ -141,7 +140,7 @@ struct GameList: View {
     
     func selectWord(ofLength length: Int = -1) -> String? {
         let lengthToUse = length == -1 ? configurableSettingsWrapper.wordSizeForNewGames : length
-        let newWord: String? = words.random(length: lengthToUse)
+        let newWord: String? = MasterWordChoices.random(length: lengthToUse)
         print("Selected", newWord ?? "no word selected")
         return newWord
     }
