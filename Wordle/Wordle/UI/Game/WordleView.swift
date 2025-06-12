@@ -1,13 +1,13 @@
 //
-//  WordleView.swift
-//  Wordle
+//  WorderooView.swift
+//  Worderoo
 //
 //  Created by Joel Grayson on 4/27/25.
 //
 
 import SwiftUI
 
-struct WordleView: View {
+struct WorderooView: View {
     @Binding var game: Game //includes all the information about the game including masterWord, attempts, ...
     var configurableSettings: ConfigurableSettings
     
@@ -144,7 +144,7 @@ struct WordleView: View {
             default: break
             }
         }
-        .padding(.top, Constants.wordlePadding)
+        .padding(.top, Constants.WorderooPadding)
         .overlay(alignment: .top) {
             if let message {
                 Text(message)
@@ -180,6 +180,6 @@ struct WordleView: View {
 
 #Preview {
     @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
-    WordleView(game: $games[0], configurableSettings: ConfigurableSettings())
+    WorderooView(game: $games[0], configurableSettings: ConfigurableSettings())
 }
 

@@ -1,6 +1,6 @@
 //
 //  Settings.swift
-//  Wordle
+//  Worderoo
 //
 //  Created by Joel Grayson on 4/30/25.
 //

@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Wordle
+//  Worderoo
 //
 //  Created by Joel Grayson on 5/12/25.
 //
@@ -31,7 +31,7 @@ struct ContentView: View {
     var body: some View {
         if showTop {
             HStack(alignment: .center) {
-                Text("Wordle")
+                Text("Worderoo")
                     .font(.title)
                     .bold()
                     .padding()

@@ -46,7 +46,7 @@
 		384380F82DD29A1D00860DC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		384380FC2DD2A95000860DC2 /* ElapsedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTime.swift; sourceTree = "<group>"; };
 		384381002DD2B54100860DC2 /* isEnglishWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isEnglishWord.swift; sourceTree = "<group>"; };
-		38451A042DBEC4C80097A60C /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38451A042DBEC4C80097A60C /* Worderoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Worderoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38451A132DBEC4D90097A60C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38451A142DBEC4D90097A60C /* WordleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleView.swift; sourceTree = "<group>"; };
 		38451A152DBEC4D90097A60C /* Wordle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wordle.entitlements; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		38451A052DBEC4C80097A60C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38451A042DBEC4C80097A60C /* Wordle.app */,
+				38451A042DBEC4C80097A60C /* Worderoo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,9 +210,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		38451A032DBEC4C80097A60C /* Wordle */ = {
+		38451A032DBEC4C80097A60C /* Worderoo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38451A102DBEC4CA0097A60C /* Build configuration list for PBXNativeTarget "Wordle" */;
+			buildConfigurationList = 38451A102DBEC4CA0097A60C /* Build configuration list for PBXNativeTarget "Worderoo" */;
 			buildPhases = (
 				38451A002DBEC4C80097A60C /* Sources */,
 				38451A012DBEC4C80097A60C /* Frameworks */,
@@ -222,11 +222,11 @@
 			);
 			dependencies = (
 			);
-			name = Wordle;
+			name = Worderoo;
 			packageProductDependencies = (
 			);
 			productName = Wordle;
-			productReference = 38451A042DBEC4C80097A60C /* Wordle.app */;
+			productReference = 38451A042DBEC4C80097A60C /* Worderoo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -244,7 +244,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 384519FF2DBEC4C80097A60C /* Build configuration list for PBXProject "Wordle" */;
+			buildConfigurationList = 384519FF2DBEC4C80097A60C /* Build configuration list for PBXProject "Worderoo" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -258,7 +258,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				38451A032DBEC4C80097A60C /* Wordle */,
+				38451A032DBEC4C80097A60C /* Worderoo */,
 			);
 		};
 /* End PBXProject section */
@@ -444,6 +444,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Worderoo;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -489,6 +490,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Worderoo;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -523,7 +525,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		384519FF2DBEC4C80097A60C /* Build configuration list for PBXProject "Wordle" */ = {
+		384519FF2DBEC4C80097A60C /* Build configuration list for PBXProject "Worderoo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38451A0E2DBEC4CA0097A60C /* Debug */,
@@ -532,7 +534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38451A102DBEC4CA0097A60C /* Build configuration list for PBXNativeTarget "Wordle" */ = {
+		38451A102DBEC4CA0097A60C /* Build configuration list for PBXNativeTarget "Worderoo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				38451A112DBEC4CA0097A60C /* Debug */,

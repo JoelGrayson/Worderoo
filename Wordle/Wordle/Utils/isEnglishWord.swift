@@ -1,6 +1,6 @@
 //
 //  isEnglishWord.swift
-//  Wordle
+//  Worderoo
 //
 //  Created by Joel Grayson on 5/12/25.
 //

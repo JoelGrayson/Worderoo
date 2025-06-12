@@ -1,6 +1,6 @@
 //
 //  GameList.swift
-//  Wordle
+//  Worderoo
 //
 //  Created by Joel Grayson on 5/21/25.
 //
@@ -110,7 +110,7 @@ struct GameList: View {
         } detail: {
             if let selectedGame = selectedGame {
                 // Got help from AI on this one
-                WordleView(game:
+                WorderooView(game:
                     Binding<Game>(
                         get: { selectedGame },
                         set: { self.selectedGame = $0 } //updates the game
