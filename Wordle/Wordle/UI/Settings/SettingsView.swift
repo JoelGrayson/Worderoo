@@ -35,8 +35,18 @@ struct SettingsView: View {
         .sheet(isPresented: $showSettingsModal) {
             Text("Settings")
                 .font(.title)
-                .padding()
+                .padding(.top, 10)
+                .padding(.top, 15)
                 .bold()
+                .frame(maxWidth: .infinity)
+                .overlay(alignment: .trailing) {
+                    Button {
+                        showSettingsModal = false
+                    } label: {
+                        CloseIcon()
+                    }
+                    .padding([.top, .trailing], Styles.closeIconPadding)
+                }
             
             Form {
                 Section {
@@ -101,14 +111,14 @@ struct SettingsView: View {
                         }
                     ))
                 }
-                
-                Section {
-                    Button("Reset Settings", systemImage: "arrow.counterclockwise.circle") {
-                        updateSettings { $0 = defaultConfigurableSettings }
-                    }
-                    .tint(.red)
-                }
             }
+            
+            Button("Reset Settings", systemImage: "arrow.counterclockwise.circle") {
+                updateSettings { $0 = defaultConfigurableSettings }
+            }
+            .tint(.red)
+            .padding(.vertical)
+            .padding(.top)
         }
     }
     

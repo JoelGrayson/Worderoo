@@ -13,6 +13,9 @@ struct Styles {
     static let cellFontSize: CGFloat = 35
     static let animation = Animation.easeInOut(duration: 0.3)
     
+    static let closeIconSize = 8 as CGFloat
+    static let closeIconPadding = 23 as CGFloat
+    
     static func statusToColor(_ status: Status) -> Color {
         switch (status) {
         case .hasCharButNotGuessedYet:

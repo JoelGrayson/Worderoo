@@ -31,6 +31,7 @@
 		38451A522DBED06C0097A60C /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A512DBED06C0097A60C /* Character.swift */; };
 		38451A552DBED12B0097A60C /* StringToCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A542DBED12B0097A60C /* StringToCharacters.swift */; };
 		38451A592DBED3F30097A60C /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A582DBED3F30097A60C /* CharacterView.swift */; };
+		385C4FA62DFB097D00FF647F /* CloseIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385C4FA52DFB097D00FF647F /* CloseIcon.swift */; };
 		385DC5B52DDE4C2600481E53 /* Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385DC5B42DDE4C2600481E53 /* Kind.swift */; };
 		386F1FA82DC2B83100C795A2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386F1FA72DC2B83100C795A2 /* Settings.swift */; };
 		386F1FAA2DC2CCFE00C795A2 /* Used to find shortest and longest.js in Resources */ = {isa = PBXBuildFile; fileRef = 386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */; };
@@ -63,6 +64,7 @@
 		38451A512DBED06C0097A60C /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		38451A542DBED12B0097A60C /* StringToCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToCharacters.swift; sourceTree = "<group>"; };
 		38451A582DBED3F30097A60C /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		385C4FA52DFB097D00FF647F /* CloseIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseIcon.swift; sourceTree = "<group>"; };
 		385DC5B42DDE4C2600481E53 /* Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kind.swift; sourceTree = "<group>"; };
 		386F1FA72DC2B83100C795A2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "Used to find shortest and longest.js"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				38451A162DBEC4D90097A60C /* WordleApp.swift */,
 				38451A3A2DBEC7BC0097A60C /* UI */,
 				38451A412DBECE990097A60C /* Model */,
+				385C4FA42DFB096600FF647F /* Components */,
 				38451A532DBED1080097A60C /* Utils */,
 				38CEB4BF2DC3123A000FDF34 /* Info.plist */,
 				386F1FA92DC2CCF600C795A2 /* Used to find shortest and longest.js */,
@@ -194,6 +197,14 @@
 				38451A582DBED3F30097A60C /* CharacterView.swift */,
 			);
 			path = Codes;
+			sourceTree = "<group>";
+		};
+		385C4FA42DFB096600FF647F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				385C4FA52DFB097D00FF647F /* CloseIcon.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +296,7 @@
 				384380CA2DD26AC600860DC2 /* ContentView.swift in Sources */,
 				38451A592DBED3F30097A60C /* CharacterView.swift in Sources */,
 				38451A212DBEC5AF0097A60C /* KeyView.swift in Sources */,
+				385C4FA62DFB097D00FF647F /* CloseIcon.swift in Sources */,
 				38451A3C2DBEC7C70097A60C /* UIExtensions.swift in Sources */,
 				38451A4F2DBED0600097A60C /* Code.swift in Sources */,
 				38451A402DBECA1B0097A60C /* Words.swift in Sources */,
