@@ -25,6 +25,7 @@ struct KeyView: View {
             .foregroundStyle(Styles.statusToColor(status))
             .background(Styles.statusToColor(status))
             .clipShape(RoundedRectangle(cornerRadius: Styles.keyCornerRadius))
+            .frame(minHeight: Styles.keyHeight, alignment: .center)
             .aspectRatio(1, contentMode: .fit)
             .overlay {
                 keyIcon(key)

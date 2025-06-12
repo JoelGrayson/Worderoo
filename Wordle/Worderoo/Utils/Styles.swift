@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Styles {
     static let keyCornerRadius: CGFloat = 12
+    static let keyHeight: CGFloat = 32
     static let cellSize: CGFloat = 50
     static let cellFontSize: CGFloat = 35
     static let animation = Animation.easeInOut(duration: 0.3)
