@@ -50,9 +50,9 @@ struct GameList: View {
         }
         
         let order = if sortBy == SortOption.newestFirst {
-            SortOrder.forward
-        } else {
             SortOrder.reverse
+        } else {
+            SortOrder.forward
         }
         
         _games = Query(filter: predicate, sort: \Game.lastGuessMadeAt, order: order)
