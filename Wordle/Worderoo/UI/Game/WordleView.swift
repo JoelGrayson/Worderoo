@@ -113,6 +113,7 @@ struct WorderooView: View {
                         return .blank
                     }
                 )
+                .sensoryFeedback(.selection, trigger: game.guess.characters.count)
             }
         }
         .toolbar {
