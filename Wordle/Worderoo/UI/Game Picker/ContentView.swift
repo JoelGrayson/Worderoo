@@ -30,7 +30,7 @@ struct ContentView: View {
     
     var body: some View {
         if showTop {
-            HStack(alignment: .center, spacing: Styles.horizontalSpacing) {
+            HStack(alignment: .center) {
                 Text("Worderoo")
                     .font(.title)
                     .bold()
