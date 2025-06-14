@@ -15,7 +15,21 @@ struct GameList: View {
     
     // Game
     @Query private var games: [Game]
+    var filteredGames: [Game] {
+        if let searchString {
+            games
+                .filter {
+                    //$0.masterWord.contains(searchString)
+                    $0.attempts.contains(where: { attempt in
+                        attempt.asString.contains(searchString)
+                    })
+                }
+        } else {
+            games
+        }
+    }
     @State private var selectedGame: Game?
+    @State private var searchString: String?
     
     
     // Settings
@@ -33,19 +47,9 @@ struct GameList: View {
     init(sortBy: SortOption, searchString: String, onlyShowIncompleteGames: Bool, showTop: Binding<Bool>) {
         print("Sorting by \(sortBy) and search string >\(searchString)< with onlyShowIncompleteGames=\(onlyShowIncompleteGames)")
         let predicate = #Predicate<Game> { game in
-            ( //Incomplete games clause
-                onlyShowIncompleteGames
-                    ? !game.isOver //if only show incomplete games setting is enabled, do this
-                    : true //otherwise, show all
-            )
-            &&
-            ( //Search string clause
-                searchString != ""
-                    ? game.attempts.contains(where: { code in //if there is a search string, only show those that match the search string
-                        code.asString.contains(searchString)
-                    })
-                    : true //if no search string, show all games
-            )
+            onlyShowIncompleteGames
+                ? !game.isOver //if only show incomplete games setting is enabled, do this
+                : true //otherwise, show all
         }
         
         let order = if sortBy == SortOption.newestFirst {
@@ -55,21 +59,28 @@ struct GameList: View {
         }
         
         _games = Query(filter: predicate, sort: \Game.lastGuessMadeAt, order: order)
+        self.searchString = searchString == "" ? nil : searchString
         
         self._showTop = showTop //got help from AI on this one
+        
+        print("Filtered games", filteredGames, "and games", games)
     }
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
-            // Title which is used in place of navigationTitle and toolbar because the latter acts strangely alignment-wise
-            
             // Empty list of games if appropriate
-            if games.isEmpty {
-                Text("No games.")
+            if filteredGames.isEmpty {
+                Group {
+                    if let searchString, games.isEmpty {
+                        Text("No games found containing the search query \"\(searchString)\"")
+                    } else {
+                        Text("No games found")
+                    }
+                }
                     .padding(.top, Constants.noGamesPadding)
             }
             // List of Games
-            List(games, selection: $selectedGame) { game in //received help from AI on making the bindings work
+            List(filteredGames, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
                     GamePreview(game: game, configurableSettings: configurableSettingsWrapper)
                         .contextMenu {
@@ -129,6 +140,7 @@ struct GameList: View {
             showTop = selectedGame == nil
         }
         .navigationSplitViewStyle(.balanced)
+        // Adding sample games in test mode
 //        .onAppear {
 //            if games.isEmpty {
 //                for game in sampleGames {
@@ -156,7 +168,7 @@ struct GameList: View {
     }
 }
 
-#Preview {
-    GameList(sortBy: .newestFirst, searchString: "", onlyShowIncompleteGames: true, showTop: .constant(true))
-}
+//#Preview {
+//    GameList(sortBy: .newestFirst, searchString: "", onlyShowIncompleteGames: true, showTop: .constant(true))
+//}
 

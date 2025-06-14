@@ -52,7 +52,7 @@ struct ContentView: View {
         }
         
         GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettingsWrapper.onlyShowIncompleteGames, showTop: $showTop)
-//            TODO: fix .searchable(text: $searchString)
+            .searchable(text: $searchString)
             .animation(.easeInOut, value: searchString)
     }
 }

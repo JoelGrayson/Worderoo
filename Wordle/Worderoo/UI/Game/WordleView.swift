@@ -179,8 +179,8 @@ struct WorderooView: View {
     }
 }
 
-#Preview {
-    @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
-    WorderooView(game: $games[0], configurableSettings: ConfigurableSettings())
-}
+//#Preview {
+//    @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
+//    WorderooView(game: $games[0], configurableSettings: ConfigurableSettings())
+//}
 
