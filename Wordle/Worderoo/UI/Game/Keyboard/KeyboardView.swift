@@ -18,9 +18,9 @@ struct KeyboardView: View {
     ]
     
     var body: some View {
-        VStack {
+        VStack(spacing: Styles.keySeparation) {
             ForEach(KeyboardView.keys, id: \.self) { keyRow in
-                HStack {
+                HStack(spacing: Styles.keySeparation) {
                     ForEach(keyRow, id: \.self) { key in
                         KeyView(key: key, onKeyPress: onKeyPress, status: getKeyStatus(key))
                     }

@@ -34,6 +34,8 @@ struct ContentView: View {
                 Text("Worderoo")
                     .font(.title)
                     .bold()
+                
+                
                 Spacer()
                 
                 Picker("Sort By", selection: $sortBy.animation()) {
