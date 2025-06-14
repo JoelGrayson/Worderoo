@@ -86,8 +86,6 @@ class Game: Equatable {
             userWon: userWon
         )
     }
-    
-    
 }
 
 enum Result {

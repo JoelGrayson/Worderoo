@@ -62,9 +62,10 @@ struct Code: Codable {
 }
 
 func charactersToString(_ characters: [Character]) -> String {
-    return characters
+    characters
         .map({ ch in ch.value }) //extract the value
         .joined(separator: "") //join the characters into a string
+    // characters.reduce("", { result, acc in result + acc.value })
 }
 
 func codeToString(_ code: Code) -> String {

@@ -11,26 +11,10 @@ import SwiftData
 struct GameList: View {
     @Environment(\.modelContext) var modelContext
 
+    var sortBy: SortOption
+    var searchString: String
+    var onlyShowIncompleteGames: Bool
     @Binding var showTop: Bool
-    
-    // Game
-    @Query private var games: [Game]
-    var filteredGames: [Game] {
-        if let searchString {
-            games
-                .filter {
-                    //$0.masterWord.contains(searchString)
-                    $0.attempts.contains(where: { attempt in
-                        attempt.asString.contains(searchString)
-                    })
-                }
-        } else {
-            games
-        }
-    }
-    @State private var selectedGame: Game?
-    @State private var searchString: String?
-    
     
     // Settings
     @Query private var configurableSettings: [ConfigurableSettings]
@@ -43,35 +27,51 @@ struct GameList: View {
         }
     }
     
-    
-    init(sortBy: SortOption, searchString: String, onlyShowIncompleteGames: Bool, showTop: Binding<Bool>) {
-        print("Sorting by \(sortBy) and search string >\(searchString)< with onlyShowIncompleteGames=\(onlyShowIncompleteGames)")
-        let predicate = #Predicate<Game> { game in
-            onlyShowIncompleteGames
-                ? !game.isOver //if only show incomplete games setting is enabled, do this
-                : true //otherwise, show all
-        }
-        
-        let order = if sortBy == SortOption.newestFirst {
-            SortOrder.reverse
-        } else {
-            SortOrder.forward
-        }
-        
-        _games = Query(filter: predicate, sort: \Game.lastGuessMadeAt, order: order)
-        self.searchString = searchString == "" ? nil : searchString
-        
-        self._showTop = showTop //got help from AI on this one
-        
-        print("Filtered games", filteredGames, "and games", games)
+    // Game
+    @Query private var games: [Game]
+    var filteredGames: [Game] {
+        games
+            .filter { game in
+                let searchStringGood = if searchString != "" {
+                    game.attempts.contains(where: { attempt in
+                        charactersToString(attempt.characters)
+                            .lowercased()
+                            .contains(searchString.lowercased().trimmingCharacters(in: .whitespacesAndNewlines))
+                    })
+                } else {
+                    true
+                }
+                
+                let onlyShowIncompleteGamesGood = if onlyShowIncompleteGames {
+                    game.isOver
+                } else {
+                    true
+                }
+                
+                return searchStringGood && onlyShowIncompleteGamesGood
+            }
+            .sorted(by: { a, b in
+                if let aSt = a.startTime, let bSt = b.startTime {
+                    if sortBy == .newestFirst {
+                        return aSt < bSt
+                    } else {
+                        return aSt > bSt
+                    }
+                } else {
+                    return true //no information known
+                }
+            })
     }
+    
+    @State private var selectedGame: Game?
+    
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all)) {
             // Empty list of games if appropriate
             if filteredGames.isEmpty {
                 Group {
-                    if let searchString, games.isEmpty {
+                    if searchString != "", games.isEmpty {
                         Text("No games found containing the search query \"\(searchString)\"")
                     } else {
                         Text("No games found")
