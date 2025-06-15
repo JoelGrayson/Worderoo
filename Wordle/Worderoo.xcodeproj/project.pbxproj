@@ -15,7 +15,7 @@
 		384380F92DD29A1D00860DC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384380F82DD29A1D00860DC2 /* SettingsView.swift */; };
 		384380FD2DD2A95000860DC2 /* ElapsedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384380FC2DD2A95000860DC2 /* ElapsedTime.swift */; };
 		384381012DD2B54800860DC2 /* isEnglishWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384381002DD2B54100860DC2 /* isEnglishWord.swift */; };
-		38451A182DBEC4D90097A60C /* WordleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A142DBEC4D90097A60C /* WordleView.swift */; };
+		38451A182DBEC4D90097A60C /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A142DBEC4D90097A60C /* GameView.swift */; };
 		38451A192DBEC4D90097A60C /* WorderooApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A162DBEC4D90097A60C /* WorderooApp.swift */; };
 		38451A1A2DBEC4D90097A60C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38451A132DBEC4D90097A60C /* Assets.xcassets */; };
 		38451A1C2DBEC54B0097A60C /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38451A1B2DBEC54B0097A60C /* CodeView.swift */; };
@@ -48,7 +48,7 @@
 		384381002DD2B54100860DC2 /* isEnglishWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isEnglishWord.swift; sourceTree = "<group>"; };
 		38451A042DBEC4C80097A60C /* Worderoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Worderoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38451A132DBEC4D90097A60C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		38451A142DBEC4D90097A60C /* WordleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleView.swift; sourceTree = "<group>"; };
+		38451A142DBEC4D90097A60C /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		38451A152DBEC4D90097A60C /* Worderoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Worderoo.entitlements; sourceTree = "<group>"; };
 		38451A162DBEC4D90097A60C /* WorderooApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorderooApp.swift; sourceTree = "<group>"; };
 		38451A1B2DBEC54B0097A60C /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		384380CB2DD2865200860DC2 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				38451A142DBEC4D90097A60C /* WordleView.swift */,
+				38451A142DBEC4D90097A60C /* GameView.swift */,
 				38451A5D2DBF53010097A60C /* Codes */,
 				38451A5C2DBF52F10097A60C /* Keyboard */,
 				384380FC2DD2A95000860DC2 /* ElapsedTime.swift */,
@@ -282,7 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				385C4FA82DFB1A7F00FF647F /* MasterWordChoices.swift in Sources */,
-				38451A182DBEC4D90097A60C /* WordleView.swift in Sources */,
+				38451A182DBEC4D90097A60C /* GameView.swift in Sources */,
 				38451A4D2DBECFC20097A60C /* Status.swift in Sources */,
 				38451A462DBECEEE0097A60C /* Game.swift in Sources */,
 				384380F92DD29A1D00860DC2 /* SettingsView.swift in Sources */,
@@ -437,7 +437,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Worderoo/Worderoo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = GL5565HTUX;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -483,7 +483,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Worderoo/Worderoo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = GL5565HTUX;
 				ENABLE_HARDENED_RUNTIME = YES;

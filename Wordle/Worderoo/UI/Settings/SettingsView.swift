@@ -35,8 +35,7 @@ struct SettingsView: View {
         .sheet(isPresented: $showSettingsModal) {
             Text("Settings")
                 .font(.title)
-                .padding(.top, 10)
-                .padding(.top, 15)
+                .padding(.top, Styles.sheetTitlePadding)
                 .bold()
                 .frame(maxWidth: .infinity)
                 .overlay(alignment: .trailing) {

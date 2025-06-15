@@ -1,5 +1,5 @@
 //
-//  WorderooView.swift
+//  GameView.swift
 //  Worderoo
 //
 //  Created by Joel Grayson on 4/27/25.
@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct WorderooView: View {
-    @Binding var game: Game //includes all the information about the game including masterWord, attempts, ...
-    var configurableSettings: ConfigurableSettings
-    
+struct GameView: View {
     @Environment(\.scenePhase) var scenePhase
     
+    @Binding var game: Game //includes all the information about the game including masterWord, attempts, ...
+    var configurableSettings: ConfigurableSettings
     
     // State specific to the current game playing view
     @State private var message: String?
@@ -116,6 +115,7 @@ struct WorderooView: View {
                 .sensoryFeedback(.selection, trigger: game.guess.characters.count)
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if let startTime = game.startTime {
                 ElapsedTime(startTime: startTime, endTime: game.endTime)
@@ -145,8 +145,7 @@ struct WorderooView: View {
             default: break
             }
         }
-        .padding(.top, Constants.WorderooPadding)
-        .overlay(alignment: .top) {
+        .safeAreaInset(edge: .top) {
             if let message {
                 Text(message)
             }
@@ -179,8 +178,8 @@ struct WorderooView: View {
     }
 }
 
-//#Preview {
-//    @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
-//    WorderooView(game: $games[0], configurableSettings: ConfigurableSettings())
-//}
+#Preview {
+    @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
+    GameView(game: $games[0], configurableSettings: ConfigurableSettings())
+}
 
