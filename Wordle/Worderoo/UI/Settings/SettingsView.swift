@@ -2,7 +2,7 @@
 //  SettingsView.swift
 //  Worderoo
 //
-//  Created by Joel Grayson on 5/12/25.
+//  Created by Joel Grayson on 6/15/25.
 //
 
 import SwiftUI
@@ -15,114 +15,108 @@ struct SettingsView: View {
     @Environment(\.modelContext) var modelContext
     @Query private var rawSettings: [ConfigurableSettings]
     var configurableSettings: ConfigurableSettings { rawSettings.first ?? defaultConfigurableSettings }
+    var close: (() -> Void)? //if defined, then this can be closed (such as by opening it from a modal) by calling this function. Otherwise, it cannot be closed with the button, such as on mac when opened from the settings ⌘, shortcut
     
-    // State owned by me
-    @State private var showSettingsModal = false
-
+    
     var body: some View {
-        Button {
-            showSettingsModal = true
-        } label: {
-            Image(systemName: "gearshape.fill")
-        }
-        .sheet(isPresented: $showSettingsModal) {
-            Text("Settings")
-                .font(.title)
-                .padding(.top, Styles.sheetTitlePadding)
-                .bold()
-                .frame(maxWidth: .infinity)
-                .overlay(alignment: .trailing) {
+        Text("Settings")
+            .font(.title)
+            .padding(.top, Styles.sheetTitlePadding)
+            .bold()
+            .frame(maxWidth: .infinity)
+            .overlay(alignment: .trailing) {
+                if let close {
                     Button {
-                        showSettingsModal = false
+                        close()
                     } label: {
                         CloseIcon()
                     }
                     .padding([.top, .trailing], Styles.closeIconPadding)
                 }
-            
-            Form {
-                Section {
-                    // Received inspiration from https://stackoverflow.com/questions/71241005/swiftui-form-number-input
-                    // Read docs for onIncrement and onDecrement at https://developer.apple.com/documentation/swiftui/stepper
-                    Stepper(
-                        "Words for new games will be \(configurableSettings.wordSizeForNewGames) letters long",
-                        onIncrement: {
-                            if configurableSettings.wordSizeForNewGames < wordSizeForNewGamesBounds.upperBound {
-                                // Update game
-                                updateSettings { settings in
-                                    settings.wordSizeForNewGames += 1
-                                }
-                            }
-                        },
-                        onDecrement: {
-                            if configurableSettings.wordSizeForNewGames > wordSizeForNewGamesBounds.lowerBound {
-                                updateSettings { $0.wordSizeForNewGames -= 1 }
+            }
+        
+        Form {
+            Section {
+                // Received inspiration from https://stackoverflow.com/questions/71241005/swiftui-form-number-input
+                // Read docs for onIncrement and onDecrement at https://developer.apple.com/documentation/swiftui/stepper
+                Stepper(
+                    "Words for new games will be \(configurableSettings.wordSizeForNewGames) letters long",
+                    onIncrement: {
+                        if configurableSettings.wordSizeForNewGames < wordSizeForNewGamesBounds.upperBound {
+                            // Update game
+                            updateSettings { settings in
+                                settings.wordSizeForNewGames += 1
                             }
                         }
-                    )
-                    
-                    
-                    // Received inspiration from https://stackoverflow.com/questions/71241005/swiftui-form-number-input
-                    // Read docs for onIncrement and onDecrement at https://developer.apple.com/documentation/swiftui/stepper
-                    Stepper(
-                        "Number of guesses allowed: \(configurableSettings.numGuessesAllowed)",
-                        onIncrement: {
-                            //AI fixed a syntax bug here
-                            if configurableSettings.numGuessesAllowed < numGuessesAllowedBounds.upperBound {
+                    },
+                    onDecrement: {
+                        if configurableSettings.wordSizeForNewGames > wordSizeForNewGamesBounds.lowerBound {
+                            updateSettings { $0.wordSizeForNewGames -= 1 }
+                        }
+                    }
+                )
+                
+                
+                // Received inspiration from https://stackoverflow.com/questions/71241005/swiftui-form-number-input
+                // Read docs for onIncrement and onDecrement at https://developer.apple.com/documentation/swiftui/stepper
+                Stepper(
+                    "Number of guesses allowed: \(configurableSettings.numGuessesAllowed)",
+                    onIncrement: {
+                        //AI fixed a syntax bug here
+                        if configurableSettings.numGuessesAllowed < numGuessesAllowedBounds.upperBound {
 //                                configurableSettings.numGuessesAllowed += 1
-                                updateSettings { $0.numGuessesAllowed += 1 }
-                            }
-                        },
-                        onDecrement: {
-                            if configurableSettings.numGuessesAllowed > numGuessesAllowedBounds.lowerBound {
+                            updateSettings { $0.numGuessesAllowed += 1 }
+                        }
+                    },
+                    onDecrement: {
+                        if configurableSettings.numGuessesAllowed > numGuessesAllowedBounds.lowerBound {
 //                                configurableSettings.numGuessesAllowed -= 1
-                                updateSettings { $0.numGuessesAllowed -= 1 }
-                            }
+                            updateSettings { $0.numGuessesAllowed -= 1 }
                         }
-                    )
+                    }
+                )
 
-                    Toggle("Only allow guesses that are English words", isOn: Binding<Bool>(
-                        get: {
-                            configurableSettings.checkIfEnglishWord
-                        },
-                        set: { newValue in
-                            updateSettings {
-                                $0.checkIfEnglishWord = newValue
-                            }
+                Toggle("Only allow guesses that are English words", isOn: Binding<Bool>(
+                    get: {
+                        configurableSettings.checkIfEnglishWord
+                    },
+                    set: { newValue in
+                        updateSettings {
+                            $0.checkIfEnglishWord = newValue
                         }
-                    ))
-                    
-                    Toggle("Only show games that are incomplete", isOn: Binding<Bool>(
-                        get: {
-                            configurableSettings.onlyShowIncompleteGames
-                        },
-                        set: { newValue in
-                            updateSettings {
-                                $0.onlyShowIncompleteGames = newValue
-                            }
+                    }
+                ))
+                
+                Toggle("Only show games that are incomplete", isOn: Binding<Bool>(
+                    get: {
+                        configurableSettings.onlyShowIncompleteGames
+                    },
+                    set: { newValue in
+                        updateSettings {
+                            $0.onlyShowIncompleteGames = newValue
                         }
-                    ))
-                    
-                    Toggle("Haptic feedback (keys vibrate)", isOn: Binding<Bool>(
-                        get: {
-                            configurableSettings.hapticFeedback
-                        },
-                        set: { newValue in
-                            updateSettings {
-                                $0.hapticFeedback = newValue
-                            }
+                    }
+                ))
+                
+                Toggle("Haptic feedback (keys vibrate)", isOn: Binding<Bool>(
+                    get: {
+                        configurableSettings.hapticFeedback
+                    },
+                    set: { newValue in
+                        updateSettings {
+                            $0.hapticFeedback = newValue
                         }
-                    ))
-                }
+                    }
+                ))
             }
-            
-            Button("Reset Settings", systemImage: "arrow.counterclockwise.circle") {
-                updateSettings { $0 = defaultConfigurableSettings }
-            }
-            .tint(.red)
-            .padding(.vertical)
-            .padding(.top)
         }
+        
+        Button("Reset Settings", systemImage: "arrow.counterclockwise.circle") {
+            updateSettings { $0 = defaultConfigurableSettings }
+        }
+        .tint(.red)
+        .padding(.vertical)
+        .padding(.top)
     }
     
     func updateSettings(_ callback: (inout ConfigurableSettings) -> Void) {

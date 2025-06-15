@@ -21,30 +21,36 @@ struct ContentView: View {
     @State private var showTop = true
     
     var body: some View {
+        #if !targetEnvironment(macCatalyst) //if designed for iPad running on mac, hide the top because it looks bad
         if showTop {
-            HStack(alignment: .center) {
-                Text("Worderoo")
-                    .font(.title)
-                    .bold()
-                
-                Spacer()
-                
-                Picker("Sort By", selection: $sortBy.animation()) {
-                    ForEach(SortOption.allCases, id: \.self) { opt in
-                        Text(opt.title)
-                    }
-                }
-                .pickerStyle(.menu)
-                
-                SettingsView()
-            }
-            .padding()
-            .padding(.horizontal)
+            top
         }
+        #endif
         
         GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettings.onlyShowIncompleteGames, showTop: $showTop)
             .searchable(text: $searchString)
             .animation(.easeInOut, value: searchString)
+    }
+    
+    var top: some View {
+        HStack(alignment: .center) {
+            Text("Worderoo")
+                .font(.title)
+                .bold()
+            
+            Spacer()
+            
+            Picker("Sort By", selection: $sortBy.animation()) {
+                ForEach(SortOption.allCases, id: \.self) { opt in
+                    Text(opt.title)
+                }
+            }
+            .pickerStyle(.menu)
+            
+            SettingsButtonThatOpensModal()
+        }
+        .padding()
+        .padding(.horizontal)
     }
 }
 
