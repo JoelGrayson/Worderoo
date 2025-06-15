@@ -23,6 +23,10 @@ struct GameView: View {
                 Text("Answer: \(game.masterWord)")
             }
             
+            if let message {
+                Text(message)
+            }
+            
             // Attempts, Guess, and Blank
             ForEach(0..<configurableSettings.numGuessesAllowed, id: \.self) { i in //received help from https://www.hackingwithswift.com/forums/swiftui/compiler-warning-non-constant-range-argument-must-be-an-integer-literal/14878
                 let code: Code = if i<game.attempts.count { //show the attempts
@@ -142,11 +146,6 @@ struct GameView: View {
             case .active:
                 onAppear(game: game)
             default: break
-            }
-        }
-        .safeAreaInset(edge: .top) {
-            if let message {
-                Text(message)
             }
         }
         .onChange(of: game.masterWord) {

@@ -120,15 +120,12 @@ struct GameList: View {
                 if let selectedGame = selectedGame {
                     // Got help from AI on this one
                     GameView(game:
-                                Binding<Game>(
-                                    get: { selectedGame },
-                                    set: { self.selectedGame = $0 } //updates the game
-                                ),
-                             configurableSettings: configurableSettingsWrapper
+                        Binding<Game>(
+                            get: { selectedGame },
+                            set: { self.selectedGame = $0 } //updates the game
+                        ),
+                        configurableSettings: configurableSettingsWrapper
                     )
-                    //.navigationBarTitleDisplayMode(.inline)   // ① regular bar
-                    //                .toolbarBackground(.visible, for: .navigationBar) // ② give it a solid bg if you like
-                    //                .safeAreaInset(edge: .top) { Spacer().frame(height: 8) } //fix the padding issue
                 } else {
                     Text("Choose a Game")
                 }
