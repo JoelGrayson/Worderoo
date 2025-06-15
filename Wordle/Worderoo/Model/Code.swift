@@ -50,7 +50,6 @@ struct Code: Codable {
                 let numInWrongPlace = masterWord.enumerated().count(where: { j, iteratedMasterChar in
                     let guessAtJ = characters[j].value
                     let masterAtJ = String(iteratedMasterChar)
-                    //let masterAtJ = String(masterWord[masterWord.index(masterWord.startIndex, offsetBy: j)])
                     
                     return masterAtJ == guessedChar //the correct answer is the guessedChar at position j
                         && guessAtJ != masterAtJ //but at position j, the guess is not right
@@ -58,17 +57,6 @@ struct Code: Codable {
                 let numAlreadyYellow = gradedCharacters.count(where: { ch in
                     ch.value == guessedChar && ch.status == .wrongPlace
                 })
-//                let startIndex = masterWord.startIndex
-//                let endIndex = masterWord.index(startIndex, offsetBy: i)
-//                let numAlreadyOffset = masterWord[startIndex..<endIndex].enumerated().count(where: { j, iteratedMasterChar in
-//                    let guessAtJ = characters[j].value
-//                    let masterAtJ = String(iteratedMasterChar)
-//                    //let masterAtJ = String(masterWord[masterWord.index(masterWord.startIndex, offsetBy: j)])
-//                    
-//                    return masterAtJ == guessedChar //the masterWord contains the guessedCharacter
-//                        && guessAtJ != masterAtJ //but in the wrong spot
-//                })
-//                print("\(numInWrongPlace)")
                 if numInWrongPlace > numAlreadyYellow {
                     gradedChar.status = .wrongPlace
                 } else {

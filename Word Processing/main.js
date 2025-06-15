@@ -1,10 +1,12 @@
 const fs=require('fs');
 const pluralize=require('pluralize');
+const compromise=require('compromise');
 
 const lines=fs.readFileSync('words.txt', 'utf-8');
 const words=lines
     .split('\n')
-    .filter(e=>!pluralize.isPlural(e)); //ignore plural
+    .filter(word=>!pluralize.isPlural(word)) //ignore plural
+    .filter(word=>!word.endsWith('ed')); //ignore past tense words
 
 const three=words.filter(word=>word.length===3); //3 is min. 2 is empty.
 const four=words.filter(word=>word.length===4);
