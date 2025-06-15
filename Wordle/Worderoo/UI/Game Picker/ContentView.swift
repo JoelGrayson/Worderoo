@@ -21,11 +21,10 @@ struct ContentView: View {
     @State private var showTop = true
     
     var body: some View {
-        #if !targetEnvironment(macCatalyst) //if designed for iPad running on mac, hide the top because it looks bad
-        if showTop {
+        //if designed for iPad running on mac, hide the top because it looks bad
+        if showTop, UIDevice.current.userInterfaceIdiom == .phone { //not mac or iPad
             top
         }
-        #endif
         
         GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettings.onlyShowIncompleteGames, showTop: $showTop)
             #if !os(macOS)

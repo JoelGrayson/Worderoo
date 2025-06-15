@@ -75,7 +75,14 @@ struct KeyboardWrapper: View {
         .conditionalHapticFeedback(condition: configurableSettings.hapticFeedback, trigger: game.guess.characters.count)
         .focusable()
         .focused($hasFocus)
-        .onAppear { hasFocus = true }
+        .onAppear {
+            print("On appear triggered")
+            hasFocus = true
+            DispatchQueue.main.async { hasFocus = true }
+        }
+        .onChange(of: game, { oldValue, newValue in
+            hasFocus = true
+        })
         .onKeyPress(phases: .down) { keyPress in
             print("Key press", keyPress)
             

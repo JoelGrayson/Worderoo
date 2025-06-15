@@ -88,13 +88,13 @@ struct GameList: View {
     
     var gamesListPane: some View {
         return Group {
-            #if targetEnvironment(macCatalyst)
-            HStack {
-                Spacer()
-                SettingsButtonThatOpensModal()
+            if UIDevice.current.userInterfaceIdiom != .phone { //iPad or Mac
+                HStack {
+                    Spacer()
+                    SettingsButtonThatOpensModal()
+                }
+                .padding()
             }
-            .padding()
-            #endif
             
             // Empty list of games if appropriate
             if games.isEmpty {
@@ -229,7 +229,6 @@ struct GameList: View {
 
         if let pausedAt = game.pausedAt, !game.isOver {
             let pausedForDuration = Date.now.timeIntervalSince(pausedAt)
-            print("onAppear had pausedAt for", pausedForDuration)
             game.startTime = game.startTime.advanced(by: pausedForDuration)
             game.pausedAt = nil
         }
