@@ -15,5 +15,11 @@ struct WorderooApp: App {
             ContentView()
                 .modelContainer(for: [ConfigurableSettings.self, Game.self])
         }
+        
+        #if os(macOS) || os(iOS)
+        Settings {
+            SettingsButtonThatOpensModal()
+        }
+        #endif
     }
 }

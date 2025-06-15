@@ -6,6 +6,8 @@
 //
 
 import Foundation
+// Used ChatGPT to support this with AppKit (macOS) in addition to UIKit (iPhone/iPad)
+#if canImport(UIKit)
 import UIKit
 
 // Followed Paul Hudson's tutorial: https://www.youtube.com/watch?v=Z0TzefG4wdw
@@ -16,4 +18,16 @@ func isEnglishWord(_ word: String) -> Bool {
     
     return misspelledRange.location == NSNotFound
 }
+
+#elseif canImport(AppKit)
+import AppKit
+
+func isEnglishWord(_ word: String) -> Bool {
+    let checker = NSSpellChecker.shared
+    let misspelled = checker.checkSpelling(of: word, startingAt: 0)
+    return misspelled.location == NSNotFound
+}
+
+#endif
+
 

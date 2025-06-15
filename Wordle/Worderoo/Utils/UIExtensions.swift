@@ -11,11 +11,15 @@ extension View {
     // Used AI to make this view modifier only work on iPad because .plain looks good on iPad but bad on iPhone
     @ViewBuilder
     func ipadListLooksGood() -> some View {
+        #if os(macOS)
+        self
+        #else
         if UIDevice.current.userInterfaceIdiom == .pad {
             self.listStyle(.plain)
         } else {
             self
         }
+        #endif
     }
 }
 

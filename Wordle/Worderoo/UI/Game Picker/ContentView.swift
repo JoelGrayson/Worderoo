@@ -28,7 +28,9 @@ struct ContentView: View {
         #endif
         
         GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettings.onlyShowIncompleteGames, showTop: $showTop)
+            #if !os(macOS)
             .searchable(text: $searchString)
+            #endif
             .animation(.easeInOut, value: searchString)
     }
     

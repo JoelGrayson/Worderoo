@@ -79,7 +79,9 @@ struct GameView: View {
                 )
             }
         }
+        #if !os(macOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ElapsedTime(startTime: game.startTime, endTime: game.endTime)
                 .monospaced()
