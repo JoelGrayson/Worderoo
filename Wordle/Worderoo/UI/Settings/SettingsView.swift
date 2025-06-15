@@ -109,6 +109,16 @@ struct SettingsView: View {
                     }
                 ))
             }
+            
+            Section {
+                if let url = URL(string: "https://forms.gle/2M3f8x14xyb1ctED6") {
+                    Link(destination: url) {
+                        Text("Leave feedback or report a bug")
+                    }
+                } else {
+                    Text("If you have any feedback or there is a bug, feel free to email joel@joelgrayson.com")
+                }
+            }
         }
         
         Button("Reset Settings", systemImage: "arrow.counterclockwise.circle") {
