@@ -37,6 +37,15 @@ struct Styles {
             return .darkGray
         }
     }
+    
+    static func statusToTextColor(_ status: Status) -> Color {
+        switch statusToColor(status) {
+        case .darkGray:
+            .white
+        default:
+            .black
+        }
+    }
 }
 
 extension Color { // CM4

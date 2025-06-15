@@ -28,7 +28,7 @@ struct KeyView: View {
             .frame(minHeight: Styles.keyHeight, alignment: .center)
             .aspectRatio(1, contentMode: .fit)
             .overlay {
-                keyIcon(key)
+                keyIcon(key, color: Styles.statusToTextColor(status))
             }
             .onTapGesture {
                 onKeyPress(key)
@@ -37,17 +37,20 @@ struct KeyView: View {
     }
     
     @ViewBuilder
-    func keyIcon(_ key: String) -> some View {
-        switch key {
-        case "DELETE":
-            Image(systemName: "delete.left")
-        case "ENTER":
-            Image(systemName: "return")
-        case "RESET":
-            Image(systemName: "arrow.clockwise")
-        default:
-            Text(key)
+    func keyIcon(_ key: String, color: Color) -> some View {
+        Group {
+            switch key {
+            case "DELETE":
+                Image(systemName: "delete.left")
+            case "ENTER":
+                Image(systemName: "return")
+            case "RESET":
+                Image(systemName: "arrow.clockwise")
+            default:
+                Text(key)
+            }
         }
+        .foregroundStyle(color)
     }
 }
 
