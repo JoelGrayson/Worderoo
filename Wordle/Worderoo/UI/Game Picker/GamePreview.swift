@@ -30,7 +30,7 @@ struct GamePreview: View {
                     if let pausedAt = game.pausedAt {
                         Text(pausedAt, format: .offset(to: startTime, allowedFields: [.minute, .second]))
                     } else {
-                        Text("0:00")
+                        Text("") //has not started yet because hasn't exited the game yet
                     }
                 }
                 Text("\(game.attempts.count)/\(configurableSettings.numGuessesAllowed) tries")

@@ -32,6 +32,7 @@ class Game: Equatable {
         guess = Code(characters: [], kind: .guess)
         attempts = []
         startTime = .now
+        lastGuessedAt = .now //used for sorting
     }
     
     // Second initializer used for the sample games, which are at various completion levels

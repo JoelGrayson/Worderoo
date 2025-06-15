@@ -11,12 +11,22 @@ import SwiftData
 struct GameView: View {
     @Environment(\.scenePhase) var scenePhase
     
-    @Binding var game: Game //includes all the information about the game including masterWord, attempts, ...
     var configurableSettings: ConfigurableSettings
+    
+    // Get game
+    let game: Game //immutable game. Includes all the information about the game including masterWord, attempts, ...
+    // Passed in actions that let you set the game
+    var onDisappear: () -> Void
+    var onAppear: () -> Void
+    var endGame: () -> Void
+    // Keyboard operations
+    var typeCharacter: (_ character: String) -> Void
+    var deleteCharacter: () -> Void
+
     
     // State specific to the current game playing view
     @State private var message: String?
-        
+
     var body: some View {
         VStack {
             if HardCodedSettings.showAnswer {
@@ -59,7 +69,7 @@ struct GameView: View {
                             if game.guess.characters.isEmpty {
                                 return
                             }
-                            game.guess.characters.remove(at: game.guess.characters.index(game.guess.characters.endIndex, offsetBy: -1))
+                            deleteCharacter()
                         case "ENTER":
                             switch game.tryGuessing(checkIfEnglishWord: configurableSettings.checkIfEnglishWord) {
                             case .successfullyGuessed:
@@ -72,12 +82,12 @@ struct GameView: View {
                                 message = "Please only guess English words"
                             }
                             (game.isOver, game.userWon) = game.isOver(numGuessesAllowed: configurableSettings.numGuessesAllowed)
-                            if (game.isOver) {
-                                game.endTime = .now
+                            if (game.isOver) { //game over handler
+                                endGame()
                             }
                         default:
                             if game.guess.characters.count < game.size { //this if statement ensures that you don't add a character after all the characters had been typed
-                                game.guess.characters.append(.init(value: key))
+                                typeCharacter(key)
                             }
                         }
                     },
@@ -127,50 +137,26 @@ struct GameView: View {
                 .lineLimit(1)
         }
         .onAppear {
-            onAppear(game: game)
+            onAppear()
         }
         .onDisappear {
-            onDisappear(game: game)
-        }
-        .onChange(of: game) { oldGame, newGame in
-            // old onDisappear
-            onDisappear(game: oldGame)
-            
-            // old onAppear
-            onAppear(game: newGame)
+            onDisappear()
         }
         .onChange(of: scenePhase) {
             switch scenePhase {
             case .background:
-                onDisappear(game: game)
+                onDisappear()
             case .active:
-                onAppear(game: game)
-            default: break
+                onAppear()
+            default:
+                break
             }
-        }
-        .onChange(of: game.masterWord) {
-            // Ensure that the master word of the game and the characters are in sync
-            game.master.characters = stringToCharacters(game.masterWord)
-            game.master.asString = game.masterWord
-        }
-    }
-    
-    func onDisappear(game: Game) {
-        game.pausedAt = .now
-    }
-    
-    func onAppear(game: Game) {
-        // If there was a pause duration, do the offset
-        if let pausedAt = game.pausedAt {
-            let pausedForDuration = Date().timeIntervalSince1970 - pausedAt.timeIntervalSince1970
-            game.startTime = game.startTime.advanced(by: pausedForDuration)
-            game.pausedAt = nil
         }
     }
 }
 
-#Preview {
-    @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
-    GameView(game: $games[0], configurableSettings: ConfigurableSettings())
-}
+//#Preview {
+//    @Previewable @State var games = sampleGames //https://www.avanderlee.com/swiftui/previewable-macro-usage-in-previews/
+//    GameView(game: games[0], onDisappear: {}, onAppear: {}, configurableSettings: ConfigurableSettings())
+//}
 
