@@ -35,27 +35,49 @@ struct Code: Codable {
     // This is called when a guess is being turned into an attempt
     func guessToAttempt(gradedWith masterWord: String) -> Code {
         var gradedCharacters = [Character]()
+        
         for (i, character) in characters.enumerated() {
-            var gradedCharacter = character
+            var gradedChar = character
             
-            let guessedCharacter = character.value
+            let guessedChar = character.value //★
             let masterWordI = masterWord.index(masterWord.startIndex, offsetBy: i)
-            let masterWordChar = String(masterWord[masterWordI]) //character to string
+            let masterWordChar = String(masterWord[masterWordI]) //★. character to string
             
-//            print(guessedCharacter, masterWordChar, masterWord.contains(character.value) )
-            
-            if masterWordChar == guessedCharacter { //in the right place
-                gradedCharacter.status = .correct
-            } else if masterWord.contains(guessedCharacter) { //in the wrong place but still in the word
-                let numLettersInAnswer = masterWord.count(where: { ch in String(ch) == guessedCharacter })
-                let numAlreadyGuessed = characters.count(where: { $0.value == guessedCharacter })
-                if numLettersInAnswer > numAlreadyGuessed {
-                    gradedCharacter.status = .wrongPlace
+            if masterWordChar == guessedChar { //in the right place
+                gradedChar.status = .correct
+            } else if masterWord.contains(guessedChar) { //in the wrong place but still in the word
+                // Only N number of a character should be yellow if there are N times that character is misaligned
+                let numInWrongPlace = masterWord.enumerated().count(where: { j, iteratedMasterChar in
+                    let guessAtJ = characters[j].value
+                    let masterAtJ = String(iteratedMasterChar)
+                    //let masterAtJ = String(masterWord[masterWord.index(masterWord.startIndex, offsetBy: j)])
+                    
+                    return masterAtJ == guessedChar //the correct answer is the guessedChar at position j
+                        && guessAtJ != masterAtJ //but at position j, the guess is not right
+                })
+                let numAlreadyYellow = gradedCharacters.count(where: { ch in
+                    ch.value == guessedChar && ch.status == .wrongPlace
+                })
+//                let startIndex = masterWord.startIndex
+//                let endIndex = masterWord.index(startIndex, offsetBy: i)
+//                let numAlreadyOffset = masterWord[startIndex..<endIndex].enumerated().count(where: { j, iteratedMasterChar in
+//                    let guessAtJ = characters[j].value
+//                    let masterAtJ = String(iteratedMasterChar)
+//                    //let masterAtJ = String(masterWord[masterWord.index(masterWord.startIndex, offsetBy: j)])
+//                    
+//                    return masterAtJ == guessedChar //the masterWord contains the guessedCharacter
+//                        && guessAtJ != masterAtJ //but in the wrong spot
+//                })
+//                print("\(numInWrongPlace)")
+                if numInWrongPlace > numAlreadyYellow {
+                    gradedChar.status = .wrongPlace
+                } else {
+                    gradedChar.status = .notIn
                 }
             } else {
-                gradedCharacter.status = .notIn
+                gradedChar.status = .notIn
             }
-            gradedCharacters.append(gradedCharacter)
+            gradedCharacters.append(gradedChar)
         }
         return Code(characters: gradedCharacters, kind: .attempt)
     }

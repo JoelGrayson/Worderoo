@@ -37,9 +37,10 @@ class ConfigurableSettings { //here are the default settings
     }
 }
 
-struct HardCodedSettings { //related to test mode
+// NOTE: in production vs. development configured here
+struct HardCodedSettings { //related to test mode. Not configurable.
     static let testMode = true //if testMode, always use defaultWord as the word
-    static let defaultWord = "PAVES"
+    static let defaultWord = "AABBC"
     static let showAnswer = false
 }
 

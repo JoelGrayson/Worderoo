@@ -103,14 +103,20 @@ struct GameList: View {
                 
                 // New Game Button
                 Button("New Game", systemImage: "plus.circle.fill") {
-                    let newWord = selectWord()
+                    let newWord = if HardCodedSettings.testMode {
+                        HardCodedSettings.defaultWord
+                    } else {
+                        selectWord()
+                    }
                     if let newWord {
+                        print("Selected", newWord.uppercased(), "as the new word")
                         withAnimation {
-                            let newGame = Game(masterWord: HardCodedSettings.testMode ? HardCodedSettings.defaultWord : newWord)
+                            let newGame = Game(masterWord: newWord)
                             modelContext.insert(newGame)
                             selectedGame = newGame
                         }
                     } else {
+                        print("No word could be selected")
                         // Alert(title: "Could not add game", )
                         print("Could not add game")
                     }
@@ -154,7 +160,6 @@ struct GameList: View {
     func selectWord(ofLength length: Int = -1) -> String? {
         let lengthToUse = length == -1 ? configurableSettingsWrapper.wordSizeForNewGames : length
         let newWord: String? = MasterWordChoices.random(length: lengthToUse)
-        print("Selected", newWord?.uppercased() ?? "no word selected", "as the new word")
         return newWord
     }
     
