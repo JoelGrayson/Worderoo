@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GameView: View {
     @Environment(\.scenePhase) var scenePhase
@@ -15,7 +16,7 @@ struct GameView: View {
     
     // State specific to the current game playing view
     @State private var message: String?
-    
+        
     var body: some View {
         VStack {
             if HardCodedSettings.showAnswer {
@@ -112,7 +113,7 @@ struct GameView: View {
                         return .blank
                     }
                 )
-                .sensoryFeedback(.selection, trigger: game.guess.characters.count)
+                .conditionalHapticFeedback(condition: configurableSettings.hapticFeedback, trigger: game.guess.characters.count)
             }
         }
         .navigationBarTitleDisplayMode(.inline)

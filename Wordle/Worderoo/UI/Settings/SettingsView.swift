@@ -109,6 +109,17 @@ struct SettingsView: View {
                             }
                         }
                     ))
+                    
+                    Toggle("Haptic feedback (keys vibrate)", isOn: Binding<Bool>(
+                        get: {
+                            configurableSettingsWrapper.hapticFeedback
+                        },
+                        set: { newValue in
+                            updateSettings {
+                                $0.hapticFeedback = newValue
+                            }
+                        }
+                    ))
                 }
             }
             
