@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 let wordSizeForNewGamesBounds = 3...6
-let numGuessesAllowedBounds = 3...10
+let numGuessesAllowedBounds = 3...9 //10 looks weird
 
 struct SettingsView: View {
     @Environment(\.modelContext) var modelContext

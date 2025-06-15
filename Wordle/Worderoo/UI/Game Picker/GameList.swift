@@ -166,8 +166,7 @@ struct GameList: View {
                         onAppearHandler(game: selectedGame)
                     },
                     endGame: {
-                        selectedGame.endTime = .now
-                        selectedGame.pausedAt = nil
+                        endGame(game: selectedGame)
                     },
                     typeCharacter: { key in
                         selectedGame.guess.characters.append(.init(value: key))
@@ -215,8 +214,20 @@ struct GameList: View {
         }
     }
     
+    func endGame(game: Game) {
+        game.endTime = .now
+        game.pausedAt = nil
+    }
+    
     func onAppearHandler(game: Game) {
-        if let pausedAt = game.pausedAt {
+//        let outOfGuesses = game.attempts.count >= configurableSettingsWrapper.numGuessesAllowed //may have happened if the number of guesses allowed was decreased
+        (game.isOver, game.userWon) = game.selfIsOver(numGuessesAllowed: configurableSettingsWrapper.numGuessesAllowed)
+        if game.isOver {
+            endGame(game: game)
+            return
+        }
+
+        if let pausedAt = game.pausedAt, !game.isOver {
             let pausedForDuration = Date.now.timeIntervalSince(pausedAt)
             print("onAppear had pausedAt for", pausedForDuration)
             game.startTime = game.startTime.advanced(by: pausedForDuration)
@@ -225,7 +236,9 @@ struct GameList: View {
     }
     
     func onDisappearHandler(game: Game) {
-        game.pausedAt = .now
+        if !game.isOver {
+            game.pausedAt = .now
+        }
     }
 }
 

@@ -81,7 +81,7 @@ struct GameView: View {
                             case .notAWord:
                                 message = "Please only guess English words"
                             }
-                            (game.isOver, game.userWon) = game.isOver(numGuessesAllowed: configurableSettings.numGuessesAllowed)
+                            (game.isOver, game.userWon) = game.selfIsOver(numGuessesAllowed: configurableSettings.numGuessesAllowed)
                             if (game.isOver) { //game over handler
                                 endGame()
                             }

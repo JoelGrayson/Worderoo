@@ -41,7 +41,7 @@ class Game: Equatable {
         self.attempts = attempts
         self.isOver = isOver
         
-        (self.isOver, self.userWon) = self.isOver(numGuessesAllowed: Constants.highNumberToIgnore)
+        (self.isOver, self.userWon) = self.selfIsOver(numGuessesAllowed: Constants.highNumberToIgnore)
         if isOver {
             self.startTime = .now
             self.endTime = .now
@@ -79,9 +79,9 @@ class Game: Equatable {
         return .successfullyGuessed
     }
     
-    func isOver(numGuessesAllowed: Int) -> (isOver: Bool, userWon: Bool) { // CM4 for using tuple
+    func selfIsOver(numGuessesAllowed: Int) -> (isOver: Bool, userWon: Bool) { // CM4 for using tuple
         let userWon = attempts.last?.characters.allSatisfy { $0.status == .correct } ?? false
-        let outOfGuesses = attempts.count == numGuessesAllowed
+        let outOfGuesses = attempts.count >= numGuessesAllowed
         
         return (
             isOver: userWon || outOfGuesses,
@@ -98,3 +98,4 @@ enum Result {
     case alreadyTried
     case notAWord
 }
+
