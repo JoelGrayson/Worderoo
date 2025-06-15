@@ -51,14 +51,13 @@ struct GameList: View {
                 return searchStringGood && onlyShowIncompleteGamesGood
             }
             .sorted(by: { a, b in
-                if let aSt = a.startTime, let bSt = b.startTime {
-                    if sortBy == .newestFirst {
-                        return aSt < bSt
-                    } else {
-                        return aSt > bSt
-                    }
+                let aT = a.lastGuessedAt
+                let bT = b.lastGuessedAt
+                
+                if sortBy == .newestFirst {
+                    return aT > bT
                 } else {
-                    return true //no information known
+                    return aT < bT
                 }
             })
     }
@@ -116,6 +115,7 @@ struct GameList: View {
                         print("Could not add game")
                     }
                 }
+                .padding(.vertical)
             } detail: {
                 if let selectedGame = selectedGame {
                     // Got help from AI on this one
@@ -157,7 +157,7 @@ struct GameList: View {
     func selectWord(ofLength length: Int = -1) -> String? {
         let lengthToUse = length == -1 ? configurableSettingsWrapper.wordSizeForNewGames : length
         let newWord: String? = MasterWordChoices.random(length: lengthToUse)
-        print("Selected", newWord ?? "no word selected")
+        print("Selected", newWord?.uppercased() ?? "no word selected", "as the new word")
         return newWord
     }
     

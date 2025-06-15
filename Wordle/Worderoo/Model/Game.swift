@@ -19,9 +19,9 @@ class Game: Equatable {
     var isOver = false
     var userWon = false
     
-    var lastGuessMadeAt = Date.now
+    var lastGuessedAt = Date.now
     
-    var startTime: Date? = nil
+    var startTime = Date.now
     var endTime: Date? = nil
     var pausedAt: Date? = nil
     
@@ -31,6 +31,7 @@ class Game: Equatable {
         master = Code(characters: stringToCharacters(masterWord), kind: .master)
         guess = Code(characters: [], kind: .guess)
         attempts = []
+        startTime = .now
     }
     
     // Second initializer used for the sample games, which are at various completion levels
@@ -71,7 +72,7 @@ class Game: Equatable {
         
         // Successfully add the guess
         attempts.append(guess.guessToAttempt(gradedWith: masterWord))
-        lastGuessMadeAt = .now
+        lastGuessedAt = .now
         guess.reset()
         
         return .successfullyGuessed
