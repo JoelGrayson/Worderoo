@@ -16,9 +16,9 @@ struct WorderooApp: App {
                 .modelContainer(for: [ConfigurableSettings.self, Game.self])
         }
         
-        #if os(macOS) || os(iOS)
+        #if os(macOS) && !targetEnvironment(macCatalyst)
         Settings {
-            SettingsButtonThatOpensModal()
+            SettingsView()
         }
         #endif
     }

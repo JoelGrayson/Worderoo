@@ -88,6 +88,14 @@ struct GameList: View {
     
     var gamesListPane: some View {
         return Group {
+            #if targetEnvironment(macCatalyst)
+            HStack {
+                Spacer()
+                SettingsButtonThatOpensModal()
+            }
+            .padding()
+            #endif
+            
             // Empty list of games if appropriate
             if games.isEmpty {
                 Group {
