@@ -17,15 +17,8 @@ struct GameList: View {
     @Binding var showTop: Bool
     
     // Settings
-    @Query private var configurableSettings: [ConfigurableSettings]
-    
-    var configurableSettingsWrapper: ConfigurableSettings {
-        if let s = configurableSettings.first {
-            s
-        } else {
-            defaultConfigurableSettings
-        }
-    }
+    @Query private var rawSettings: [ConfigurableSettings]
+    var configurableSettings: ConfigurableSettings { rawSettings.first ?? defaultConfigurableSettings }
     
     // Game
     @Query private var rawGames: [Game]
@@ -109,7 +102,7 @@ struct GameList: View {
             // List of Games
             List(games, selection: $selectedGame) { game in //received help from AI on making the bindings work
                 NavigationLink(value: game) {
-                    GamePreview(game: game, configurableSettings: configurableSettingsWrapper)
+                    GamePreview(game: game, configurableSettings: configurableSettings)
                         .contextMenu {
                             Button("Delete") {
                                 deleteGame(game)
@@ -157,7 +150,7 @@ struct GameList: View {
             if let selectedGame {
                 // Got help from AI on this one
                 GameView(
-                    configurableSettings: configurableSettingsWrapper,
+                    configurableSettings: configurableSettings,
                     game: selectedGame,
                     onDisappear: {
                         onDisappearHandler(game: selectedGame)
@@ -199,7 +192,7 @@ struct GameList: View {
     }
     
     func selectWord(ofLength length: Int = -1) -> String? {
-        let lengthToUse = length == -1 ? configurableSettingsWrapper.wordSizeForNewGames : length
+        let lengthToUse = length == -1 ? configurableSettings.wordSizeForNewGames : length
         let newWord: String? = MasterWordChoices.random(length: lengthToUse)
         return newWord
     }
@@ -220,8 +213,7 @@ struct GameList: View {
     }
     
     func onAppearHandler(game: Game) {
-//        let outOfGuesses = game.attempts.count >= configurableSettingsWrapper.numGuessesAllowed //may have happened if the number of guesses allowed was decreased
-        (game.isOver, game.userWon) = game.selfIsOver(numGuessesAllowed: configurableSettingsWrapper.numGuessesAllowed)
+        (game.isOver, game.userWon) = game.selfIsOver(numGuessesAllowed: configurableSettings.numGuessesAllowed)
         if game.isOver {
             endGame(game: game)
             return

@@ -12,16 +12,8 @@ import SwiftData
 
 struct ContentView: View {
     // Settings
-    @Query private var configurableSettings: [ConfigurableSettings]
-    
-    var configurableSettingsWrapper: ConfigurableSettings {
-        if let s = configurableSettings.first {
-            s
-        } else {
-            defaultConfigurableSettings
-        }
-    }
-
+    @Query private var rawSettings: [ConfigurableSettings]
+    var configurableSettings: ConfigurableSettings { rawSettings.first ?? defaultConfigurableSettings }
 
     // Sorting and Filtering
     @State private var sortBy: SortOption = .newestFirst
@@ -50,7 +42,7 @@ struct ContentView: View {
             .padding(.horizontal)
         }
         
-        GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettingsWrapper.onlyShowIncompleteGames, showTop: $showTop)
+        GameList(sortBy: sortBy, searchString: searchString, onlyShowIncompleteGames: configurableSettings.onlyShowIncompleteGames, showTop: $showTop)
             .searchable(text: $searchString)
             .animation(.easeInOut, value: searchString)
     }
