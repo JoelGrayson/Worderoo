@@ -43,7 +43,7 @@ struct GameList: View {
                 }
                 
                 let onlyShowIncompleteGamesGood = if onlyShowIncompleteGames {
-                    game.isOver
+                    !game.isOver
                 } else {
                     true
                 }
